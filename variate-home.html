@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variate Home — Miguel Melle</title>
+    <meta name="description" content="E-commerce de itens de decoração com design brutalista e moderno — Variate Home.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo específico para página de projeto */
+        .project-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 140px 0 80px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .project-meta-item {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--gray);
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+        }
+
+        .project-title {
+            font-family: var(--f-display);
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 900;
+            line-height: 0.88;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 32px;
+        }
+
+        .project-subtitle {
+            font-family: var(--f-display);
+            font-size: clamp(24px, 3vw, 42px);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin-bottom: 48px;
+        }
+
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-info-item h4 {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .project-info-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--gray-dark);
+        }
+
+        .project-section {
+            padding: var(--section-gap) 0;
+        }
+
+        .project-section:nth-child(even) {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .project-section:nth-child(even) .section-title {
+            color: var(--white);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--f-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: background 0.4s var(--ease), transform 0.4s var(--ease);
+            position: fixed;
+            top: 100px;
+            left: var(--pad);
+            z-index: 9000;
+            border: 2px solid var(--red);
+        }
+
+        .back-link:hover {
+            background: var(--red);
+            transform: translateX(-4px);
+        }
+
+        .project-challenge {
+            background: rgba(255, 20, 24, 0.05);
+            padding: 48px;
+            border-left: 4px solid var(--red);
+            margin: 60px 0;
+        }
+
+        .project-challenge h3 {
+            font-family: var(--f-display);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .project-challenge p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--gray-dark);
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .impact-stat {
+            padding: 32px;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: border-color 0.4s, background 0.4s;
+        }
+
+        .impact-stat:hover {
+            border-color: var(--red);
+            background: rgba(255, 20, 24, 0.02);
+        }
+
+        .impact-number {
+            font-family: var(--f-display);
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .impact-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gray);
+        }
+
+        /* Screenshots Gallery */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .screenshot-item {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: border-color 0.4s;
+        }
+
+        .screenshot-item:hover {
+            border-color: var(--red);
+        }
+
+        .screenshot-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--red);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-mono);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screenshot-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .screenshot-grid-2 .screenshot-placeholder {
+            aspect-ratio: 4/3;
+        }
+
+        /* Visit Site Popup */
+        .visit-site-popup {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            animation: popupSlideUp 0.6s var(--ease) 1s both;
+        }
+
+        @keyframes popupSlideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .visit-site-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 48px;
+            background: var(--red);
+            color: var(--white);
+            font-family: var(--f-mono);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visit-site-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--black);
+            transform: translateX(-101%);
+            transition: transform 0.4s var(--ease);
+        }
+
+        .visit-site-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .visit-site-btn:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .visit-site-btn span,
+        .visit-site-btn .arrow {
+            position: relative;
+            z-index: 1;
+        }
+
+        .visit-site-btn .arrow {
+            font-size: 20px;
+            transition: transform 0.4s var(--ease);
+        }
+
+        .visit-site-btn:hover .arrow {
+            transform: translate(4px, -4px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            border: 2px solid var(--border-light);
+            transition: border-color 0.4s, background 0.4s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--red);
+            background: rgba(255, 20, 24, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: var(--f-display);
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .project-section:nth-child(even) .feature-card {
+            border-color: var(--border-light);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .tech-tag {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            background: var(--white);
+        }
+
+        .tech-tag:hover {
+            border-color: var(--red);
+            color: var(--red);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 32px;
+            }
+
+            .project-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .visit-site-popup {
+                bottom: 20px;
+                left: var(--pad);
+                right: var(--pad);
+                transform: none;
+            }
+
+            .visit-site-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 20px 32px;
+            }
+
+            @keyframes popupSlideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== CURSOR ========== -->
+    <div class="cursor" id="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <span class="cursor-label"></span>
+    </div>
+
+    <!-- ========== BACK LINK ========== -->
+    <a href="index.html" class="back-link">
+        <span>← VOLTAR</span>
+    </a>
+
+    <!-- ========== VISIT SITE POPUP ========== -->
+    <div class="visit-site-popup">
+        <a href="https://variatehome.com" target="_blank" class="visit-site-btn">
+            <span>VISIT SITE</span>
+            <span class="arrow">↗</span>
+        </a>
+    </div>
+
+    <!-- ========== PROJECT HERO ========== -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-meta">
+                <span class="project-meta-item">E-COMMERCE</span>
+                <span class="project-meta-item">2025</span>
+                <span class="project-meta-item">WEB DESIGN</span>
+                <span class="project-meta-item">FRONT-END</span>
+            </div>
+
+            <h1 class="project-title">VARIATE<br>HOME</h1>
+
+            <p class="project-subtitle">
+                E-commerce de itens de decoração com design brutalista e moderno — 
+                experiência de compra imersiva com animações GSAP e interações disruptivas.
+            </p>
+
+            <div class="project-info-grid">
+                <div class="project-info-item">
+                    <h4>CLIENTE</h4>
+                    <p>Variate Home<br>E-commerce de Decoração</p>
+                </div>
+                <div class="project-info-item">
+                    <h4>SERVIÇOS</h4>
+                    <p>UI/UX Design<br>Front-End Dev<br>Branding</p>
+                </div>
+                <div class="project-info-item">
+                    <h4>PERÍODO</h4>
+                    <p>2025<br>3 meses de projeto</p>
+                </div>
+                <div class="project-info-item">
+                    <h4>TECNOLOGIAS</h4>
+                    <p>HTML/CSS/JS<br>GSAP<br>Scroll-Driven</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OVERVIEW ========== -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">
+                    <span class="section-idx">(01)</span>
+                    <span class="section-dash">————</span>
+                    <span class="section-tag">VISÃO GERAL</span>
+                </div>
+                <h2 class="section-title">O <em>projeto</em></h2>
+            </div>
+
+            <div class="project-challenge">
+                <h3>Reinventar a experiência de compra online</h3>
+                <p>
+                    A Variate Home buscava se diferenciar no mercado saturado de e-commerces 
+                    de decoração através de uma experiência de navegação única, moderna e 
+                    memorável. O desafio era criar um site que não apenas vendesse produtos, 
+                    mas contasse histórias e criasse conexão emocional com o usuário.
+                </p>
+            </div>
+
+            <div class="about-body">
+                <p>
+                    O design brutalista foi escolhido estrategicamente para criar contraste 
+                    com os e-commerces tradicionais e limpos do segmento. Tipografia bold, 
+                    layouts assimétricos, overlays ousados e microinterações sofisticadas 
+                    transformam a navegação em uma experiência imersiva.
+                </p>
+                <p>
+                    Cada elemento visual foi pensado para maximizar conversão sem sacrificar 
+                    a personalidade da marca. O resultado é um e-commerce que desafia convenções 
+                    e estabelece novos padrões de design na indústria.
+                </p>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3 Grid & Flexbox</span>
+                <span class="tech-tag">JavaScript ES6+</span>
+                <span class="tech-tag">GSAP 3</span>
+                <span class="tech-tag">ScrollTrigger</span>
+                <span class="tech-tag">Lenis Smooth Scroll</span>
+                <span class="tech-tag">Responsive Design</span>
+                <span class="tech-tag">Performance Optimized</span>
+            </div>
+
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="impact-number">3x</div>
+                    <div class="impact-label">AUMENTO NO<br>TEMPO DE SESSÃO</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">45%</div>
+                    <div class="impact-label">MELHORIA NA<br>TAXA DE CONVERSÃO</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">98</div>
+                    <div class="impact-label">PERFORMANCE<br>LIGHTHOUSE SCORE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SCREENSHOTS ========== -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label light">
+                    <span class="section-idx">(02)</span>
+                    <span class="section-dash">————</span>
+                    <span class="section-tag">INTERFACE</span>
+                </div>
+                <h2 class="section-title light">O <em>design</em></h2>
+            </div>
+
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[HOMEPAGE]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #0d0d0d 0%, #1a1a1a 50%, #ff1418 100%);">
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; font-weight: 700;">HERO SECTION</span>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[PRODUCT GRID]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #f5f5f5 0%, #e0e0e0 100%); color: #121212;">
+                        <div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 40px;">
+                            <div style="background: #fff; border: 2px solid #121212;"></div>
+                            <div style="background: #fff; border: 2px solid #121212;"></div>
+                            <div style="background: #fff; border: 2px solid #ff1418;"></div>
+                            <div style="background: #fff; border: 2px solid #121212;"></div>
+                            <div style="background: #fff; border: 2px solid #121212;"></div>
+                            <div style="background: #fff; border: 2px solid #121212;"></div>
+                        </div>
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; font-weight: 700; z-index: 10; background: rgba(255, 255, 255, 0.9); padding: 12px 24px;">GRID LAYOUT</span>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[PRODUCT PAGE]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #121212 0%, #ff1418 50%, #000 100%);">
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; font-weight: 700;">PRODUTO DETALHADO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screenshot-grid-2">
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[CART]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #1a1a1a 0%, #333 100%);">
+                        <span style="font-size: 14px; font-weight: 700;">CARRINHO</span>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[CHECKOUT]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #ff1418 0%, #8b0000 100%);">
+                        <span style="font-size: 14px; font-weight: 700;">FINALIZAÇÃO</span>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[MOBILE VIEW]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #f5f5f5 0%, #ccc 100%); color: #121212;">
+                        <span style="font-size: 14px; font-weight: 700;">RESPONSIVO</span>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <span class="screenshot-label">[ANIMATIONS]</span>
+                    <div class="screenshot-placeholder" style="background: linear-gradient(160deg, #000 0%, #ff1418 50%, #000 100%);">
+                        <span style="font-size: 14px; font-weight: 700;">GSAP EFFECTS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">
+                    <span class="section-idx">(03)</span>
+                    <span class="section-dash">————</span>
+                    <span class="section-tag">RECURSOS</span>
+                </div>
+                <h2 class="section-title">Features <em>destacadas</em></h2>
+            </div>
+
+            <div class="about-body">
+                <p>
+                    O Variate Home não é apenas um e-commerce comum. É uma experiência 
+                    completa que combina storytelling visual, microinterações sofisticadas 
+                    e performance otimizada para criar jornadas de compra memoráveis.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Scroll Storytelling</h3>
+                    <p class="feature-desc">
+                        Narrativa visual guiada por scroll com animações GSAP que revelam 
+                        produtos e informações de forma progressiva e cinematográfica.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Quick View</h3>
+                    <p class="feature-desc">
+                        Modal de visualização rápida com transições suaves que permite 
+                        explorar produtos sem sair da página de navegação.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🛒</span>
+                    <h3 class="feature-title">Cart Drawer</h3>
+                    <p class="feature-desc">
+                        Carrinho lateral animado com micro-feedbacks visuais em cada 
+                        interação, tornando o processo de compra intuitivo.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3 class="feature-title">Filtros Avançados</h3>
+                    <p class="feature-desc">
+                        Sistema de filtragem com transições suaves e feedback visual 
+                        instantâneo para facilitar a busca por produtos.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Mobile First</h3>
+                    <p class="feature-desc">
+                        Design totalmente responsivo com gestos nativos e interações 
+                        otimizadas para telas touch.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h3 class="feature-title">Performance</h3>
+                    <p class="feature-desc">
+                        Código otimizado com lazy loading, code splitting e assets 
+                        comprimidos para carregamento ultrarrápido.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROCESSO ========== -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label light">
+                    <span class="section-idx">(04)</span>
+                    <span class="section-dash">————</span>
+                    <span class="section-tag">METODOLOGIA</span>
+                </div>
+                <h2 class="section-title light">O <em>processo</em></h2>
+            </div>
+
+            <div class="about-skills">
+                <div class="skill-row">
+                    <span class="skill-label">DESCOBERTA & PESQUISA</span>
+                    <div class="skill-items">
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Análise Competitiva</span>
+                        <span class="skill-tag">User Personas</span>
+                        <span class="skill-tag">User Journey Maps</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">DESIGN & PROTOTIPAGEM</span>
+                    <div class="skill-items">
+                        <span class="skill-tag">Wireframes</span>
+                        <span class="skill-tag">UI Design</span>
+                        <span class="skill-tag">Design System</span>
+                        <span class="skill-tag">Protótipo Interativo</span>
+                        <span class="skill-tag">Testes de Usabilidade</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">DESENVOLVIMENTO</span>
+                    <div class="skill-items">
+                        <span class="skill-tag">HTML Semântico</span>
+                        <span class="skill-tag">CSS Modular</span>
+                        <span class="skill-tag">JavaScript Vanilla</span>
+                        <span class="skill-tag">GSAP Animations</span>
+                        <span class="skill-tag">Otimização</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">LANÇAMENTO & TESTES</span>
+                    <div class="skill-items">
+                        <span class="skill-tag">Performance Testing</span>
+                        <span class="skill-tag">Cross-Browser Testing</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Analytics Setup</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-body" style="margin-top: 60px; color: rgba(255,255,255,0.7);">
+                <p>
+                    O desenvolvimento do Variate Home seguiu uma metodologia ágil com 
+                    sprints semanais e constante validação com stakeholders. Cada feature 
+                    foi testada e refinada múltiplas vezes antes do lançamento.
+                </p>
+                <p>
+                    A maior complexidade estava em criar animações complexas sem comprometer 
+                    a performance. Utilizei técnicas de otimização como vontade-compositing, 
+                    requestAnimationFrame e debouncing para garantir 60fps consistentes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RESULTADO ========== -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">
+                    <span class="section-idx">(05)</span>
+                    <span class="section-dash">————</span>
+                    <span class="section-tag">IMPACTO</span>
+                </div>
+                <h2 class="section-title">O <em>resultado</em></h2>
+            </div>
+
+            <div class="about-body">
+                <p style="font-size: 18px; line-height: 1.8; margin-bottom: 32px;">
+                    O Variate Home foi lançado em janeiro de 2025 e imediatamente se destacou 
+                    no mercado. O design disruptivo gerou buzz nas redes sociais e a experiência 
+                    de usuário otimizada resultou em métricas de conversão acima da média do setor.
+                </p>
+                <p style="font-size: 15px; line-height: 1.8; color: var(--gray);">
+                    Este projeto representa meu domínio completo do stack front-end moderno e 
+                    minha capacidade de transformar conceitos de design ousados em experiências 
+                    web funcionais e performáticas. O Variate Home é prova de que design brutalista 
+                    e conversão não são mutuamente exclusivos — quando bem executados, eles se 
+                    complementam perfeitamente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEXT PROJECT ========== -->
+    <section class="contact" style="padding: 120px 0;">
+        <div class="container">
+            <h2 class="contact-title">
+                Próximo<br>projeto<em>?</em>
+            </h2>
+            <p class="contact-sub">
+                Explore outros trabalhos ou entre em contato para conversarmos sobre seu projeto.
+            </p>
+
+            <div class="contact-links">
+                <a href="index.html#work" class="contact-link magnetic-btn" data-strength="20">
+                    <span class="contact-link-label">PORTFÓLIO</span>
+                    <span class="contact-link-value">Ver todos os projetos</span>
+                    <span class="contact-link-arrow">↗</span>
+                </a>
+                <a href="index.html#contact" class="contact-link magnetic-btn" data-strength="20">
+                    <span class="contact-link-label">CONTATO</span>
+                    <span class="contact-link-value">Vamos conversar</span>
+                    <span class="contact-link-arrow">↗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">MIGUEL<br>MELLE</span>
+                    <span class="footer-badge">®</span>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <span class="footer-col-title">[NAV]</span>
+                        <a href="index.html#work">Trabalho</a>
+                        <a href="index.html#about">Sobre</a>
+                        <a href="index.html#services">Serviços</a>
+                        <a href="index.html#contact">Contato</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="footer-col-title">[SOCIAL]</span>
+                        <a href="#">Instagram</a>
+                        <a href="#">Behance</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Dribbble</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="footer-col-title">[INFO]</span>
+                        <span>Campinas—SP, Brasil</span>
+                        <span>contato@miguelmelle.com</span>
+                        <span>Disponível para projetos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 MIGUEL MELLE. TODOS OS DIREITOS RESERVADOS.</span>
+                <span class="footer-credits">DESIGN & CODE POR MM</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
