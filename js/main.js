@@ -266,49 +266,75 @@ function initScrollAnimations() {
         }
     });
 
-    // --- Hero parallax on scroll ---
-    gsap.to('.hero-name', {
-        yPercent: -25,
-        opacity: 0.2,
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
+    // --- Hero text zoom and rotation on scroll ---
+    const heroName = document.querySelector('.hero-name');
+    
+    ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: '+=100vh',
+        scrub: 1,
+        onUpdate: (self) => {
+            const progress = self.progress;
+            const scale = 1 + (progress * 25); // Scale from 1 to 26
+            const rotation = progress * 5; // Rotate up to 5 degrees
+            const opacity = 1;
+            
+            gsap.set(heroName, {
+                scale: scale,
+                rotation: rotation,
+                opacity: opacity
+            });
         }
     });
 
-    gsap.to('.hero-stripe', {
-        xPercent: -8,
-        rotation: 0,
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
+    // --- Fade in marquee section after hero text fills screen ---
+    ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: '+=100vh',
+        scrub: 1,
+        onUpdate: (self) => {
+            const progress = self.progress;
+            // Start fading in marquee when progress > 0.7
+            if (progress > 0.7) {
+                const fadeProgress = (progress - 0.7) / 0.3; // Map 0.7-1.0 to 0-1
+                gsap.set('.marquee', { opacity: fadeProgress });
+            } else {
+                gsap.set('.marquee', { opacity: 0 });
+            }
         }
     });
 
-    gsap.to('.hero-grid-overlay', {
+    // --- Hide other hero elements on scroll ---
+    gsap.to('.hero-top, .hero-stripe, .hero-bio, .hero-cta-wrap, .hero-scroll, .hero-corner, .hero-grid-overlay', {
         opacity: 0,
         scrollTrigger: {
             trigger: '.hero',
-            start: '30% top',
-            end: 'bottom top',
+            start: 'top top',
+            end: '+=50vh',
             scrub: 1,
         }
     });
 
-
-    // --- Marquee skew on scroll ---
-    gsap.to('.marquee-content', {
-        skewX: -3,
-        scrollTrigger: {
-            trigger: '.marquee',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 2,
-        }
+    // --- Marquee animations with different speeds ---
+    document.querySelectorAll('.marquee-content').forEach((content) => {
+        const speed = content.dataset.speed || 25;
+        const isRight = content.classList.contains('to-right');
+        
+        // Update animation duration based on speed
+        content.style.animationDuration = `${speed}s`;
+        
+        // Add skew effect on scroll
+        gsap.to(content, {
+            skewX: isRight ? -2 : 2,
+            scrollTrigger: {
+                trigger: '.marquee',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 2,
+            }
+        });
     });
 
 
@@ -600,6 +626,7 @@ function closeMobMenu() {
 window.addEventListener('DOMContentLoaded', () => {
     // Set initial states
     gsap.set('.hero-name-word', { y: '110%' });
+    gsap.set('.hero-name', { scale: 1, rotation: 0, opacity: 1 });
     gsap.set('.hero-top', { opacity: 0, y: 15 });
     gsap.set('.hero-stripe', { opacity: 0 });
     gsap.set('.hero-bio', { opacity: 0, y: 20 });
@@ -609,6 +636,7 @@ window.addEventListener('DOMContentLoaded', () => {
     gsap.set('.hero-grid-overlay', { opacity: 0 });
     gsap.set('.mob-link span', { y: '120%' });
     gsap.set('.mob-menu-bg', { y: '-100%' });
+    gsap.set('.marquee', { opacity: 0 });
 
     initLoader();
 });

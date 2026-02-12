@@ -453,7 +453,7 @@ body::before {
 
 /* ========== HERO ========== */
 .hero {
-    min-height: 100vh;
+    min-height: 200vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -474,7 +474,7 @@ body::before {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 200px);
+    min-height: 100vh;
     justify-content: space-between;
 }
 
@@ -500,6 +500,10 @@ body::before {
 .hero-center {
     padding: 40px 0;
     position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-name {
@@ -510,6 +514,14 @@ body::before {
     letter-spacing: clamp(-3px, -0.5vw, -8px);
     text-transform: uppercase;
     color: var(--red);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    will-change: transform;
+    -webkit-text-stroke: 0px var(--red);
+    -webkit-text-fill-color: var(--red);
 }
 
 .hero-name-line {
@@ -701,11 +713,23 @@ body::before {
 
 /* ========== MARQUEE ========== */
 .marquee {
-    padding: 28px 0;
+    position: relative;
     overflow: hidden;
+    background: var(--bg);
+    opacity: 0;
+    z-index: 20;
+}
+
+.marquee-row {
+    padding: 28px 0;
     border-top: 2px solid var(--black);
     border-bottom: 2px solid var(--black);
-    background: var(--bg);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-row:not(:last-child) {
+    border-bottom: none;
 }
 
 .marquee-track {
@@ -717,10 +741,22 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 30px;
-    animation: marqueeScroll 25s linear infinite;
 }
 
-@keyframes marqueeScroll {
+.marquee-content.to-right {
+    animation: marqueeScrollRight 25s linear infinite;
+}
+
+.marquee-content.to-left {
+    animation: marqueeScrollLeft 25s linear infinite;
+}
+
+@keyframes marqueeScrollRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes marqueeScrollLeft {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
@@ -731,14 +767,14 @@ body::before {
     font-weight: 900;
     letter-spacing: -2px;
     text-transform: uppercase;
-    color: var(--black);
-    -webkit-text-stroke: 1px var(--black);
+    color: transparent;
+    -webkit-text-stroke: 2px var(--black);
     -webkit-text-fill-color: transparent;
     transition: -webkit-text-fill-color 0.3s;
 }
 
 .marquee-word:hover {
-    -webkit-text-fill-color: var(--red);
+    -webkit-text-fill-color: var(--white);
 }
 
 .marquee-dot {
