@@ -268,29 +268,31 @@ function initScrollAnimations() {
 
     // --- Hero text zoom and rotation on scroll ---
     const heroName = document.querySelector('.hero-name');
+    const heroSection = document.querySelector('.hero');
     
+    // Pin the hero-name and animate it
     ScrollTrigger.create({
-        trigger: '.hero',
+        trigger: heroSection,
         start: 'top top',
         end: '+=100vh',
+        pin: heroName,
+        pinSpacing: false,
         scrub: 1,
         onUpdate: (self) => {
             const progress = self.progress;
             const scale = 1 + (progress * 25); // Scale from 1 to 26
             const rotation = progress * 5; // Rotate up to 5 degrees
-            const opacity = 1;
             
             gsap.set(heroName, {
                 scale: scale,
                 rotation: rotation,
-                opacity: opacity
             });
         }
     });
 
     // --- Fade in marquee section after hero text fills screen ---
     ScrollTrigger.create({
-        trigger: '.hero',
+        trigger: heroSection,
         start: 'top top',
         end: '+=100vh',
         scrub: 1,
@@ -310,7 +312,7 @@ function initScrollAnimations() {
     gsap.to('.hero-top, .hero-stripe, .hero-bio, .hero-cta-wrap, .hero-scroll, .hero-corner, .hero-grid-overlay', {
         opacity: 0,
         scrollTrigger: {
-            trigger: '.hero',
+            trigger: heroSection,
             start: 'top top',
             end: '+=50vh',
             scrub: 1,
