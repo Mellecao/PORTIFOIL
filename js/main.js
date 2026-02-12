@@ -280,8 +280,8 @@ function initScrollAnimations() {
         scrub: 1,
         onUpdate: (self) => {
             const progress = self.progress;
-            const scale = 1 + (progress * 25); // Scale from 1 to 26
-            const rotation = progress * 5; // Rotate up to 5 degrees
+            const scale = 1 + (progress * 25); // Scale from 1x to 26x based on scroll progress
+            const rotation = progress * 5; // Rotate from 0 to 5 degrees
             
             gsap.set(heroName, {
                 scale: scale,

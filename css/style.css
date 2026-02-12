@@ -767,6 +767,7 @@ body::before {
 
 .marquee-word:hover {
     -webkit-text-fill-color: var(--white);
+    color: var(--white);
 }
 
 .marquee-dot {
