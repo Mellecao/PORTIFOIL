@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -200,7 +200,7 @@
 
         .line-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
             gap: 40px;
             margin-top: 32px;
         }
@@ -444,7 +444,7 @@
 
         .mailmkt-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
             gap: 40px;
         }
 
@@ -452,24 +452,24 @@
             aspect-ratio: auto;
         }
 
-        /* ---- Linguiças — Horizontal Scroll (same pattern as fatiados) ---- */
-        .hscroll-wrap-ling {
+        /* ---- Linguiças — Slider ---- */
+        .ling-slider {
             position: relative;
-            overflow: hidden;
             margin-top: 32px;
-            height: 100vh;
-            display: flex;
-            align-items: center;
         }
 
-        .hscroll-track-ling {
-            display: flex;
-            gap: 48px;
-            will-change: transform;
+        .ling-slider-viewport {
+            overflow: hidden;
         }
 
-        .ling-card {
-            flex: 0 0 480px;
+        .ling-slider-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ling-slider .ling-card {
+            flex: 0 0 calc(50% - 12px);
             aspect-ratio: 3/4;
             position: relative;
             border-radius: 0;
@@ -479,7 +479,7 @@
             transition: transform 0.6s var(--ease);
         }
 
-        .ling-card:hover {
+        .ling-slider .ling-card:hover {
             transform: scale(1.02);
         }
 
@@ -526,6 +526,54 @@
             opacity: 0.7;
         }
 
+        .ling-slider-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .ling-slider-btn {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--black) !important;
+            background: transparent !important;
+            font-family: var(--f-mono);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+            color: var(--black);
+        }
+
+        .ling-slider-btn:hover {
+            background: var(--red) !important;
+            border-color: var(--red) !important;
+            color: #fff;
+        }
+
+        .ling-slider-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ling-slider-dot {
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--black);
+            background: transparent;
+            transition: background 0.3s, border-color 0.3s;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .ling-slider-dot.active {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
         @media (max-width: 768px) {
             .back-link {
                 position: relative;
@@ -551,9 +599,8 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Convert horizontal scrolls to vertical sliders */
-            .hscroll-wrap,
-            .hscroll-wrap-ling {
+            /* Fatiados horizontal scroll — touch-friendly on mobile */
+            .hscroll-wrap {
                 height: auto;
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -562,8 +609,7 @@
                 align-items: stretch;
             }
 
-            .hscroll-track,
-            .hscroll-track-ling {
+            .hscroll-track {
                 display: flex;
                 gap: 16px;
                 padding: 0 16px;
@@ -575,26 +621,19 @@
                 aspect-ratio: 3/4;
             }
 
-            .ling-card {
-                flex: 0 0 240px;
-            }
-
-            .hscroll-track-ling {
-                gap: 16px;
+            /* Linguiças slider — single card on mobile */
+            .ling-slider .ling-card {
+                flex: 0 0 100%;
             }
 
             .mailmkt-gallery {
                 grid-template-columns: 1fr;
             }
 
-            /* 3D model in etiqueta negra — well positioned */
+            /* 3D model — block on mobile */
             #fbxModelWrap {
-                position: relative;
-                bottom: auto;
-                right: auto;
                 width: 100%;
                 height: 300px;
-                margin-top: 24px;
             }
 
             #etiquetaNegraCard {
@@ -674,13 +713,12 @@
             }
         }
 
-        /* ---- FBX 3D Model — bottom-right of Etiqueta Negra scroll ---- */
+        /* ---- FBX 3D Model — Etiqueta Negra ---- */
         #fbxModelWrap {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
             width: 420px;
+            max-width: 100%;
             height: 500px;
+            margin: 40px auto 0;
             z-index: 10;
             pointer-events: none;
             opacity: 0.95;
@@ -710,14 +748,20 @@
 
         @media (max-width: 768px) {
             #fbxModelWrap {
-                position: relative;
-                bottom: auto;
-                right: auto;
                 width: 100%;
                 height: 300px;
             }
             #heroLogo3D {
                 display: none;
+            }
+            .cursor { display: none !important; }
+            body { cursor: auto; }
+            a, button { cursor: auto; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .ling-slider .ling-card {
+                flex: 0 0 calc(50% - 12px);
             }
         }
     </style>
@@ -858,46 +902,46 @@
                 <div class="hscroll-wrap" id="etiquetaNegra">
                     <div class="hscroll-track">
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/COPA%20ITALIANA%20fatiados%20etiqueta%20negra%20importados).png" alt="Copa Italiana — Fatiados Etiqueta Negra Importados" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/COPA%20ITALIANA%20fatiados%20etiqueta%20negra%20importados).png" alt="Copa Italiana — Fatiados Etiqueta Negra Importados" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Jamon%20Serrano%20fatiados%20etiqueta%20negra%20importados).png" alt="Jamon Serrano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Jamon%20Serrano%20fatiados%20etiqueta%20negra%20importados).png" alt="Jamon Serrano — Fatiados Etiqueta Negra Importados" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/PRESUNTO%20CRU%20ITALIANO%20(fatiados%20etiqueta%20negra%20importados).png" alt="Presunto Cru Italiano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/PRESUNTO%20CRU%20ITALIANO%20(fatiados%20etiqueta%20negra%20importados).png" alt="Presunto Cru Italiano — Fatiados Etiqueta Negra Importados" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Salame%20milano%20(fatiados%20etiqueta%20negra%20importados).png" alt="Salame Milano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Salame%20milano%20(fatiados%20etiqueta%20negra%20importados).png" alt="Salame Milano — Fatiados Etiqueta Negra Importados" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Lombo%20Defumado%20Apimentado%20fatiados%20etiqueta%20negra%20nacionais.png" alt="Lombo Defumado Apimentado — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Lombo%20Defumado%20Apimentado%20fatiados%20etiqueta%20negra%20nacionais.png" alt="Lombo Defumado Apimentado — Fatiados Etiqueta Negra Nacionais" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Panceta%20Defumada%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Panceta Defumada — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Panceta%20Defumada%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Panceta Defumada — Fatiados Etiqueta Negra Nacionais" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Defumado%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Defumado — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Defumado%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Defumado — Fatiados Etiqueta Negra Nacionais" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Real%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Real — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Real%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Real — Fatiados Etiqueta Negra Nacionais" loading="lazy" decoding="async">
                         </div>
                     </div>
-                    <!-- 3D FBX Model -->
-                    <div id="fbxModelWrap"></div>
                 </div>
+                <!-- 3D FBX Model -->
+                <div id="fbxModelWrap"></div>
 
                 <!-- Mail Marketing -->
                 <div class="mailmkt-section">
                     <span class="mailmkt-title">Mail Marketing</span>
                     <div class="mailmkt-gallery">
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS.png" alt="Mail Marketing — Fatiados Importados" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS.png" alt="Mail Marketing — Fatiados Importados" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS_2.png" alt="Mail Marketing — Fatiados Importados 2" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS_2.png" alt="Mail Marketing — Fatiados Importados 2" loading="lazy" decoding="async">
                         </div>
                         <div class="gallery-item">
-                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_NACIONAIS.png" alt="Mail Marketing — Fatiados Nacionais" loading="lazy">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_NACIONAIS.png" alt="Mail Marketing — Fatiados Nacionais" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -961,28 +1005,35 @@
                     de sabores, mantendo unidade visual. Foco em comunicar frescor, praticidade 
                     e sabor caseiro.
                 </p>
-                <div class="hscroll-wrap-ling" id="linguicasScroll">
-                    <div class="hscroll-track-ling">
-                        <div class="ling-card">
-                            <span class="ling-card-idx">01/04</span>
-                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20tradicional.png" alt="Linguiça Temperada Congelada — Tradicional" loading="lazy">
-                            <span class="ling-card-label">Tradicional</span>
+                <div class="ling-slider" id="linguicasSlider">
+                    <div class="ling-slider-viewport">
+                        <div class="ling-slider-track">
+                            <div class="ling-card">
+                                <span class="ling-card-idx">01/04</span>
+                                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20tradicional.png" alt="Linguiça Temperada Congelada — Tradicional" loading="lazy" decoding="async">
+                                <span class="ling-card-label">Tradicional</span>
+                            </div>
+                            <div class="ling-card">
+                                <span class="ling-card-idx">02/04</span>
+                                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Apimentada.png" alt="Linguiça Temperada Congelada — Apimentada" loading="lazy" decoding="async">
+                                <span class="ling-card-label">Apimentada</span>
+                            </div>
+                            <div class="ling-card">
+                                <span class="ling-card-idx">03/04</span>
+                                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Alho.png" alt="Linguiça Temperada Congelada — Alho" loading="lazy" decoding="async">
+                                <span class="ling-card-label">Alho</span>
+                            </div>
+                            <div class="ling-card">
+                                <span class="ling-card-idx">04/04</span>
+                                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20bacon.png" alt="Linguiça Temperada Congelada — Bacon" loading="lazy" decoding="async">
+                                <span class="ling-card-label">Bacon</span>
+                            </div>
                         </div>
-                        <div class="ling-card">
-                            <span class="ling-card-idx">02/04</span>
-                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Apimentada.png" alt="Linguiça Temperada Congelada — Apimentada" loading="lazy">
-                            <span class="ling-card-label">Apimentada</span>
-                        </div>
-                        <div class="ling-card">
-                            <span class="ling-card-idx">03/04</span>
-                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Alho.png" alt="Linguiça Temperada Congelada — Alho" loading="lazy">
-                            <span class="ling-card-label">Alho</span>
-                        </div>
-                        <div class="ling-card">
-                            <span class="ling-card-idx">04/04</span>
-                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20bacon.png" alt="Linguiça Temperada Congelada — Bacon" loading="lazy">
-                            <span class="ling-card-label">Bacon</span>
-                        </div>
+                    </div>
+                    <div class="ling-slider-controls">
+                        <button class="ling-slider-btn ling-slider-prev" aria-label="Anterior">←</button>
+                        <div class="ling-slider-dots"></div>
+                        <button class="ling-slider-btn ling-slider-next" aria-label="Próximo">→</button>
                     </div>
                 </div>
             </div>
@@ -1002,35 +1053,35 @@
                 <!-- Grid com efeito lupa -->
                 <div class="cortes-grid" id="cortesGrid">
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Picanha.png" alt="Picanha">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Picanha.png" alt="Picanha" loading="lazy" decoding="async">
                         <span class="cortes-label">Picanha</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costela.png" alt="Costela">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costela.png" alt="Costela" loading="lazy" decoding="async">
                         <span class="cortes-label">Costela</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costelinha.png" alt="Costelinha">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costelinha.png" alt="Costelinha" loading="lazy" decoding="async">
                         <span class="cortes-label">Costelinha</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Lombo.png" alt="Lombo">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Lombo.png" alt="Lombo" loading="lazy" decoding="async">
                         <span class="cortes-label">Lombo</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Copa%20Lombo.png" alt="Copa Lombo">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Copa%20Lombo.png" alt="Copa Lombo" loading="lazy" decoding="async">
                         <span class="cortes-label">Copa Lombo</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Panceta.png" alt="Panceta">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Panceta.png" alt="Panceta" loading="lazy" decoding="async">
                         <span class="cortes-label">Panceta</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Pernil.png" alt="Pernil">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Pernil.png" alt="Pernil" loading="lazy" decoding="async">
                         <span class="cortes-label">Pernil</span>
                     </div>
                     <div class="cortes-grid-item">
-                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Fraldinha.png" alt="Fraldinha">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Fraldinha.png" alt="Fraldinha" loading="lazy" decoding="async">
                         <span class="cortes-label">Fraldinha</span>
                     </div>
                 </div>
@@ -1435,26 +1486,96 @@
             }
         });
 
-        /* ===== LINGUIÇAS — clean pin scroll (same as fatiados) ===== */
-        const wrapLing  = document.querySelector('#linguicasScroll');
-        const trackLing = wrapLing.querySelector('.hscroll-track-ling');
-        const getLingScroll = () => trackLing.scrollWidth - wrapLing.offsetWidth;
-
-        gsap.to(trackLing, {
-            x: () => -getLingScroll(),
-            ease: 'none',
-            scrollTrigger: {
-                trigger: wrapLing,
-                start: 'top top',
-                end: () => `+=${getLingScroll()}`,
-                pin: true,
-                pinSpacing: true,
-                scrub: 1,
-                invalidateOnRefresh: true,
-                anticipatePin: 1
-            }
-        });
         } // end !isMobile
+
+        /* ===== LINGUIÇAS — Simple Slider ===== */
+        (function initLingSlider() {
+            const slider = document.getElementById('linguicasSlider');
+            if (!slider) return;
+
+            const viewport = slider.querySelector('.ling-slider-viewport');
+            const track = slider.querySelector('.ling-slider-track');
+            const cards = track.querySelectorAll('.ling-card');
+            const prevBtn = slider.querySelector('.ling-slider-prev');
+            const nextBtn = slider.querySelector('.ling-slider-next');
+            const dotsContainer = slider.querySelector('.ling-slider-dots');
+
+            let currentIndex = 0;
+            let itemsPerView = 2;
+
+            function getItemsPerView() {
+                if (window.innerWidth <= 768) return 1;
+                return 2;
+            }
+
+            function getTotalPages() {
+                return Math.ceil(cards.length / itemsPerView);
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const pages = getTotalPages();
+                for (let i = 0; i < pages; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'ling-slider-dot' + (i === currentIndex ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Página ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateSlider() {
+                const gap = 24;
+                const cardWidth = cards[0].offsetWidth + gap;
+                const offset = currentIndex * itemsPerView * cardWidth;
+                track.style.transform = 'translateX(-' + offset + 'px)';
+
+                const dots = dotsContainer.querySelectorAll('.ling-slider-dot');
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+
+                prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+                nextBtn.style.opacity = currentIndex >= getTotalPages() - 1 ? '0.3' : '1';
+            }
+
+            function goTo(index) {
+                const pages = getTotalPages();
+                currentIndex = Math.max(0, Math.min(index, pages - 1));
+                updateSlider();
+            }
+
+            prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+            nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) goTo(currentIndex + 1);
+                    else goTo(currentIndex - 1);
+                }
+            }, { passive: true });
+
+            function handleResize() {
+                const newIPV = getItemsPerView();
+                if (newIPV !== itemsPerView) {
+                    itemsPerView = newIPV;
+                    currentIndex = 0;
+                    buildDots();
+                }
+                updateSlider();
+            }
+
+            window.addEventListener('resize', handleResize);
+
+            itemsPerView = getItemsPerView();
+            buildDots();
+            updateSlider();
+        })();
 
         /* ===== GLB 3D MODEL — Etiqueta Negra bottom-right ===== */
         (function initGLBModel() {
