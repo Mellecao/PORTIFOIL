@@ -378,6 +378,15 @@ body::before {
     transform: translateY(-5px) rotate(-45deg);
 }
 
+.nav-hamburger.active span {
+    background: var(--red);
+}
+
+.nav-brand.menu-open {
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 /* ========== MOBILE MENU ========== */
 .mob-menu {
@@ -410,7 +419,7 @@ body::before {
 .mob-menu-links {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 24px;
 }
 
 .mob-link {
@@ -943,6 +952,7 @@ body::before {
 .work-card-placeholder {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     transition: transform 1s var(--ease), filter 0.6s;
 }
 
@@ -1040,6 +1050,7 @@ body::before {
 .about-photo-placeholder {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     background: linear-gradient(160deg, var(--black) 0%, var(--gray-dark) 100%);
 }
 
@@ -1375,6 +1386,12 @@ body::before {
     padding: 28px 0;
     border-top: 1px solid var(--border);
     transition: background 0.4s;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
 }
 
 .contact-link:last-child { border-bottom: 1px solid var(--border); }
@@ -1570,4 +1587,49 @@ body::before {
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
 
     .hero-bottom { flex-direction: column; align-items: flex-start; }
+
+    /* Hero zoom disabled on mobile */
+    .hero-red-fill,
+    .marquee-overlay {
+        position: relative;
+        inset: auto;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .hero-red-fill {
+        display: none;
+    }
+
+    .marquee-overlay {
+        background: transparent;
+        gap: 0;
+        padding: 32px 0;
+    }
+
+    .mq-skills-title {
+        color: var(--black);
+        margin-bottom: 16px;
+    }
+
+    .mq-row {
+        padding: 2px 0;
+    }
+
+    .mq-row-4,
+    .mq-row-5 {
+        display: none;
+    }
+
+    .mq-row-track .mq-word {
+        font-size: clamp(20px, 6vw, 32px);
+        -webkit-text-stroke: 1px var(--black);
+        -webkit-text-fill-color: transparent;
+        padding: 2px 10px;
+    }
+
+    .mq-row-track .mq-dot {
+        font-size: clamp(20px, 6vw, 32px);
+        padding: 0 6px;
+    }
 }

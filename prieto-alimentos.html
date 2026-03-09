@@ -531,7 +531,16 @@
                 position: relative;
                 top: auto;
                 left: auto;
-                margin-bottom: 32px;
+                margin: 16px 16px 32px;
+            }
+
+            .project-hero {
+                min-height: auto;
+                padding: 80px 0 60px;
+            }
+
+            #heroLogo3D {
+                display: none;
             }
 
             .project-info-grid {
@@ -542,22 +551,66 @@
                 grid-template-columns: 1fr;
             }
 
+            /* Convert horizontal scrolls to vertical sliders */
+            .hscroll-wrap,
+            .hscroll-wrap-ling {
+                height: auto;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                display: flex;
+                align-items: stretch;
+            }
+
+            .hscroll-track,
+            .hscroll-track-ling {
+                display: flex;
+                gap: 16px;
+                padding: 0 16px;
+                transform: none !important;
+            }
+
             .hscroll-track .gallery-item {
-                flex: 0 0 400px;
+                flex: 0 0 260px;
+                aspect-ratio: 3/4;
+            }
+
+            .ling-card {
+                flex: 0 0 240px;
+            }
+
+            .hscroll-track-ling {
+                gap: 16px;
             }
 
             .mailmkt-gallery {
                 grid-template-columns: 1fr;
             }
 
-            .ling-card {
-                flex: 0 0 320px;
+            /* 3D model in etiqueta negra — well positioned */
+            #fbxModelWrap {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                width: 100%;
+                height: 300px;
+                margin-top: 24px;
             }
 
-            .hscroll-track-ling {
-                gap: 24px;
+            #etiquetaNegraCard {
+                padding: 32px 20px;
+                padding-left: calc(50vw - 50% + 20px);
+                padding-right: calc(50vw - 50% + 20px);
             }
 
+            .project-challenge {
+                padding: 32px 20px;
+                margin: 40px 0;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ---- Cortes Suínos — Grid ---- */
@@ -657,16 +710,14 @@
 
         @media (max-width: 768px) {
             #fbxModelWrap {
-                width: 220px;
-                height: 280px;
-                bottom: 5px;
-                right: 5px;
+                position: relative;
+                bottom: auto;
+                right: auto;
+                width: 100%;
+                height: 300px;
             }
             #heroLogo3D {
-                width: 360px;
-                height: 260px;
-                margin-bottom: -15px;
-                margin-left: -10px;
+                display: none;
             }
         }
     </style>
@@ -1155,6 +1206,7 @@
 
         /* ===== HERO 3D LOGO — Prieto Alimentos ===== */
         (function initHeroLogo3D() {
+            if (window.innerWidth <= 768) return; // Skip on mobile
             const container = document.getElementById('heroLogo3D');
             const heroSection = document.querySelector('.project-hero');
             if (!container || !heroSection || typeof THREE === 'undefined') return;
@@ -1361,6 +1413,9 @@
         })();
 
         /* ===== ETIQUETA NEGRA — clean pin scroll ===== */
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
         const wrapEN  = document.querySelector('#etiquetaNegra');
         const trackEN = wrapEN.querySelector('.hscroll-track');
         const getENScroll = () => trackEN.scrollWidth - wrapEN.offsetWidth;
@@ -1399,6 +1454,7 @@
                 anticipatePin: 1
             }
         });
+        } // end !isMobile
 
         /* ===== GLB 3D MODEL — Etiqueta Negra bottom-right ===== */
         (function initGLBModel() {

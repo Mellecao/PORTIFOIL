@@ -279,6 +279,8 @@ function initScrollAnimations() {
     });
 
     // --- Hero Scroll Zoom → Red Fill → Marquee Reveal ---
+    // Skip zoom animation on mobile
+    if (window.innerWidth > 768) {
     // Set initial explicit values so scrub reversal restores them
     gsap.set(['.hero-top'], { opacity: 1, y: 0, force3D: true });
     gsap.set(['.hero-bio'], { opacity: 1, y: 0, force3D: true });
@@ -347,6 +349,7 @@ function initScrollAnimations() {
         opacity: 1,
         duration: 0.12,
     }, 0.18);
+    } // end mobile check
 
 
     // --- Section labels ---
@@ -672,6 +675,7 @@ function openMobMenu() {
     menuOpen = true;
     hamburger.classList.add('active');
     mobMenu.classList.add('active');
+    document.querySelector('.nav-brand').classList.add('menu-open');
     lenis.stop();
 
     const tl = gsap.timeline();
@@ -688,6 +692,7 @@ function openMobMenu() {
 function closeMobMenu() {
     menuOpen = false;
     hamburger.classList.remove('active');
+    document.querySelector('.nav-brand').classList.remove('menu-open');
     lenis.start();
 
     const tl = gsap.timeline({
@@ -721,253 +726,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initLoader();
 });
 
-
-// ==========================================
-// 11. MATTER.JS FOOTER — "MIGUEL" pixel text
-// ==========================================
-function initFooterMatter() {
-    if (window.innerWidth <= 768) return;
-
-    const canvas = document.getElementById('footer-matter');
-    if (!canvas || typeof Matter === 'undefined') return;
-
-    const { Engine, Render, Runner, World, Bodies, Events, Body } = Matter;
-
-    /* ── Pixel font (5×7 per letter, "I" = 3×7) ── */
-    const FONT = {
-        M: ['10001','11011','10101','10001','10001','10001','10001'],
-        I: ['111','010','010','010','010','010','111'],
-        G: ['01110','10001','10000','10110','10001','10001','01110'],
-        U: ['10001','10001','10001','10001','10001','10001','01110'],
-        E: ['11111','10000','10000','11110','10000','10000','11111'],
-        L: ['10000','10000','10000','10000','10000','10000','11111'],
-    };
-
-    const word = 'MIGUEL';
-    const letterGap = 2;
-    const TEXT_H = 7;
-    const letters = word.split('').map(ch => FONT[ch]);
-    const letterW  = letters.map(l => l[0].length);
-    const textCols = letterW.reduce((s, w) => s + w, 0) + (letters.length - 1) * letterGap;
-
-    /* ── Canvas / sizing ── */
-    const footer   = document.querySelector('.footer');
-    const cW       = window.innerWidth;
-    const cH       = footer.offsetHeight;
-    canvas.width   = cW;
-    canvas.height  = cH;
-
-    const gap      = 3;
-    const cellSize = Math.max(16, Math.floor(cW * 0.72 / textCols));
-    const boxSize  = cellSize - gap;
-
-    const padTop   = 1;
-    const padBot   = 2;
-    const totalRows = TEXT_H + padTop + padBot;
-    const totalCols = Math.floor(cW / cellSize);
-    const gridLeft  = Math.floor((cW - totalCols * cellSize) / 2);
-    const gridTop   = cH - totalRows * cellSize;
-
-    /* ── Letter pixel map ── */
-    const textStartCol = Math.floor((totalCols - textCols) / 2);
-    const letterPixels = new Set();
-    let colCursor = textStartCol;
-    for (const letter of letters) {
-        const w = letter[0].length;
-        for (let r = 0; r < TEXT_H; r++) {
-            for (let c = 0; c < w; c++) {
-                if (letter[r][c] === '1') {
-                    letterPixels.add(`${padTop + r},${colCursor + c}`);
-                }
-            }
-        }
-        colCursor += w + letterGap;
-    }
-
-    /* ── Engine (zero gravity — boxes hold formation) ── */
-    const engine = Engine.create({ gravity: { x: 0, y: 0 } });
-
-    const render = Render.create({
-        canvas: canvas,
-        engine: engine,
-        options: {
-            width: cW,
-            height: cH,
-            wireframes: false,
-            background: 'transparent',
-            pixelRatio: window.devicePixelRatio,
-        },
-    });
-
-    /* ── Walls ── */
-    const wt = 60;
-    World.add(engine.world, [
-        Bodies.rectangle(cW / 2, cH + wt / 2, cW + 200, wt, { isStatic: true, render: { fillStyle: 'transparent' } }),
-        Bodies.rectangle(-wt / 2, cH / 2, wt, cH * 3, { isStatic: true, render: { fillStyle: 'transparent' } }),
-        Bodies.rectangle(cW + wt / 2, cH / 2, wt, cH * 3, { isStatic: true, render: { fillStyle: 'transparent' } }),
-    ]);
-
-    /* ── Create boxes ── */
-    const boxes = [];
-    for (let r = 0; r < totalRows; r++) {
-        for (let c = 0; c < totalCols; c++) {
-            const isLetter = letterPixels.has(`${r},${c}`);
-            const color    = isLetter ? '#ff1418' : '#ffffff';
-            const tX = gridLeft + c * cellSize + cellSize / 2;
-            const tY = gridTop  + r * cellSize + cellSize / 2;
-            const sX = tX + (Math.random() - 0.5) * 80;
-            const sY = -60 - Math.random() * cH * 0.6;
-
-            const box = Bodies.rectangle(sX, sY, boxSize, boxSize, {
-                isStatic: true,
-                friction: 0.8,
-                restitution: 0.12,
-                angle: (Math.random() - 0.5) * 0.6,
-                render: {
-                    fillStyle: color,
-                    strokeStyle: isLetter ? '#cc1014' : '#333',
-                    lineWidth: isLetter ? 0.5 : 1,
-                },
-            });
-
-            box._tX = tX;
-            box._tY = tY;
-            box._r  = r;
-            box._c  = c;
-            box._ok = false;
-            boxes.push(box);
-        }
-    }
-
-    World.add(engine.world, boxes);
-
-    const runner = Runner.create();
-    Runner.run(runner, engine);
-    Render.run(render);
-
-    /* ── Drop animation ── */
-    const anims = [];
-    let animLoop = false;
-
-    function easeOutBounce(t) {
-        if (t < 1 / 2.75) return 7.5625 * t * t;
-        if (t < 2 / 2.75) { t -= 1.5 / 2.75; return 7.5625 * t * t + 0.75; }
-        if (t < 2.5 / 2.75) { t -= 2.25 / 2.75; return 7.5625 * t * t + 0.9375; }
-        t -= 2.625 / 2.75; return 7.5625 * t * t + 0.984375;
-    }
-
-    function tickAnims() {
-        const now = performance.now();
-        for (let i = anims.length - 1; i >= 0; i--) {
-            const a = anims[i];
-            const p = Math.min((now - a.t0) / a.dur, 1);
-            const e = easeOutBounce(p);
-            Body.setPosition(a.box, {
-                x: a.sx + (a.box._tX - a.sx) * e,
-                y: a.sy + (a.box._tY - a.sy) * e,
-            });
-            Body.setAngle(a.box, a.sa * (1 - e));
-            if (p >= 1) {
-                Body.setPosition(a.box, { x: a.box._tX, y: a.box._tY });
-                Body.setAngle(a.box, 0);
-                a.box._ok = true;
-                Body.setStatic(a.box, false);
-                Body.setVelocity(a.box, { x: 0, y: 0 });
-                Body.setAngularVelocity(a.box, 0);
-                anims.splice(i, 1);
-            }
-        }
-        if (anims.length > 0) requestAnimationFrame(tickAnims);
-        else animLoop = false;
-    }
-
-    function startDrop() {
-        boxes.forEach((box) => {
-            const delay = box._c * 22 + box._r * 12;
-            setTimeout(() => {
-                anims.push({
-                    box: box,
-                    sx: box.position.x,
-                    sy: box.position.y,
-                    sa: box.angle,
-                    dur: 650 + Math.random() * 250,
-                    t0: performance.now(),
-                });
-                if (!animLoop) { animLoop = true; requestAnimationFrame(tickAnims); }
-            }, delay);
-        });
-    }
-
-    /* ── Trigger drop when footer enters viewport ── */
-    ScrollTrigger.create({
-        trigger: '.footer',
-        start: 'top bottom-=100',
-        once: true,
-        onEnter: startDrop,
-    });
-
-    /* ── Mouse interaction ── */
-    let mx = -9999, my = -9999;
-    const pushR = 120, pushF = 0.0025;
-
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mx = e.clientX - rect.left;
-        my = e.clientY - rect.top;
-    });
-    canvas.addEventListener('mouseleave', () => { mx = my = -9999; });
-
-    /* ── Physics: spring restore + mouse push ── */
-    Events.on(engine, 'beforeUpdate', () => {
-        for (const box of boxes) {
-            if (!box._ok || box.isStatic) continue;
-
-            // Spring toward target position
-            const dx = box._tX - box.position.x;
-            const dy = box._tY - box.position.y;
-            Body.applyForce(box, box.position, { x: dx * 0.00025, y: dy * 0.00025 });
-
-            // Velocity damping
-            Body.setVelocity(box, { x: box.velocity.x * 0.93, y: box.velocity.y * 0.93 });
-            Body.setAngularVelocity(box, box.angularVelocity * 0.88);
-
-            // Angle restore
-            if (Math.abs(box.angle) > 0.01) Body.setAngle(box, box.angle * 0.92);
-
-            // Mouse push
-            const ddx  = box.position.x - mx;
-            const ddy  = box.position.y - my;
-            const dist = Math.sqrt(ddx * ddx + ddy * ddy);
-            if (dist < pushR && dist > 1) {
-                const f = pushF * (1 - dist / pushR);
-                const a = Math.atan2(ddy, ddx);
-                Body.applyForce(box, box.position, { x: Math.cos(a) * f, y: Math.sin(a) * f });
-            }
-        }
-    });
-
-    /* ── Resize ── */
-    let footerResizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(footerResizeTimer);
-        footerResizeTimer = setTimeout(() => {
-            if (window.innerWidth <= 768) {
-                Render.stop(render);
-                Runner.stop(runner);
-                World.clear(engine.world);
-                Engine.clear(engine);
-                canvas.style.display = 'none';
-            }
-        }, 250);
-    });
-}
-
-// Initialize Matter.js when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFooterMatter);
-} else {
-    initFooterMatter();
-}
 
 // ==========================================
 // 12. RESIZE
