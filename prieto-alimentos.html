@@ -109,6 +109,64 @@
             padding-bottom: 0;
         }
 
+        /* ---- Etiqueta Negra dark card ---- */
+        #etiquetaNegraCard {
+            background: var(--black);
+            padding: 60px 48px;
+            border-radius: 0;
+            border-bottom-color: rgba(255,255,255,0.1);
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding-left: calc(50vw - 50% + 48px);
+            padding-right: calc(50vw - 50% + 48px);
+        }
+
+        #etiquetaNegraCard .line-number {
+            color: var(--red);
+        }
+
+        #etiquetaNegraCard .line-title {
+            color: #fff;
+        }
+
+        #etiquetaNegraCard .line-description {
+            color: rgba(255,255,255,0.6);
+        }
+
+        #etiquetaNegraCard .mailmkt-title {
+            color: var(--red);
+        }
+
+        #etiquetaNegraCard .gallery-item {
+            background: #111;
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        #etiquetaNegraCard .curiosidades {
+            border-color: rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.03);
+        }
+
+        #etiquetaNegraCard .curiosidades h4 {
+            color: #fff;
+        }
+
+        #etiquetaNegraCard .curiosidades-step p {
+            color: rgba(255,255,255,0.55);
+        }
+
+        #etiquetaNegraCard .curiosidades-step p strong {
+            color: #fff;
+        }
+
+        #etiquetaNegraCard .curiosidades-step-num {
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        #etiquetaNegraCard .curiosidades-badge {
+            background: rgba(255,20,24,0.15);
+        }
+
         .line-number {
             font-family: var(--f-mono);
             font-size: 12px;
@@ -142,8 +200,8 @@
 
         .line-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
             margin-top: 32px;
         }
 
@@ -151,6 +209,7 @@
             aspect-ratio: 4/3;
             background: var(--gray-light);
             border: 1px solid var(--border);
+            border-radius: 6px;
             position: relative;
             overflow: hidden;
             transition: transform 0.6s var(--ease);
@@ -163,6 +222,7 @@
         .gallery-placeholder {
             width: 100%;
             height: 100%;
+            object-fit: contain;
         }
 
         .back-link {
@@ -204,12 +264,17 @@
             margin-bottom: 16px;
             text-transform: uppercase;
             letter-spacing: -1px;
+            color: #ccc;
         }
 
         .project-challenge p {
             font-size: 15px;
             line-height: 1.8;
-            color: var(--gray-dark);
+            color: #aaa;
+        }
+
+        .project-section:first-of-type .about-body p {
+            color: #aaa;
         }
 
         .impact-stats {
@@ -244,7 +309,221 @@
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 2px;
+            color: #bbb;
+        }
+
+        /* ---- Horizontal Scroll Gallery ---- */
+        .hscroll-wrap {
+            position: relative;
+            overflow: hidden;
+            margin-top: 32px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hscroll-track {
+            display: flex;
+            gap: 48px;
+            will-change: transform;
+        }
+
+        .hscroll-track .gallery-item {
+            flex: 0 0 600px;
+            aspect-ratio: 3/4;
+        }
+
+        /* ---- Mail Marketing sub-section ---- */
+        .mailmkt-section {
+            margin-top: 64px;
+        }
+
+        /* ---- Curiosidades storytelling ---- */
+        .curiosidades {
+            margin-top: 80px;
+            padding: 48px 40px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .curiosidades::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--red);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .curiosidades-badge {
+            display: inline-block;
+            font-family: var(--f-mono);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            background: rgba(255,20,24,0.08);
+            padding: 6px 14px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .curiosidades h4 {
+            font-family: var(--f-display);
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 800;
+            color: var(--black);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .curiosidades-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .curiosidades-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .curiosidades-step-num {
+            flex: 0 0 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            font-family: var(--f-mono);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .curiosidades-step p {
+            font-family: var(--f-display);
+            font-size: 15px;
             color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .curiosidades-step p strong {
+            color: var(--black);
+        }
+
+        .curiosidades-step p em {
+            color: var(--red);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .curiosidades {
+                padding: 32px 20px;
+                margin-top: 48px;
+            }
+        }
+
+        .mailmkt-title {
+            font-family: var(--f-mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--red);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .mailmkt-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .mailmkt-gallery .gallery-item {
+            aspect-ratio: auto;
+        }
+
+        /* ---- Linguiças — Horizontal Scroll (same pattern as fatiados) ---- */
+        .hscroll-wrap-ling {
+            position: relative;
+            overflow: hidden;
+            margin-top: 32px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hscroll-track-ling {
+            display: flex;
+            gap: 48px;
+            will-change: transform;
+        }
+
+        .ling-card {
+            flex: 0 0 480px;
+            aspect-ratio: 3/4;
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+            background: var(--gray-light);
+            border: 1px solid var(--border);
+            transition: transform 0.6s var(--ease);
+        }
+
+        .ling-card:hover {
+            transform: scale(1.02);
+        }
+
+        .ling-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 0;
+        }
+
+        .ling-card-label {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            padding: 10px 20px;
+            background: var(--red);
+            font-family: var(--f-display);
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .ling-card:hover .ling-card-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .ling-card-idx {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: var(--f-mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--red);
+            letter-spacing: 2px;
+            opacity: 0.7;
         }
 
         @media (max-width: 768px) {
@@ -261,6 +540,133 @@
 
             .line-gallery {
                 grid-template-columns: 1fr;
+            }
+
+            .hscroll-track .gallery-item {
+                flex: 0 0 400px;
+            }
+
+            .mailmkt-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .ling-card {
+                flex: 0 0 320px;
+            }
+
+            .hscroll-track-ling {
+                gap: 24px;
+            }
+
+        }
+
+        /* ---- Cortes Suínos — Grid ---- */
+        .cortes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .cortes-grid-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            background: var(--gray-light);
+        }
+
+        .cortes-grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cortes-grid-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .cortes-grid-item .cortes-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 14px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            font-family: var(--f-display);
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cortes-grid-item:hover .cortes-label {
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .cortes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cortes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        /* ---- FBX 3D Model — bottom-right of Etiqueta Negra scroll ---- */
+        #fbxModelWrap {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 420px;
+            height: 500px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.95;
+        }
+
+        #fbxModelWrap canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ---- 3D Hero Logo ---- */
+        #heroLogo3D {
+            width: 520px;
+            max-width: 100%;
+            height: 380px;
+            margin-bottom: -30px;
+            margin-left: -20px;
+            position: relative;
+        }
+
+        #heroLogo3D canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        @media (max-width: 768px) {
+            #fbxModelWrap {
+                width: 220px;
+                height: 280px;
+                bottom: 5px;
+                right: 5px;
+            }
+            #heroLogo3D {
+                width: 360px;
+                height: 260px;
+                margin-bottom: -15px;
+                margin-left: -10px;
             }
         }
     </style>
@@ -288,6 +694,9 @@
                 <span class="project-meta-item">EMBALAGENS</span>
                 <span class="project-meta-item">BRANDING</span>
             </div>
+
+            <!-- 3D Logo -->
+            <div id="heroLogo3D"></div>
 
             <h1 class="project-title">PRIETO<br>ALIMENTOS</h1>
 
@@ -375,16 +784,16 @@
     <section class="project-section">
         <div class="container">
             <div class="section-head">
-                <div class="section-label light">
+                <div class="section-label">
                     <span class="section-idx">(02)</span>
                     <span class="section-dash">————</span>
                     <span class="section-tag">LINHAS DESENVOLVIDAS</span>
                 </div>
-                <h2 class="section-title light">Os <em>produtos</em></h2>
+                <h2 class="section-title">Os <em>produtos</em></h2>
             </div>
 
             <!-- LINHA 1: FATIADOS ETIQUETA NEGRA -->
-            <div class="line-card">
+            <div class="line-card" id="etiquetaNegraCard">
                 <span class="line-number">[LINHA 01]</span>
                 <h3 class="line-title">Fatiados da<br>Etiqueta Negra</h3>
                 <p class="line-description">
@@ -394,15 +803,97 @@
                     A "Etiqueta Negra" posiciona os produtos como top de linha, 
                     direcionados ao consumidor que busca qualidade superior.
                 </p>
-                <div class="line-gallery">
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #000 0%, #1a1a1a 100%);"></div>
+                <!-- Produtos — Scroll Horizontal GSAP -->
+                <div class="hscroll-wrap" id="etiquetaNegra">
+                    <div class="hscroll-track">
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/COPA%20ITALIANA%20fatiados%20etiqueta%20negra%20importados).png" alt="Copa Italiana — Fatiados Etiqueta Negra Importados" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Jamon%20Serrano%20fatiados%20etiqueta%20negra%20importados).png" alt="Jamon Serrano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/PRESUNTO%20CRU%20ITALIANO%20(fatiados%20etiqueta%20negra%20importados).png" alt="Presunto Cru Italiano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Salame%20milano%20(fatiados%20etiqueta%20negra%20importados).png" alt="Salame Milano — Fatiados Etiqueta Negra Importados" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Lombo%20Defumado%20Apimentado%20fatiados%20etiqueta%20negra%20nacionais.png" alt="Lombo Defumado Apimentado — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Panceta%20Defumada%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Panceta Defumada — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Defumado%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Defumado — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Presunto%20Real%20(fatiados%20etiqueta%20negra%20nacionais).png" alt="Presunto Real — Fatiados Etiqueta Negra Nacionais" loading="lazy">
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #1a1a1a 0%, #ff1418 50%, #000 100%);"></div>
+                    <!-- 3D FBX Model -->
+                    <div id="fbxModelWrap"></div>
+                </div>
+
+                <!-- Mail Marketing -->
+                <div class="mailmkt-section">
+                    <span class="mailmkt-title">Mail Marketing</span>
+                    <div class="mailmkt-gallery">
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS.png" alt="Mail Marketing — Fatiados Importados" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_IMPORTADOS_2.png" alt="Mail Marketing — Fatiados Importados 2" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img class="gallery-placeholder" src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MAILMKT_PRIETO_FATIADOS_NACIONAIS.png" alt="Mail Marketing — Fatiados Nacionais" loading="lazy">
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #ff1418 0%, #000 100%);"></div>
+                </div>
+
+                <!-- Curiosidades -->
+                <div class="curiosidades">
+                    <span class="curiosidades-badge">Curiosidade</span>
+                    <h4>De Granada para a embalagem:<br>o pattern que veio de um castelo</h4>
+                    <div class="curiosidades-body">
+                        <div class="curiosidades-step">
+                            <span class="curiosidades-step-num">01</span>
+                            <p>
+                                Se você olhar com atenção para a <strong>faixa inferior das embalagens</strong>, 
+                                vai perceber um padrão geométrico intrincado. Não é um pattern qualquer — 
+                                é um fragmento real de uma das paredes do <em>Castelo de Alhambra</em>, 
+                                em Granada, na Espanha.
+                            </p>
+                        </div>
+                        <div class="curiosidades-step">
+                            <span class="curiosidades-step-num">02</span>
+                            <p>
+                                Tudo começou durante uma pesquisa por <strong>pontos turísticos europeus</strong>. 
+                                A ideia era encontrar formas em gesso que pudessem funcionar como pattern — 
+                                algo com textura, história e personalidade. Ao navegar por referências 
+                                de arquitetura mourisca, um modelo 3D detalhado de uma das paredes do Alhambra 
+                                chamou a atenção.
+                            </p>
+                        </div>
+                        <div class="curiosidades-step">
+                            <span class="curiosidades-step-num">03</span>
+                            <p>
+                                O modelo 3D original era uma parede inteira, cheia de detalhes. 
+                                O trabalho foi <strong>isolar apenas a seção</strong> que tinha 
+                                o relevo mais interessante — o trecho com a repetição geométrica perfeita — 
+                                e a partir dele <em>gerar um PNG</em> de alta resolução.
+                            </p>
+                        </div>
+                        <div class="curiosidades-step">
+                            <span class="curiosidades-step-num">04</span>
+                            <p>
+                                Com o render em mãos, o PNG passou por <strong>ajustes finais no Photoshop</strong>: 
+                                correção de bordas, limpeza de artefatos e adaptação de proporção para 
+                                encaixar como faixa contínua na embalagem. O resultado? Um pattern que 
+                                carrega <em>séculos de história</em> e se integra perfeitamente ao design brutalista 
+                                da linha Etiqueta Negra.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -412,21 +903,35 @@
                 <span class="line-number">[LINHA 02]</span>
                 <h3 class="line-title">Linguiças Temperadas<br>Congeladas</h3>
                 <p class="line-description">
-                    Embalagens para linha de linguiças artesanais congeladas com diferentes 
-                    sabores e temperos. Sistema de cores para diferenciação de sabores, 
-                    mantendo unidade visual. Foco em comunicar frescor, praticidade e 
-                    sabor caseiro. Ilustrações de ingredientes e tipografia que remete 
-                    ao artesanal sem perder a modernidade.
+                    A embalagem anterior era totalmente branca, antiga e pouco chamativa — 
+                    passava despercebida na gôndola. O redesign trouxe uma identidade vibrante 
+                    em vermelho com detalhes em dourado, criando impacto visual imediato e 
+                    muito mais destaque no ponto de venda. Sistema de cores para diferenciação 
+                    de sabores, mantendo unidade visual. Foco em comunicar frescor, praticidade 
+                    e sabor caseiro.
                 </p>
-                <div class="line-gallery">
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #8b4513 0%, #d2691e 100%);"></div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #228b22 0%, #32cd32 100%);"></div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #dc143c 0%, #ff6347 100%);"></div>
+                <div class="hscroll-wrap-ling" id="linguicasScroll">
+                    <div class="hscroll-track-ling">
+                        <div class="ling-card">
+                            <span class="ling-card-idx">01/04</span>
+                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20tradicional.png" alt="Linguiça Temperada Congelada — Tradicional" loading="lazy">
+                            <span class="ling-card-label">Tradicional</span>
+                        </div>
+                        <div class="ling-card">
+                            <span class="ling-card-idx">02/04</span>
+                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Apimentada.png" alt="Linguiça Temperada Congelada — Apimentada" loading="lazy">
+                            <span class="ling-card-label">Apimentada</span>
+                        </div>
+                        <div class="ling-card">
+                            <span class="ling-card-idx">03/04</span>
+                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20Alho.png" alt="Linguiça Temperada Congelada — Alho" loading="lazy">
+                            <span class="ling-card-label">Alho</span>
+                        </div>
+                        <div class="ling-card">
+                            <span class="ling-card-idx">04/04</span>
+                            <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Prieto_Linguica%20Temperada%20Congelada%20-%20bacon.png" alt="Linguiça Temperada Congelada — Bacon" loading="lazy">
+                            <span class="ling-card-label">Bacon</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -436,21 +941,46 @@
                 <span class="line-number">[LINHA 03]</span>
                 <h3 class="line-title">Cortes Suínos<br>Congelados</h3>
                 <p class="line-description">
-                    Linha completa de cortes especiais de carne suína congelada. 
-                    Design clean e informativo que prioriza a visibilidade do produto 
-                    e a clareza das informações técnicas (corte, peso, validade). 
-                    Paleta de cores neutras com acentos em vermelho para criar hierarquia 
-                    visual e facilitar a navegação do consumidor entre diferentes cortes.
+                    Atualização completa de layout: a embalagem anterior, predominantemente 
+                    branca, não se destacava na gôndola. O novo design trouxe uma identidade 
+                    inteiramente vermelha, com muito mais presença e impacto visual no ponto 
+                    de venda. Linha completa de cortes especiais de carne suína congelada, 
+                    com clareza das informações técnicas (corte, peso, validade) e hierarquia 
+                    visual que facilita a navegação do consumidor entre os diferentes cortes.
                 </p>
-                <div class="line-gallery">
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #f5f5f5 0%, #e0e0e0 100%);"></div>
+                <!-- Grid com efeito lupa -->
+                <div class="cortes-grid" id="cortesGrid">
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Picanha.png" alt="Picanha">
+                        <span class="cortes-label">Picanha</span>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #e0e0e0 0%, #ff1418 50%, #f5f5f5 100%);"></div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costela.png" alt="Costela">
+                        <span class="cortes-label">Costela</span>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder" style="background: linear-gradient(160deg, #ff1418 0%, #8b0000 100%);"></div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Costelinha.png" alt="Costelinha">
+                        <span class="cortes-label">Costelinha</span>
+                    </div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Lombo.png" alt="Lombo">
+                        <span class="cortes-label">Lombo</span>
+                    </div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Copa%20Lombo.png" alt="Copa Lombo">
+                        <span class="cortes-label">Copa Lombo</span>
+                    </div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Panceta.png" alt="Panceta">
+                        <span class="cortes-label">Panceta</span>
+                    </div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Pernil.png" alt="Pernil">
+                        <span class="cortes-label">Pernil</span>
+                    </div>
+                    <div class="cortes-grid-item">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Cortes%20Suinos%20Congelados_Fraldinha.png" alt="Fraldinha">
+                        <span class="cortes-label">Fraldinha</span>
                     </div>
                 </div>
             </div>
@@ -520,22 +1050,22 @@
     <section class="project-section">
         <div class="container">
             <div class="section-head">
-                <div class="section-label light">
+                <div class="section-label">
                     <span class="section-idx">(04)</span>
                     <span class="section-dash">————</span>
                     <span class="section-tag">IMPACTO</span>
                 </div>
-                <h2 class="section-title light">O <em>resultado</em></h2>
+                <h2 class="section-title">O <em>resultado</em></h2>
             </div>
 
             <div class="about-body">
-                <p style="color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.8; margin-bottom: 32px;">
+                <p style="color: var(--gray-dark); font-size: 18px; line-height: 1.8; margin-bottom: 32px;">
                     Hoje, as 3 linhas desenvolvidas estão presentes em mais de 15 SKUs diferentes, 
                     distribuídas em redes de supermercados por todo o Brasil. O projeto consolidou 
                     a Prieto Alimentos como referência em embalagens modernas e sofisticadas no 
                     segmento de carnes.
                 </p>
-                <p style="color: rgba(255,255,255,0.5); font-size: 15px; line-height: 1.8;">
+                <p style="color: var(--gray-dark); font-size: 15px; line-height: 1.8;">
                     Este projeto representa meu domínio técnico no design de embalagens para a 
                     indústria alimentícia, especialmente no segmento de carnes — um dos mais 
                     regulamentados e desafiadores. A parceria de 2 anos me permitiu desenvolver 
@@ -614,6 +1144,436 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- GSAP Horizontal Scrolls -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ===== HERO 3D LOGO — Prieto Alimentos ===== */
+        (function initHeroLogo3D() {
+            const container = document.getElementById('heroLogo3D');
+            const heroSection = document.querySelector('.project-hero');
+            if (!container || !heroSection || typeof THREE === 'undefined') return;
+
+            const w = container.clientWidth || window.innerWidth;
+            const h = container.clientHeight || heroSection.offsetHeight;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
+            camera.position.set(0, 0, 5);
+            camera.lookAt(0, 0, 0);
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(w, h);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.outputEncoding = THREE.sRGBEncoding;
+
+            // Physically correct lighting for realistic falloff
+            renderer.physicallyCorrectLights = true;
+
+            // ACES Filmic tone mapping — cinematic, realistic HDR response
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+
+            // Enable shadow maps for flashlight realism
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // soft shadow edges
+
+            container.appendChild(renderer.domElement);
+
+            // =========================================
+            // FIXED LIGHTING SYSTEM — Bright, static illumination
+            // =========================================
+            // Hemisphere light for soft ambient fill
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
+            scene.add(hemiLight);
+
+            // Primary fixed SpotLight — centered, illuminating the logo
+            const flashLight = new THREE.SpotLight(
+                0xfff5e6,   // slightly warm white
+                4.0,        // intensity
+                60,         // distance
+                Math.PI / 5, // angle — ~36° cone (wider for full coverage)
+                0.5,        // penumbra — soft edge
+                1.5         // decay
+            );
+            flashLight.position.set(0, 1, 10);
+            flashLight.castShadow = true;
+
+            // Shadow config
+            flashLight.shadow.mapSize.width = 1024;
+            flashLight.shadow.mapSize.height = 1024;
+            flashLight.shadow.camera.near = 0.5;
+            flashLight.shadow.camera.far = 80;
+            flashLight.shadow.camera.fov = 30;
+            flashLight.shadow.bias = -0.0005;
+            flashLight.shadow.radius = 3;
+
+            // Fixed aim at center of model
+            flashLight.target.position.set(0, 0, 0);
+            scene.add(flashLight);
+            scene.add(flashLight.target);
+
+            // Secondary fill light — wider, softer
+            const spillLight = new THREE.SpotLight(
+                0xddeeff,
+                1.2,
+                40,
+                Math.PI / 3,
+                0.9,
+                1.5
+            );
+            spillLight.position.set(-2, 2, 8);
+            scene.add(spillLight);
+
+            // Extra directional fill from the right for balanced illumination
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            fillLight.position.set(3, 1, 5);
+            scene.add(fillLight);
+
+            // Placeholder spinner
+            const phGeo = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+            const phMat = new THREE.MeshStandardMaterial({ color: 0xff1418, wireframe: true });
+            const ph = new THREE.Mesh(phGeo, phMat);
+            scene.add(ph);
+
+            let logoModel = null;
+            let targetRotY = 0;
+            let targetRotX = 0;
+            let currentRotY = 0;
+            let currentRotX = 0;
+
+            // Subtle mouse rotation only (no flashlight tracking)
+            const mouseNDC = new THREE.Vector2(0, 0);
+
+            document.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+                // Subtle model rotation following cursor
+                targetRotY = mouseNDC.x * 0.4;
+                targetRotX = -mouseNDC.y * 0.15;
+            });
+
+            const glbUrl = 'https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/prieto3d.glb';
+
+            if (!THREE.GLTFLoader) { console.error('GLTFLoader not available'); return; }
+
+            const loader = new THREE.GLTFLoader();
+            loader.load(glbUrl, (gltf) => {
+                scene.remove(ph);
+                phGeo.dispose();
+                phMat.dispose();
+
+                const model = gltf.scene;
+
+                // Auto-fit
+                model.updateMatrixWorld(true);
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const s = 5.5 / maxDim;
+                model.scale.multiplyScalar(s);
+
+                model.updateMatrixWorld(true);
+                const box2 = new THREE.Box3().setFromObject(model);
+                const center = box2.getCenter(new THREE.Vector3());
+                model.position.sub(center);
+
+                // Fit camera with 0.25 zoom (closer = bigger)
+                model.updateMatrixWorld(true);
+                const box3 = new THREE.Box3().setFromObject(model);
+                const sphere = new THREE.Sphere();
+                box3.getBoundingSphere(sphere);
+                const fovRad = camera.fov * (Math.PI / 180);
+                const camDist = (sphere.radius / Math.sin(fovRad / 2)) * 1.35;
+                camera.position.set(0, 0, camDist * 0.75); // 0.25 zoom in
+                camera.lookAt(0, 0, 0);
+                camera.updateProjectionMatrix();
+
+                // Enhance materials — PBR realism with shadows + anisotropic filtering
+                const maxAniso = renderer.capabilities.getMaxAnisotropy();
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.frustumCulled = false;
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                        mats.forEach((mat) => {
+                            // Max anisotropic filtering for sharp textures at angles
+                            if (mat.map) {
+                                mat.map.anisotropy = maxAniso;
+                                mat.map.encoding = THREE.sRGBEncoding;
+                            }
+                            if (mat.normalMap) {
+                                mat.normalMap.anisotropy = maxAniso;
+                            }
+                            if (mat.roughnessMap) {
+                                mat.roughnessMap.anisotropy = maxAniso;
+                            }
+                            if (mat.metalnessMap) {
+                                mat.metalnessMap.anisotropy = maxAniso;
+                            }
+                            // Ensure PBR properties for realistic light interaction
+                            if (mat.roughness === undefined) mat.roughness = 0.5;
+                            if (mat.metalness === undefined) mat.metalness = 0.1;
+                            mat.side = THREE.DoubleSide;
+                            mat.envMapIntensity = 0.3;
+                            mat.needsUpdate = true;
+                        });
+                    }
+                });
+
+                scene.add(model);
+                logoModel = model;
+            }, null, (err) => { console.error('Hero logo GLB error:', err); });
+
+            function animateHeroLogo() {
+                requestAnimationFrame(animateHeroLogo);
+                if (ph.parent) ph.rotation.y += 0.02;
+                if (logoModel) {
+                    // Smooth lerp toward target rotation
+                    currentRotY += (targetRotY - currentRotY) * 0.05;
+                    currentRotX += (targetRotX - currentRotX) * 0.05;
+                    logoModel.rotation.y = currentRotY;
+                    logoModel.rotation.x = currentRotX;
+                }
+                // (Fixed light — no mouse tracking needed)
+
+                renderer.render(scene, camera);
+            }
+            animateHeroLogo();
+
+            window.addEventListener('resize', () => {
+                const nw = container.clientWidth;
+                const nh = container.clientHeight;
+                if (nw && nh) {
+                    camera.aspect = nw / nh;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(nw, nh);
+                }
+            });
+        })();
+
+        /* ===== ETIQUETA NEGRA — clean pin scroll ===== */
+        const wrapEN  = document.querySelector('#etiquetaNegra');
+        const trackEN = wrapEN.querySelector('.hscroll-track');
+        const getENScroll = () => trackEN.scrollWidth - wrapEN.offsetWidth;
+
+        gsap.to(trackEN, {
+            x: () => -getENScroll(),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: wrapEN,
+                start: 'top top',
+                end: () => `+=${getENScroll()}`,
+                pin: true,
+                pinSpacing: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
+                anticipatePin: 1
+            }
+        });
+
+        /* ===== LINGUIÇAS — clean pin scroll (same as fatiados) ===== */
+        const wrapLing  = document.querySelector('#linguicasScroll');
+        const trackLing = wrapLing.querySelector('.hscroll-track-ling');
+        const getLingScroll = () => trackLing.scrollWidth - wrapLing.offsetWidth;
+
+        gsap.to(trackLing, {
+            x: () => -getLingScroll(),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: wrapLing,
+                start: 'top top',
+                end: () => `+=${getLingScroll()}`,
+                pin: true,
+                pinSpacing: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
+                anticipatePin: 1
+            }
+        });
+
+        /* ===== GLB 3D MODEL — Etiqueta Negra bottom-right ===== */
+        (function initGLBModel() {
+            const container = document.getElementById('fbxModelWrap');
+            if (!container) { console.warn('fbxModelWrap not found'); return; }
+
+            const w3d = container.clientWidth || 420;
+            const h3d = container.clientHeight || 500;
+
+            const scene3d = new THREE.Scene();
+            const cam3d = new THREE.PerspectiveCamera(45, w3d / h3d, 0.1, 1000);
+            cam3d.position.set(0, 0, 5);
+            cam3d.lookAt(0, 0, 0);
+
+            const ren3d = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            ren3d.setSize(w3d, h3d);
+            ren3d.setPixelRatio(window.devicePixelRatio);
+            ren3d.outputEncoding = THREE.sRGBEncoding;
+            ren3d.sortObjects = true;
+            container.appendChild(ren3d.domElement);
+
+            // Lighting
+            scene3d.add(new THREE.AmbientLight(0xffffff, 1.4));
+            const dLight = new THREE.DirectionalLight(0xffffff, 1.0);
+            dLight.position.set(5, 10, 7);
+            scene3d.add(dLight);
+            const dLight2 = new THREE.DirectionalLight(0xffffff, 0.6);
+            dLight2.position.set(-5, 5, -5);
+            scene3d.add(dLight2);
+            const dLight3 = new THREE.DirectionalLight(0xffffff, 0.4);
+            dLight3.position.set(0, -5, 5);
+            scene3d.add(dLight3);
+
+            // Loading placeholder
+            const placeholderGeo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+            const placeholderMat = new THREE.MeshStandardMaterial({ color: 0xff1418, wireframe: true });
+            const placeholder = new THREE.Mesh(placeholderGeo, placeholderMat);
+            scene3d.add(placeholder);
+
+            const glbUrl = 'https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/EMBALAGEM2.glb';
+
+            if (!THREE.GLTFLoader) {
+                console.error('THREE.GLTFLoader is not available!');
+                return;
+            }
+
+            const loader = new THREE.GLTFLoader();
+            let glbModel = null;
+
+            loader.load(glbUrl, (gltf) => {
+                // Remove placeholder
+                scene3d.remove(placeholder);
+                placeholderGeo.dispose();
+                placeholderMat.dispose();
+
+                const model = gltf.scene;
+
+                // Auto-fit: scale + center
+                model.updateMatrixWorld(true);
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const s = 4 / maxDim;
+                model.scale.multiplyScalar(s);
+
+                model.updateMatrixWorld(true);
+                const box2 = new THREE.Box3().setFromObject(model);
+                const center = box2.getCenter(new THREE.Vector3());
+                model.position.sub(center);
+
+                // Auto-fit camera
+                model.updateMatrixWorld(true);
+                const box3 = new THREE.Box3().setFromObject(model);
+                const sphere = new THREE.Sphere();
+                box3.getBoundingSphere(sphere);
+                const fovRad = cam3d.fov * (Math.PI / 180);
+                const camDist = (sphere.radius / Math.sin(fovRad / 2)) * 1.4;
+                cam3d.position.set(0, 0, camDist);
+                cam3d.lookAt(0, 0, 0);
+                cam3d.updateProjectionMatrix();
+
+                // Enhance materials + change black tray to white
+                const maxAniso = ren3d.capabilities.getMaxAnisotropy();
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.visible = true;
+                        child.frustumCulled = false;
+                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                        mats.forEach((mat) => {
+                            if (mat.map) {
+                                mat.map.anisotropy = maxAniso;
+                                mat.map.encoding = THREE.sRGBEncoding;
+                            }
+                            mat.side = THREE.DoubleSide;
+
+                            // Detect dark/black tray materials and swap to white
+                            if (mat.color) {
+                                const c = mat.color;
+                                // If the base color is very dark (near black), make it white
+                                if (c.r < 0.15 && c.g < 0.15 && c.b < 0.15) {
+                                    mat.color.set(0xffffff);
+                                }
+                            }
+
+                            mat.needsUpdate = true;
+                        });
+                    }
+                });
+
+                scene3d.add(model);
+                glbModel = model;
+            }, (progress) => {
+                if (progress.total) {
+                    console.log('GLB loading:', Math.round(progress.loaded / progress.total * 100) + '%');
+                }
+            }, (err) => {
+                console.error('GLB load error:', err);
+            });
+
+            // Scroll-based directional rotation
+            let scrollDelta = 0;
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const delta = window.scrollY - lastScrollY; // positive = down, negative = up
+                scrollDelta = Math.max(-0.08, Math.min(delta * 0.003, 0.08)); // clamped
+                lastScrollY = window.scrollY;
+            });
+
+            function animateGLB() {
+                requestAnimationFrame(animateGLB);
+                // Spin placeholder while loading
+                if (placeholder.parent) placeholder.rotation.y += 0.02;
+                // Rotate loaded model — slow idle + scroll direction boost
+                if (glbModel) {
+                    const baseSpeed = 0.002;
+                    // scrollDelta > 0 (scroll down) = rotate right (+Y)
+                    // scrollDelta < 0 (scroll up)   = rotate left  (-Y)
+                    glbModel.rotation.y += baseSpeed + scrollDelta;
+                    // Decay scroll delta smoothly back to 0
+                    scrollDelta *= 0.92;
+                }
+                ren3d.render(scene3d, cam3d);
+            }
+            animateGLB();
+
+            window.addEventListener('resize', () => {
+                const nw = container.clientWidth;
+                const nh = container.clientHeight;
+                cam3d.aspect = nw / nh;
+                cam3d.updateProjectionMatrix();
+                ren3d.setSize(nw, nh);
+            });
+        })();
+
+        /* ===== CORTES SUÍNOS — Grid entrance ===== */
+        (function initCortesGrid() {
+            const grid = document.getElementById('cortesGrid');
+            if (!grid) return;
+
+            const items = grid.querySelectorAll('.cortes-grid-item');
+
+            gsap.from(items, {
+                y: 40,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.6,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: grid,
+                    start: 'top 80%',
+                    once: true
+                }
+            });
+        })();
+    });
+    </script>
 </body>
 </html>

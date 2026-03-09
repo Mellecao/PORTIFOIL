@@ -510,6 +510,13 @@ body::before {
     letter-spacing: clamp(-3px, -0.5vw, -8px);
     text-transform: uppercase;
     color: var(--red);
+    transform-origin: 22% 30%;
+    transform: translateX(-4px);
+    /* Anti-aliasing and rendering optimization */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    backface-visibility: hidden;
 }
 
 .hero-name-line {
@@ -521,7 +528,10 @@ body::before {
 .hero-name-word {
     display: inline-block;
     transform: translateY(110%);
-    will-change: transform;
+    /* Anti-aliasing optimization */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
 }
 
 .hero-name-accent {
@@ -699,58 +709,114 @@ body::before {
 }
 
 
-/* ========== MARQUEE ========== */
-.marquee {
-    padding: 28px 0;
-    overflow: hidden;
-    border-top: 2px solid var(--black);
-    border-bottom: 2px solid var(--black);
-    background: var(--bg);
+/* ========== HERO SCROLL ZOOM ========== */
+.hero-red-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--red);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.marquee-track {
+.marquee-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    padding-bottom: 40px;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--red);
+    overflow: hidden;
+}
+
+.mq-skills-title {
+    font-family: var(--f-display);
+    font-size: clamp(14px, 1.8vw, 22px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-align: center;
+    padding: 0 var(--pad);
+    margin-bottom: clamp(16px, 3vh, 40px);
+    opacity: 0.7;
+}
+
+.mq-row {
     overflow: hidden;
     white-space: nowrap;
+    padding: 4px 0;
 }
 
-.marquee-content {
+.mq-row-track {
     display: inline-flex;
-    align-items: center;
-    gap: 30px;
-    animation: marqueeScroll 25s linear infinite;
+    white-space: nowrap;
+    animation: mq-scroll-left 20s linear infinite;
 }
 
-@keyframes marqueeScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+.mq-row-track.mq-reverse {
+    animation-name: mq-scroll-right;
 }
 
-.marquee-word {
+.mq-row-1 .mq-row-track { animation-duration: 35s; }
+.mq-row-2 .mq-row-track { animation-duration: 50s; }
+.mq-row-3 .mq-row-track { animation-duration: 28s; }
+.mq-row-4 .mq-row-track { animation-duration: 60s; }
+.mq-row-5 .mq-row-track { animation-duration: 40s; }
+
+.mq-row-track .mq-word {
     font-family: var(--f-display);
     font-size: clamp(32px, 5vw, 64px);
     font-weight: 900;
     letter-spacing: -2px;
     text-transform: uppercase;
-    color: var(--black);
-    -webkit-text-stroke: 1px var(--black);
+    -webkit-text-stroke: 1px var(--white);
     -webkit-text-fill-color: transparent;
-    transition: -webkit-text-fill-color 0.3s;
+    padding: 4px 16px;
+    margin: 0 2px;
+    transition: -webkit-text-fill-color 0.3s, -webkit-text-stroke 0.3s, background 0.3s;
+    cursor: pointer;
+    display: inline-block;
 }
 
-.marquee-word:hover {
-    -webkit-text-fill-color: var(--red);
+.mq-row-track .mq-word:hover {
+    -webkit-text-fill-color: var(--black);
+    -webkit-text-stroke: 2px var(--black);
+    background: var(--white);
 }
 
-.marquee-dot {
-    font-size: 10px;
-    color: var(--red);
+.mq-row-track .mq-dot {
+    font-family: var(--f-display);
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    -webkit-text-stroke: 0;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding: 0 12px;
     flex-shrink: 0;
+    display: inline-block;
+    pointer-events: none;
+}
+
+@keyframes mq-scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes mq-scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
 }
 
 
 /* ========== SECTION HEAD ========== */
 .section-head {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .section-label {
@@ -785,7 +851,7 @@ body::before {
 
 .section-title {
     font-family: var(--f-display);
-    font-size: clamp(48px, 7vw, 100px);
+    font-size: clamp(40px, 6vw, 80px);
     font-weight: 900;
     line-height: 0.95;
     letter-spacing: -3px;
@@ -812,25 +878,61 @@ body::before {
 
 /* ========== WORK / PORTFOLIO ========== */
 .work {
-    padding: var(--section-gap) 0;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.work-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+.work > .container {
+    flex-shrink: 0;
+    padding-top: clamp(80px, 10vh, 120px);
+    padding-bottom: clamp(30px, 4vh, 60px);
+}
+
+.work .section-head {
+    margin-bottom: 0;
+}
+
+.work-horizontal {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    padding: 0 0 clamp(40px, 6vh, 80px);
+    display: flex;
+    flex-direction: column;
+}
+
+.work-track {
+    display: flex;
+    gap: 32px;
+    padding: 0 var(--pad);
+    will-change: transform;
+    height: 100%;
+    align-items: center;
 }
 
 .work-card {
+    flex: 0 0 min(520px, 82vw);
     position: relative;
     overflow: hidden;
     cursor: pointer;
     border: 1px solid var(--border);
     background: var(--white);
-    transition: border-color 0.4s;
+    transition: border-color 0.4s, transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    height: max-content;
+    max-height: calc(100vh - 250px);
 }
 
-.work-card:hover { border-color: var(--red); }
+.work-card:hover {
+    border-color: var(--red);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
 
 .work-card-img {
     position: relative;
@@ -919,7 +1021,7 @@ body::before {
 
 /* ========== ABOUT ========== */
 .about {
-    padding: var(--section-gap) 0;
+    padding: clamp(60px, 8vw, 120px) 0 var(--section-gap);
     border-top: 2px solid var(--black);
 }
 
@@ -1428,7 +1530,7 @@ body::before {
     .nav-links, .nav-time { display: none; }
     .nav-hamburger { display: flex; }
 
-    .work-grid { grid-template-columns: 1fr; }
+    .work-card { flex: 0 0 min(400px, 85vw); }
 
     .about-grid { grid-template-columns: 1fr; gap: 60px; }
 

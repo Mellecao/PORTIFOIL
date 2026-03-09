@@ -25,6 +25,12 @@ requestAnimationFrame(raf);
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Optimize ScrollTrigger performance
+ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+    ignoreMobileResize: true
+});
+
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
@@ -193,6 +199,8 @@ function revealPage() {
         y: 0,
         duration: 1.4,
         stagger: 0.15,
+        force3D: true,
+        ease: 'power4.out'
     });
 
     // Tags
@@ -200,12 +208,16 @@ function revealPage() {
         opacity: 1,
         y: 0,
         duration: 0.7,
+        force3D: true,
+        ease: 'power4.out'
     }, '-=1');
 
     // Stripe
     tl.to('.hero-stripe', {
         opacity: 1,
         duration: 0.6,
+        force3D: true,
+        ease: 'power4.out'
     }, '-=0.6');
 
     // Bio
@@ -266,192 +278,278 @@ function initScrollAnimations() {
         }
     });
 
-    // --- Hero parallax on scroll ---
-    gsap.to('.hero-name', {
-        yPercent: -25,
-        opacity: 0.2,
+    // --- Hero Scroll Zoom → Red Fill → Marquee Reveal ---
+    // Set initial explicit values so scrub reversal restores them
+    gsap.set(['.hero-top'], { opacity: 1, y: 0, force3D: true });
+    gsap.set(['.hero-bio'], { opacity: 1, y: 0, force3D: true });
+    gsap.set(['.hero-cta-wrap'], { opacity: 1, y: 0, force3D: true });
+    gsap.set(['.hero-scroll'], { opacity: 1, y: 0, force3D: true });
+    gsap.set(['.hero-corner'], { opacity: 0.5, force3D: true });
+    gsap.set(['.hero-stripe'], { opacity: 1, force3D: true });
+    gsap.set(['.hero-grid-overlay'], { opacity: 1, force3D: true });
+    gsap.set(['.hero-noise'], { opacity: 1, force3D: true });
+    gsap.set(['.hero-name-accent'], { opacity: 1, force3D: true });
+    gsap.set(['.hero-name'], { scale: 1, rotation: 0, xPercent: 0, yPercent: 0, x: -4, force3D: true });
+    gsap.set(['#hero-red-fill'], { opacity: 0, force3D: true });
+    gsap.set(['#marquee-overlay'], { opacity: 0, force3D: true });
+    gsap.set(['.work-track'], { x: 0, force3D: true });
+    gsap.set(['.work-card'], { opacity: 1, y: 0, force3D: true });
+
+    const heroZoomTl = gsap.timeline({
         scrollTrigger: {
             trigger: '.hero',
             start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
+            end: '+=400%',
+            pin: true,
+            scrub: 0.8,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                const overlay = document.getElementById('marquee-overlay');
+                if (self.progress > 0.35) {
+                    overlay.style.pointerEvents = 'auto';
+                } else {
+                    overlay.style.pointerEvents = 'none';
+                }
+            }
         }
     });
 
-    gsap.to('.hero-stripe', {
-        xPercent: -8,
-        rotation: 0,
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-        }
-    });
+    // Fade out secondary hero elements (fast)
+    heroZoomTl.to('.hero-top', { opacity: 0, y: -10, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-bio', { opacity: 0, y: -10, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-cta-wrap', { opacity: 0, y: -10, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-scroll', { opacity: 0, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-corner', { opacity: 0, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-stripe', { opacity: 0, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-grid-overlay', { opacity: 0, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-noise', { opacity: 0, duration: 0.04 }, 0);
+    heroZoomTl.to('.hero-name-accent', { opacity: 0, duration: 0.03 }, 0);
 
-    gsap.to('.hero-grid-overlay', {
-        opacity: 0,
-        scrollTrigger: {
-            trigger: '.hero',
-            start: '30% top',
-            end: 'bottom top',
-            scrub: 1,
-        }
-    });
+    // Scale & rotate the name (red text fills screen) — limited scale to prevent pixelation
+    heroZoomTl.to('.hero-name', {
+        scale: 18,
+        rotation: 4,
+        xPercent: 0,
+        yPercent: 0,
+        duration: 0.35,
+        force3D: true,
+    }, 0.03);
 
+    // Solid red overlay fades in early to cover any text artifacts
+    heroZoomTl.to('#hero-red-fill', {
+        opacity: 1,
+        duration: 0.08,
+    }, 0.08);
 
-    // --- Marquee skew on scroll ---
-    gsap.to('.marquee-content', {
-        skewX: -3,
-        scrollTrigger: {
-            trigger: '.marquee',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 2,
-        }
-    });
+    // 5 marquees fade in over the red
+    heroZoomTl.to('#marquee-overlay', {
+        opacity: 1,
+        duration: 0.12,
+    }, 0.18);
 
 
     // --- Section labels ---
     document.querySelectorAll('.section-label').forEach(label => {
-        gsap.from(label.children, {
-            y: 20,
-            opacity: 0,
-            stagger: 0.08,
-            duration: 0.7,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: label, start: 'top 88%' }
-        });
+        gsap.fromTo(label.children, 
+            { y: 20, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                stagger: 0.08,
+                duration: 0.7,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: label, start: 'top 88%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
     // --- Section titles ---
     document.querySelectorAll('.section-title').forEach(title => {
-        gsap.from(title, {
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: title, start: 'top 85%' }
-        });
+        gsap.fromTo(title,
+            { y: 60, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: title, start: 'top 85%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
 
     // --- reveal-text ---
     document.querySelectorAll('.reveal-text').forEach(el => {
-        gsap.from(el, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 85%' }
-        });
+        gsap.fromTo(el,
+            { y: 50, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
     // --- reveal-fade ---
     document.querySelectorAll('.reveal-fade').forEach(el => {
-        gsap.from(el, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 88%' }
-        });
+        gsap.fromTo(el,
+            { y: 30, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
     // --- reveal-up ---
     document.querySelectorAll('.reveal-up').forEach((el, i) => {
-        gsap.from(el, {
-            y: 50,
-            opacity: 0,
-            duration: 0.7,
-            delay: i * 0.08,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 90%' }
-        });
+        gsap.fromTo(el,
+            { y: 50, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                duration: 0.7,
+                delay: i * 0.08,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
 
-    // --- Work cards stagger ---
+    // --- Work horizontal scroll ---
+    const workSection = document.querySelector('.work');
+    const workTrack = document.querySelector('.work-track');
     const workCards = gsap.utils.toArray('.work-card');
-    workCards.forEach((card, i) => {
-        gsap.from(card, {
-            y: 80,
-            opacity: 0,
-            duration: 0.9,
-            delay: i * 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 88%'
-            }
-        });
 
-        // Parallax on card image
-        gsap.to(card.querySelector('.work-card-placeholder'), {
-            yPercent: -8,
-            scrollTrigger: {
-                trigger: card,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1.5,
-            }
-        });
-    });
+    if (workTrack && workCards.length > 0) {
+        // Calculate total scroll width
+        const getScrollWidth = () => workTrack.scrollWidth - window.innerWidth;
+
+        // Only enable horizontal scroll if content overflows
+        if (getScrollWidth() > 0) {
+            // Horizontal scroll
+            const workScrollTl = gsap.to(workTrack, {
+                x: () => -getScrollWidth(),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: workSection,
+                    start: 'top top',
+                    end: () => `+=${getScrollWidth()}`,
+                    scrub: 1.5,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                }
+            });
+
+            // Card entrance with container animation
+            workCards.forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        containerAnimation: workScrollTl,
+                        start: 'left 85%',
+                        toggleActions: 'play none none reverse',
+                    }
+                });
+            });
+        } else {
+            // Not enough cards to scroll — simple fade-in entrance
+            workCards.forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    delay: i * 0.15,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: workSection,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse',
+                    }
+                });
+            });
+        }
+    }
 
 
     // --- About photo ---
-    gsap.from('.about-photo', {
-        x: -60,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-grid', start: 'top 75%' }
-    });
+    gsap.fromTo('.about-photo',
+        { x: -60, opacity: 0 },
+        {
+            x: 0, opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.about-grid', start: 'top 75%', toggleActions: 'play none none reverse' }
+        }
+    );
 
-    gsap.from('.about-col-right', {
-        x: 60,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-grid', start: 'top 75%' }
-    });
+    gsap.fromTo('.about-col-right',
+        { x: 60, opacity: 0 },
+        {
+            x: 0, opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.about-grid', start: 'top 75%', toggleActions: 'play none none reverse' }
+        }
+    );
 
 
     // --- Stat blocks and counters combined ---
     const statBlocks = gsap.utils.toArray('.stat-block');
     if (statBlocks.length > 0) {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.about-stats',
-                start: 'top 80%',
-                once: true
+        // Set counters to their final values by default (visible state)
+        statBlocks.forEach(block => {
+            const statVal = block.querySelector('.stat-val');
+            if (statVal) {
+                statVal.dataset.animated = 'false';
             }
         });
 
         // Animate blocks appearance
-        tl.from('.stat-block', {
-            y: 60,
-            opacity: 0,
-            stagger: 0.12,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
+        gsap.fromTo('.stat-block',
+            { y: 60, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                stagger: 0.12,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.about-stats',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                }
+            }
+        );
 
-        // Animate counters
-        statBlocks.forEach((block, index) => {
-            const statVal = block.querySelector('.stat-val');
-            if (statVal) {
-                const target = parseInt(statVal.dataset.count);
-                const obj = { val: 0 };
-                
-                tl.to(obj, {
-                    val: target,
-                    duration: 2,
-                    ease: 'power2.out',
-                    onUpdate: () => {
-                        statVal.textContent = Math.round(obj.val);
+        // Animate counters separately with once: true
+        ScrollTrigger.create({
+            trigger: '.about-stats',
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+                statBlocks.forEach((block) => {
+                    const statVal = block.querySelector('.stat-val');
+                    if (statVal && statVal.dataset.animated === 'false') {
+                        statVal.dataset.animated = 'true';
+                        const target = parseInt(statVal.dataset.count);
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 2,
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                statVal.textContent = Math.round(obj.val);
+                            }
+                        });
                     }
-                }, '-=1.8'); // Start shortly after blocks appear
+                });
             }
         });
     }
@@ -459,13 +557,15 @@ function initScrollAnimations() {
 
     // --- Service items ---
     document.querySelectorAll('.service-item').forEach((item) => {
-        gsap.from(item, {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: item, start: 'top 88%' }
-        });
+        gsap.fromTo(item,
+            { y: 40, opacity: 0 },
+            {
+                y: 0, opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none reverse' }
+            }
+        );
     });
 
 
@@ -493,41 +593,49 @@ function initScrollAnimations() {
 
 
     // --- Contact ---
-    gsap.from('.contact-title', {
-        y: 80,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact', start: 'top 70%' }
-    });
+    gsap.fromTo('.contact-title',
+        { y: 80, opacity: 0 },
+        {
+            y: 0, opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact', start: 'top 70%', toggleActions: 'play none none reverse' }
+        }
+    );
 
-    gsap.from('.contact-sub', {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact-sub', start: 'top 88%' }
-    });
+    gsap.fromTo('.contact-sub',
+        { y: 40, opacity: 0 },
+        {
+            y: 0, opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact-sub', start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+    );
 
-    gsap.from('.contact-link', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact-links', start: 'top 85%' }
-    });
+    gsap.fromTo('.contact-link',
+        { y: 40, opacity: 0 },
+        {
+            y: 0, opacity: 1,
+            stagger: 0.1,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact-links', start: 'top 85%', toggleActions: 'play none none reverse' }
+        }
+    );
 
 
     // --- Footer ---
-    gsap.from('.footer-top > *', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.footer', start: 'top 90%' }
-    });
+    gsap.fromTo('.footer-top > *',
+        { y: 40, opacity: 0 },
+        {
+            y: 0, opacity: 1,
+            stagger: 0.15,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.footer', start: 'top 90%', toggleActions: 'play none none reverse' }
+        }
+    );
 }
 
 
@@ -598,209 +706,257 @@ function closeMobMenu() {
 // 10. INIT
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
-    // Set initial states
-    gsap.set('.hero-name-word', { y: '110%' });
-    gsap.set('.hero-top', { opacity: 0, y: 15 });
-    gsap.set('.hero-stripe', { opacity: 0 });
-    gsap.set('.hero-bio', { opacity: 0, y: 20 });
-    gsap.set('.hero-cta-wrap', { opacity: 0, y: 20 });
-    gsap.set('.hero-scroll', { opacity: 0 });
-    gsap.set('.hero-corner', { opacity: 0 });
-    gsap.set('.hero-grid-overlay', { opacity: 0 });
-    gsap.set('.mob-link span', { y: '120%' });
-    gsap.set('.mob-menu-bg', { y: '-100%' });
+    // Set initial states with optimized rendering
+    gsap.set('.hero-name-word', { y: '110%', force3D: true });
+    gsap.set('.hero-top', { opacity: 0, y: 15, force3D: true });
+    gsap.set('.hero-stripe', { opacity: 0, force3D: true });
+    gsap.set('.hero-bio', { opacity: 0, y: 20, force3D: true });
+    gsap.set('.hero-cta-wrap', { opacity: 0, y: 20, force3D: true });
+    gsap.set('.hero-scroll', { opacity: 0, force3D: true });
+    gsap.set('.hero-corner', { opacity: 0, force3D: true });
+    gsap.set('.hero-grid-overlay', { opacity: 0, force3D: true });
+    gsap.set('.mob-link span', { y: '120%', force3D: true });
+    gsap.set('.mob-menu-bg', { y: '-100%', force3D: true });
 
     initLoader();
 });
 
 
 // ==========================================
-// 11. MATTER.JS FOOTER (Desktop only)
+// 11. MATTER.JS FOOTER — "MIGUEL" pixel text
 // ==========================================
 function initFooterMatter() {
-    // Only run on desktop
     if (window.innerWidth <= 768) return;
-    
+
     const canvas = document.getElementById('footer-matter');
     if (!canvas || typeof Matter === 'undefined') return;
 
     const { Engine, Render, Runner, World, Bodies, Events, Body } = Matter;
 
-    // Create engine with lower gravity
-    const engine = Engine.create({
-        gravity: { x: 0, y: 0.2 }
-    });
+    /* ── Pixel font (5×7 per letter, "I" = 3×7) ── */
+    const FONT = {
+        M: ['10001','11011','10101','10001','10001','10001','10001'],
+        I: ['111','010','010','010','010','010','111'],
+        G: ['01110','10001','10000','10110','10001','10001','01110'],
+        U: ['10001','10001','10001','10001','10001','10001','01110'],
+        E: ['11111','10000','10000','11110','10000','10000','11111'],
+        L: ['10000','10000','10000','10000','10000','10000','11111'],
+    };
 
-    // Get canvas dimensions
-    const footer = document.querySelector('.footer');
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = footer.offsetHeight;
+    const word = 'MIGUEL';
+    const letterGap = 2;
+    const TEXT_H = 7;
+    const letters = word.split('').map(ch => FONT[ch]);
+    const letterW  = letters.map(l => l[0].length);
+    const textCols = letterW.reduce((s, w) => s + w, 0) + (letters.length - 1) * letterGap;
 
-    // Set canvas size
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    /* ── Canvas / sizing ── */
+    const footer   = document.querySelector('.footer');
+    const cW       = window.innerWidth;
+    const cH       = footer.offsetHeight;
+    canvas.width   = cW;
+    canvas.height  = cH;
 
-    // Create renderer
+    const gap      = 3;
+    const cellSize = Math.max(16, Math.floor(cW * 0.72 / textCols));
+    const boxSize  = cellSize - gap;
+
+    const padTop   = 1;
+    const padBot   = 2;
+    const totalRows = TEXT_H + padTop + padBot;
+    const totalCols = Math.floor(cW / cellSize);
+    const gridLeft  = Math.floor((cW - totalCols * cellSize) / 2);
+    const gridTop   = cH - totalRows * cellSize;
+
+    /* ── Letter pixel map ── */
+    const textStartCol = Math.floor((totalCols - textCols) / 2);
+    const letterPixels = new Set();
+    let colCursor = textStartCol;
+    for (const letter of letters) {
+        const w = letter[0].length;
+        for (let r = 0; r < TEXT_H; r++) {
+            for (let c = 0; c < w; c++) {
+                if (letter[r][c] === '1') {
+                    letterPixels.add(`${padTop + r},${colCursor + c}`);
+                }
+            }
+        }
+        colCursor += w + letterGap;
+    }
+
+    /* ── Engine (zero gravity — boxes hold formation) ── */
+    const engine = Engine.create({ gravity: { x: 0, y: 0 } });
+
     const render = Render.create({
         canvas: canvas,
         engine: engine,
         options: {
-            width: canvasWidth,
-            height: canvasHeight,
+            width: cW,
+            height: cH,
             wireframes: false,
             background: 'transparent',
-            pixelRatio: window.devicePixelRatio
-        }
+            pixelRatio: window.devicePixelRatio,
+        },
     });
 
-    // Create boundaries (walls)
-    const wallThickness = 50;
-    const walls = [
-        // Bottom
-        Bodies.rectangle(canvasWidth / 2, canvasHeight + wallThickness / 2, canvasWidth, wallThickness, {
-            isStatic: true,
-            render: { fillStyle: 'transparent' }
-        }),
-        // Left
-        Bodies.rectangle(-wallThickness / 2, canvasHeight / 2, wallThickness, canvasHeight, {
-            isStatic: true,
-            render: { fillStyle: 'transparent' }
-        }),
-        // Right
-        Bodies.rectangle(canvasWidth + wallThickness / 2, canvasHeight / 2, wallThickness, canvasHeight, {
-            isStatic: true,
-            render: { fillStyle: 'transparent' }
-        })
-    ];
+    /* ── Walls ── */
+    const wt = 60;
+    World.add(engine.world, [
+        Bodies.rectangle(cW / 2, cH + wt / 2, cW + 200, wt, { isStatic: true, render: { fillStyle: 'transparent' } }),
+        Bodies.rectangle(-wt / 2, cH / 2, wt, cH * 3, { isStatic: true, render: { fillStyle: 'transparent' } }),
+        Bodies.rectangle(cW + wt / 2, cH / 2, wt, cH * 3, { isStatic: true, render: { fillStyle: 'transparent' } }),
+    ]);
 
-    // Create boxes (enough to fill 30% of height)
+    /* ── Create boxes ── */
     const boxes = [];
-    const boxSize = 40;
-    const colors = ['#ff1418', '#ffffff'];
-    const targetHeight = canvasHeight * 0.3;
-    const boxesPerRow = Math.floor(canvasWidth / (boxSize + 10));
-    const rows = Math.ceil(targetHeight / (boxSize + 10));
-    
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < boxesPerRow; col++) {
-            const x = col * (boxSize + 10) + boxSize + Math.random() * 20;
-            const finalY = canvasHeight - (row * (boxSize + 10)) - boxSize;
-            const startY = -100 - (row * 80) - (Math.random() * 100);
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            const rotation = (Math.random() - 0.5) * 0.3;
-            
-            const box = Bodies.rectangle(x, startY, boxSize, boxSize, {
-                restitution: 0.3,
-                friction: 0.1,
-                angle: rotation,
+    for (let r = 0; r < totalRows; r++) {
+        for (let c = 0; c < totalCols; c++) {
+            const isLetter = letterPixels.has(`${r},${c}`);
+            const color    = isLetter ? '#ff1418' : '#ffffff';
+            const tX = gridLeft + c * cellSize + cellSize / 2;
+            const tY = gridTop  + r * cellSize + cellSize / 2;
+            const sX = tX + (Math.random() - 0.5) * 80;
+            const sY = -60 - Math.random() * cH * 0.6;
+
+            const box = Bodies.rectangle(sX, sY, boxSize, boxSize, {
                 isStatic: true,
+                friction: 0.8,
+                restitution: 0.12,
+                angle: (Math.random() - 0.5) * 0.6,
                 render: {
                     fillStyle: color,
-                    strokeStyle: color === '#ffffff' ? '#121212' : color,
-                    lineWidth: 2
-                }
+                    strokeStyle: isLetter ? '#cc1014' : '#333',
+                    lineWidth: isLetter ? 0.5 : 1,
+                },
             });
+
+            box._tX = tX;
+            box._tY = tY;
+            box._r  = r;
+            box._c  = c;
+            box._ok = false;
             boxes.push(box);
         }
     }
 
-    // Add all bodies to world
-    World.add(engine.world, [...walls, ...boxes]);
+    World.add(engine.world, boxes);
 
-    // Run the engine and renderer
     const runner = Runner.create();
     Runner.run(runner, engine);
     Render.run(render);
-    
-    // Animate boxes falling into place when footer enters viewport
+
+    /* ── Drop animation ── */
+    const anims = [];
+    let animLoop = false;
+
+    function easeOutBounce(t) {
+        if (t < 1 / 2.75) return 7.5625 * t * t;
+        if (t < 2 / 2.75) { t -= 1.5 / 2.75; return 7.5625 * t * t + 0.75; }
+        if (t < 2.5 / 2.75) { t -= 2.25 / 2.75; return 7.5625 * t * t + 0.9375; }
+        t -= 2.625 / 2.75; return 7.5625 * t * t + 0.984375;
+    }
+
+    function tickAnims() {
+        const now = performance.now();
+        for (let i = anims.length - 1; i >= 0; i--) {
+            const a = anims[i];
+            const p = Math.min((now - a.t0) / a.dur, 1);
+            const e = easeOutBounce(p);
+            Body.setPosition(a.box, {
+                x: a.sx + (a.box._tX - a.sx) * e,
+                y: a.sy + (a.box._tY - a.sy) * e,
+            });
+            Body.setAngle(a.box, a.sa * (1 - e));
+            if (p >= 1) {
+                Body.setPosition(a.box, { x: a.box._tX, y: a.box._tY });
+                Body.setAngle(a.box, 0);
+                a.box._ok = true;
+                Body.setStatic(a.box, false);
+                Body.setVelocity(a.box, { x: 0, y: 0 });
+                Body.setAngularVelocity(a.box, 0);
+                anims.splice(i, 1);
+            }
+        }
+        if (anims.length > 0) requestAnimationFrame(tickAnims);
+        else animLoop = false;
+    }
+
+    function startDrop() {
+        boxes.forEach((box) => {
+            const delay = box._c * 22 + box._r * 12;
+            setTimeout(() => {
+                anims.push({
+                    box: box,
+                    sx: box.position.x,
+                    sy: box.position.y,
+                    sa: box.angle,
+                    dur: 650 + Math.random() * 250,
+                    t0: performance.now(),
+                });
+                if (!animLoop) { animLoop = true; requestAnimationFrame(tickAnims); }
+            }, delay);
+        });
+    }
+
+    /* ── Trigger drop when footer enters viewport ── */
     ScrollTrigger.create({
         trigger: '.footer',
         start: 'top bottom-=100',
         once: true,
-        onEnter: () => {
-            boxes.forEach((box, index) => {
-                setTimeout(() => {
-                    Body.setStatic(box, false);
-                }, index * 8);
-            });
+        onEnter: startDrop,
+    });
+
+    /* ── Mouse interaction ── */
+    let mx = -9999, my = -9999;
+    const pushR = 120, pushF = 0.0025;
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mouseleave', () => { mx = my = -9999; });
+
+    /* ── Physics: spring restore + mouse push ── */
+    Events.on(engine, 'beforeUpdate', () => {
+        for (const box of boxes) {
+            if (!box._ok || box.isStatic) continue;
+
+            // Spring toward target position
+            const dx = box._tX - box.position.x;
+            const dy = box._tY - box.position.y;
+            Body.applyForce(box, box.position, { x: dx * 0.00025, y: dy * 0.00025 });
+
+            // Velocity damping
+            Body.setVelocity(box, { x: box.velocity.x * 0.93, y: box.velocity.y * 0.93 });
+            Body.setAngularVelocity(box, box.angularVelocity * 0.88);
+
+            // Angle restore
+            if (Math.abs(box.angle) > 0.01) Body.setAngle(box, box.angle * 0.92);
+
+            // Mouse push
+            const ddx  = box.position.x - mx;
+            const ddy  = box.position.y - my;
+            const dist = Math.sqrt(ddx * ddx + ddy * ddy);
+            if (dist < pushR && dist > 1) {
+                const f = pushF * (1 - dist / pushR);
+                const a = Math.atan2(ddy, ddx);
+                Body.applyForce(box, box.position, { x: Math.cos(a) * f, y: Math.sin(a) * f });
+            }
         }
     });
 
-    // Mouse tracking variables
-    let mousePosition = { x: -1000, y: -1000 };
-    const pushRadius = 150;
-    const pushForce = 0.0022;
-
-    // Track real mouse position
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mousePosition.x = e.clientX - rect.left;
-        mousePosition.y = e.clientY - rect.top;
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-        mousePosition = { x: -1000, y: -1000 };
-    });
-
-    // Wave animation variables
-    let time = 0;
-    const waveSpeed = 0.02;
-    const waveForce = 0.00008;
-
-    // Before each engine update
-    Events.on(engine, 'beforeUpdate', () => {
-        time += waveSpeed;
-        
-        boxes.forEach((box, index) => {
-            // Mouse push effect
-            const dx = box.position.x - mousePosition.x;
-            const dy = box.position.y - mousePosition.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < pushRadius && distance > 1) {
-                const force = pushForce * (1 - distance / pushRadius);
-                const angle = Math.atan2(dy, dx);
-                
-                Body.applyForce(box, box.position, {
-                    x: Math.cos(angle) * force,
-                    y: Math.sin(angle) * force
-                });
-            }
-
-            // Wave motion (ambient animation)
-            const waveOffset = (box.position.x / 100) + (index * 0.1);
-            const waveX = Math.sin(time + waveOffset) * waveForce;
-            const waveY = Math.cos(time * 0.7 + waveOffset) * waveForce * 0.5;
-            
-            Body.applyForce(box, box.position, {
-                x: waveX,
-                y: waveY
-            });
-        });
-    });
-
-    // Handle window resize
-    let resizeTimeout;
+    /* ── Resize ── */
+    let footerResizeTimer;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
+        clearTimeout(footerResizeTimer);
+        footerResizeTimer = setTimeout(() => {
             if (window.innerWidth <= 768) {
                 Render.stop(render);
                 Runner.stop(runner);
                 World.clear(engine.world);
                 Engine.clear(engine);
                 canvas.style.display = 'none';
-            } else {
-                canvas.style.display = 'block';
-                const newWidth = window.innerWidth;
-                const newHeight = footer.offsetHeight;
-                canvas.width = newWidth;
-                canvas.height = newHeight;
-                render.canvas.width = newWidth;
-                render.canvas.height = newHeight;
-                render.options.width = newWidth;
-                render.options.height = newHeight;
-                Render.setPixelRatio(render, window.devicePixelRatio);
             }
         }, 250);
     });
@@ -813,12 +969,13 @@ if (document.readyState === 'loading') {
     initFooterMatter();
 }
 
-
 // ==========================================
 // 12. RESIZE
 // ==========================================
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => ScrollTrigger.refresh(), 250);
+    resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 250);
 });
