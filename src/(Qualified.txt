@@ -1,0 +1,1924 @@
+(Qualified
+Outside
+Ireland)
+Who is this Guide for? A nurse or midwife who qualified outside Ireland and is
+applying to register in Ireland.
+A NMBI registrant who qualified outside Ireland and who
+is applying to register in an additional division. This is also
+referred to as adding a qualification on the NMBI Register.
+A nurse or midwife applying to practise in Ireland on a
+temporary or occasional basis.
+A European Professional Card (EPC) holder.
+This guide is not for:
+a nursing or midwifery student in one of Ireland’s
+education bodies.
+a registered nurse or midwife who qualified in Ireland and
+is applying to register in an additional division.
+What does this Guide cover?
+Registration Process
+Setting Up an Account on MyNMBI
+Qualification(s) Recognition Process
+Glossary of Terms
+Overview of the Application Process
+Type of Applications (G1/G2/G3)
+What is the classification?
+Adding a New Division
+The European Professional Card (G1 and G2)
+Temporary and Occasional Applications (G1 and G2)
+3
+4
+5
+6
+7
+8
+11
+13
+15
+15
+15
+16
+17
+20
+21
+22
+23
+41
+42
+43
+53
+53
+53
+Account Set Up - First Time Users
+Logging into MyNMBI
+Overview of the Registration Process
+Registration Process in Detail
+Overview of the Qualification(s) Recognition Process
+Qualification(s) Recognition Process in Detail
+G1 and G2 applications (EU Directive applications) - General description
+G1 (automatic recognition) in depth
+G2 (general systems) in depth
+G3 (Non-Directive) in depth
+Who can apply?
+How much does it cost?
+How long does it take?
+Fraud
+Appeals
+Review Process
+Preparing Your Documents
+English Language Competence
+Annex 1: Definitions: EU Member State nationals, family members,
+refugee and subsidiary protection
+Annex 2: Reference Dates for General Nursing and Midwifery
+Annex 3: Country Specific Criteria
+61
+62
+62
+62
+63
+74
+65
+66
+67
+67
+75
+76
+69
+70
+71
+54
+55
+56
+56
+72
+Our Fraud Policy 73
+Certified Copies
+Translation of Documents
+Glossary of Documents
+Appealing a Decision
+Overview of the Appeals Process
+Pathway 1: Trained in English in a NMBI recognised country
+Pathway 2: Registered and practised in English
+Pathway 3: English language tests
+Your Application: NMBI Review Process
+Administrative assessment (G1/G2 and G3 applicants)
+Qualification assessment (G2 and G3 applicants)
+Compensation measures: Completing a period of adaptation or aptitude
+test
+Applicant User Guide
+Glossary of Terms
+3
+Term What it means
+G1 Applications classified under the automatic recognition pathway.
+Directive applicants.
+G2 Applications classified under the general systems pathway. Directive
+applicants.
+G3 Non-Directive applicants. These applications are not governed by EU
+regulation.
+Directive 2005/36/EC The recognition of professional qualifications is governed by Directive
+2005/36/EC. This directive enables the free movement of professionals
+such as nurses and midwives within the EU.
+Qualification
+recognition
+The process of reviewing your nursing or midwifery qualifications
+including your degree, work experience and other relevant training
+Registration This step follows qualification recognition and is the last process before
+your name is added to the NMBI Register.
+European Professional
+Card (EPC)
+The EPC is not a physical card, but rather electronic proof that you have
+passed administrative checks and that your professional qualifications
+are recognised.
+Host country or
+authority
+The organisation that has been legally delegated with the powers to
+regulate the nursing or midwifery professions in the country you intend to
+practise. In Ireland, the competent authority is NMBI.
+Home competent
+authority
+The organisation that has been legally delegated with the powers to
+regulate the nursing or midwifery professions in the country you qualified
+or trained as a nurse or a midwife.
+Establishment When you establish yourself (permanently) in Ireland and intend to
+practise nursing or midwifery.
+Temporary and
+occasional
+If you are already legally established in a Member State other than
+Ireland and wish to practise nursing or midwifery in Ireland on a
+temporary and occasional basis. The temporary nature of the service is
+assessed on a case-by-case basis.
+Period of adaptation A supervised placement in an approved Irish health care facility. The
+timeframe of a period of adaptation is 6-12 weeks.
+Aptitude test A test for overseas applicants. The test is composed of two parts: theory
+and practical.
+Reference date The date the Member State agreed to comply with the EU minimum
+training requirements.
+Applicant User Guide
+Overview of the Application Process
+Candidate
+To practise nursing or midwifery in Ireland, you will need to go through a
+two-step process:
+Recognition of qualifications - involves comparison of
+your qualifications with the Irish education standards
+and requirements
+Recognition process
+Log into MyNMBI.
+Set up an account.
+Complete an Overseas Recognition application.
+Obtain all the required certified documentation, upload to MyNMBI (and
+translations if needed).
+Pay the appropriate fee.
+NMBI will review your application and email you the recognition outcome.
+Possible outcomes: qualifications recognised, submit missing document(s), a
+compensation measure is required, qualifications refused for recognition. The last
+two outcomes are provisional and can be appealed.
+Registration process
+Log into MyNMBI.
+Answer questions to allow NMBI to classify your application.
+Provide evidence of English language competence.
+The list of required documents will be presented to you.
+Obtain all the required certified documentation, upload to MyNMBI (with certified
+translations if needed).
+Pay the appropriate fee.
+NMBI will review your application and email you the outcome.
+Possible outcomes: you are now registered, resubmit missing document(s),
+registration with conditions attached and registration refused. The last two
+outcomes are provisional and can be appealed
+Registration
+4
+Types of
+Applications
+Applicant User Guide P
+Personal
+Status Criteria
+Q
+Qualification
+Criteria
+G
+Classification
+G1
+G2
+G3 Non-Directive applicants
+General systems pathway
+Directive applicants
+Automatic recognition pathway
+Directive applicants
+Type of Applications (G1/G2/G3)
+Why is it important to know which type of applicant you are?
+It determines the documents you will be required to submit.
+The classification is based on an EU Directive on the recognition
+of professional qualifications (2005/36/EC) which clearly defines
+the level of assessment an application can undergo and the
+timelines to process applications once all documents are
+submitted.
+What is classification?
+6
+Applicant User Guide
+I am applying to the general nursing or midwifery division of the
+Register, and I started my qualifications in an EU or EEA country
+after its reference date (see Annex 2).
+I am applying to the general nursing or midwifery division of
+the register, I qualified in an EU or EEA country and started
+my qualifications before the country’s reference date. I also
+have three (general nursing) or two (midwifery) out of five
+consecutive years of professional experience in an EU or EEA
+country in the planning, organising and administration of care.
+I started my qualifications in an EU or EEA country before the
+reference date of that country, and I satisfy a list of criteria
+specific to my country of training (see Annex 3).
+For your application to be considered under the EU Directive it needs to meet the two criteria
+below at the same time:
+G1 and G2 applications (EU Directive applications) - General descriptionMeet one of the ‘Qualifications Criteria’:
+1.
+I qualified in an EU or EEA country and I am applying to any
+division other than general nursing or midwifery.
+I qualified outside the EU or EEA, I had my qualification recognised
+in an EU or EEA country and I have three years of professional
+experience in an EU or EEA country in the planning, organisation,
+and administration of care.
+I qualified as a general nurse or midwife in an EU or EEA
+country. I started my qualifications before the reference date of
+that country. I do not have three out of five consecutive years
+(for general nursing) or two out of five consecutive years (for
+midwifery) of professional experience in an EU or EEA country in
+the planning, organising and administration of care. I do not
+satisfy the list of criteria specific to my country of training (see
+Annex 3).
+Q
+G2
+G1
+Meet one of the four ‘Personal Status Criteria’:
+P
+I am an EU or EEA Member State national (see Annex 1); or
+A family member of an EU Member State national (see Annex 1); or
+A person who has been granted refugee or subsidiary protection
+status in Ireland (see Annex 1); or
+A family member of a person granted refugee or subsidiary
+protection status in Ireland (see Annex 1).
+7
+Applicant User Guide
+G1 (automatic recognition) in depth 1. 2.
+3.
+G1 Option 1
+Q
+P
+An EU or EEA Member State national (see Annex 1), or
+A family member of an EU Member State national
+(see Annex 1), or
+A person who has been granted refugee or subsidiary
+protection status in Ireland (see Annex 1), or
+A family member of a person granted refugee or subsidiary
+protection status in Ireland (see Annex 1).
+I meet ONE of the four ‘Personal Status Criteria’:
+I am applying to the general nursing or midwifery division of the
+Register.
+I qualified as a nurse or a midwife in an EU or EEA country.
+I started my qualifications after the Reference Date (see Annex 2)
+of that country.
+I meet ALL ‘Qualification Criteria’ Option 1
+8
+Applicant User Guide
+1.
+2.
+3.
+G1 Option 3
+G1 Option 2
+I meet ONE of the four ‘Personal Status Criteria’
+I meet ONE of the four ‘Personal Status Criteria’
+Q
+Q
+P
+P
+I am applying to the General Nursing division of the Register.
+I qualified as a nurse in an EU or EEA Country.
+I started my qualifications before the reference date (see Annex
+2) of that country and I have three out of five consecutive years
+of professional experience in an EU or EEA country in the
+planning, organising and administration of care.
+I meet ALL ‘Qualification Criteria’ Option 2
+I am applying to the Midwifery division of the Register.
+I qualified as a midwife in an EU or EEA country.
+I started my qualifications before the reference date (see Annex
+2) of that country and I have two out of five consecutive years of
+professional experience in an EU or EEA country in the planning,
+organising and administration of care.
+I meet ALL ‘Qualification Criteria’ Option 3
+9
+Applicant User Guide
+1. 3. 2.
+Country specific criteria apply to: Poland, Romania, Germany, Czech Republic,
+Slovakia, Estonia, Latvia, Lithuania, Slovenia and Croatia. Annex 3 provides
+details on the country specific criteria (see Annex 3).
+G1 Option 4
+I meet ONE of the four ‘Personal Status Criteria’
+Q
+P
+I am applying to the Midwifery or General Nursing division of the
+Register.
+I qualified as a midwife or general nurse in an EU or EEA country.
+I started my qualifications before the reference date (see Annex 2)
+of that country, and I satisfy a list of criteria specific to my country
+of training (see Annex 3).
+I meet ALL ‘Qualification Criteria’ Option 4
+10
+Applicant User Guide
+G2 (general systems) in depth
+I meet ONE of the four ‘Personal Status Criteria’
+2.1. Children’s Nurses
+.
+.
+.
+MidwifePrescribers PsychiatricNu rses Intellectual Disability Nurses Practitioners PublicHealthN
+Nurse Tutors
+Midwife Tutors
+Nurse Prescribers
+urses Advanced Midwife
+Practitioners .
+.
+.
+.
+.
+.
+.
+Q
+Q
+P
+P
+G2 Option 2
+G2 Option 1
+I meet ONE of the four ‘Personal Status Criteria’ I meet ALL ‘Qualification Criteria’ Option 1 I qualified in EU or EEA country.
+I am applying to the following divisions on the NMBI Register:
+Children’s Nurses . Midwife Prescribers
+Psychiatric Nurses
+Intellectual Disability Nurses
+Public Health Nurses
+Nurse Tutors
+Midwife Tutors
+Nurse Prescribers
+Advanced Midwife
+Practitioners
+.
+.
+.
+.
+.
+.
+.
+Advanced Nurse
+Practitioners
+.
+.
+I qualified outside the EU or EEA and the qualification was
+recognised by EU or EEA country.
+I have three years of professional experience in that EU or
+EEA country in the planning, organisation, and administration
+of care.
+I meet ALL ‘Qualification Criteria’ Option 2
+11
+Applicant User Guide
+Children’s Nurses
+.
+.
+.
+MidwifePrescribers PsychiatricNu rses Intellectual Disability Nurses Practitioners PublicHealthN
+Nurse Tutors
+Midwife Tutors
+Nurse Prescribers
+urses Advanced Midwife
+Practitioners .
+.
+.
+.
+.
+.
+.
+Q
+P
+G2 Option 3 I meet ONE of the four ‘Personal Status Criteria’ I meet ALL ‘Qualification Criteria’ Option 3 I qualified as a general nurse or midwife in an EU or EEA country.
+I started my qualifications before the reference date of that
+country.
+I do not have three out of five consecutive years (for general
+nursing) or two out of five consecutive years (for midwifery) of
+professional experience in an EU or EEA country in the planning,
+organising and administration of care.
+I do not satisfy the list of criteria specific to my country of training.
+Holders of the Bulgarian qualification “Feldsher” cannot apply for recognition under the EU Directive.
+12
+Applicant User Guide
+G3 (Non-Directive) in depth
+G3 applications may apply to those do not meet the criteria for G1 or G2 mentioned above.
+I do not meet the EU ‘Personal Status Criteria’
+All criteria below are true:
+I qualified either in a third country or within the EU/EEA
+1.
+(Note: if you do not meet one of the EU 'Personal Status Criteria', you
+can only apply through the Non-Directive G3 route, even if you attained
+your qualification in an EU/EEA country).
+Q
+P
+G3 Option 1
+I am not an EU or EEA Member State national (see Annex 1).
+I am not a family member of an EU Member State national
+(see Annex 1).
+I have not been granted refugee or subsidiary protection
+status in Ireland (see Annex 1).
+I am not a family member of a person granted refugee or
+subsidiary protection status in Ireland (see Annex 1).
+13
+Applicant User Guide
+One of the following applies to me
+I meet one of the EU ‘Personal Status Criteria’
+4. 3.1. 2. I qualified outside of the EU or EEA and did not have my
+qualification recognised by EU or EEA country; or
+I qualified outside of the EU or EEA and had my qualification
+recognised by an EU or EEA country, but I do not have 3
+years of professional experience in that EU or EEA country in
+the planning, organisation, and administration of care
+I am an EU or EEA Member State national (see Annex 1); or
+A family member of an EU Member State national
+(see Annex 1); or
+A person who has been granted refugee or subsidiary
+protection status in Ireland (see Annex 1); or
+A family member of a person granted refugee or subsidiary
+protection status in Ireland (see Annex 1)
+Q
+P
+G3 Option 2
+14
+Applicant User Guide
+Having all the correct documents ready to hand when you submit your application.
+The documents need to be valid, current and translated to English (see Section 9).
+You will need to provide correctly certified copies.
+The level of checks required to determine if your qualifications meet the standard.
+G1 applications require an administrative assessment only, while G2 and G3
+applications will also go through a qualifications assessment process.
+If you are requested to complete a compensation measure: this might apply to G2
+and G3 applicants only. You will have 12 months to complete a compensation
+measure. Details available in Section 10.3. It takes successful applicants on average
+13 months from submission of documentation to registration.
+If you applied for your qualifications to be recognised and a document is missing,
+you have six months from the date of submission to provide the missing
+document(s). Otherwise your application will be automatically closed, and you will
+need to apply again.
+How long does it take?
+To process your application, all your documents must to uploaded to MyNMBI.
+The timelines depend on the type of application. There are a number of
+factors that determine how long it will take to process your application.
+How much does it cost?
+For the most up to date information on our fees please check our website.
+Who can apply?
+NMBI has developed a tool to check if you can apply for registration. To find
+out if you are eligible, log into MyNMBI and complete the recognition
+application.
+15
+Overview of the processing timelines once NMBI has received all your documents
+Application type Recognition
+decision
+Registration
+decision
+(working days)
+Overall processing
+timelines
+(working days)
+G1 EPC 1 month 20 days 2 months approx.
+G1 No EPC 3 months 20 days 4 months approx.
+G1 Temporary and Occasional No EPC 1 month 20 days 2 months approx.
+G2 EPC 2 months 20 days 3 months approx.
+G2 No EPC 3 months 20 days 4 months approx.
+G2 Temporary and Occasional EPC 2 months 20 days 3 months approx.
+G2 Temporary and Occasional No EPC 1 month 20 days 2 months approx.
+G3 3 months 20 days 4 months approx.
+Setting Up an
+Account on
+MyNMBI
+Pre-qualifying questions
+NMBI’s privacy notice
+Answer the pre-qualifying questions and confirm you have read NMBI’s privacy notice.
+Continue account setup
+Account Set Up – First Time Users
+Applicant User Guide
+To log into MyNMBI you need to create a new account by following the steps below. Visit my.nmbi.ie. Click Create new account.
+17
+Complete the account set up page. 
+Your account has now been set up. 
+Enter your personal email address.
+Click Send verification code to confirm
+your email address. The code expires in 5
+minutes. 
+Enter the characters in the image.
+Click Create.
+Once you have confirmed your email,
+enter your password, date of birth and full
+name, as it appears on you ID. 
+Applicant User Guide
+18
+Before you begin your application, you will need to review your personal details on the Home page
+and ensure they are correct.
+If you have created a duplicate account, you will be unable to begin an application until NMBI has
+verified your account.
+Check
+your
+details
+Applicant User Guide
+19
+Applicant User Guide
+Logging into MyNMBI
+You can access MyNMBI at my.nmbi.ie. Select Sign in and enter your email and password.
+Begin application
+Sign in
+Read the information and select Begin application. 
+20
+Qualification(s)
+Recognition
+Process
+Applicant User Guide
+Overview of the Qualification(s) Recognition Process
+Applicant
+Logs into MyNMBI.
+Provides personal details.
+Answers a series of questions for G1/G2/G3 classification.
+Submits the required documents.
+Confirms the personal information provided is correct and accurate.
+Pays the appropriate fee.
+MyNMBI
+The application will appear in the Applications section of MyNMBI.
+Administrator logs into MyNMBI.
+Once the application progresses through the qualifications recognition stage, the status
+of the application will be updated in real time.
+NMBI
+NMBI will review the documents to make sure that they are valid, authentic and
+correctly certified.
+An ID check is performed.
+G1 applications will undergo an administrative assessment only.
+G2 and G3 applications will undergo both an administrative assessment and
+qualification(s) assessment.
+Applicant
+Either accepts the decision or appeals it.
+Email and MyNMBI
+An email is sent with the result of the assessment. The result may be:
+Qualifications are provisionally recognised
+A successful completion of a compensation measure is needed (G2 and G3 only)
+Qualifications recognition provisionally refused.
+22
+Applicant User Guide
+Qualification(s) Recognition Process in Detail
+Begin application
+Step 1: Overview of the overseas recognition process
+The steps below will guide you through the recognition process.
+Before completing your application, please read the steps to ensure you have all the relevant
+information ready.
+Select Next to begin the application process.
+23
+Applicant User Guide
+Step 2: Personal details
+Enter your personal details.
+Confirm that you have read NMBI’s privacy notice.
+Click Next to continue.
+Personal details NMBI’s privacy notice Continue application
+24
+Applicant User Guide
+Step 3: Address
+Ensure your home address is correct. and click Next. Select Next to continue.
+Step 4: Phone number
+Ensure your dialing code and phone number is correct.
+Click Next to continue.
+Continue application Continue application
+25
+Applicant User Guide
+Continue application Step 5: Recognition pathway
+There are three types of pathways for overseas applicants. The information explains which pathway
+applies to you.
+Select Next to continue.
+Step 5.1: EU Member Status
+Answer the Yes or No questions to check which pathway is relevant to you.
+If you have an immediate family member with EU nationality, select the country.
+Click Next to continue.
+Continue application
+26
+Applicant User Guide
+Continue application If you do not have an immediate family member with EU nationality, you will be asked if you were
+granted refugee or subsidiary protection in Ireland. Upload evidence of your refugee status.
+Select Next to continue.
+If you have not been granted refugee or subsidiary protection in Ireland, please indicate
+if anyone in your immediate family has.
+Select Next to continue.
+Continue application
+27
+Applicant User Guide
+Step 5.2: Division
+Enter the division of the Register you are applying for recognition in.
+Enter the country where you obtained your qualification.
+After providing the details, you will be asked if your qualification has been recognised by an EU/EEA
+Member State. Click Yes or No.
+If you answered Yes, enter the Member State.
+Select Yes or No to indicate if you are a temporary or occasional applicant.
+Click Next to continue.
+28
+Continue application
+Applicant User Guide
+Step 6: Supporting documents
+Upload all your supporting documents. Translated documents must be uploaded if the original is not
+in the English language.
+Select Next to continue.
+Continue application Continue application Step 7: Education
+Read the overview of what you need.
+Select Next to continue.
+Step 7.1: Course information
+Add your course information by selecting Add new.
+Add course
+information
+29
+Continue application
+Applicant User Guide
+Continue application Enter the details about your education body.
+Select Next to continue.
+Enter the details about the course you completed.
+Select Next to continue.
+Continue application
+30
+Applicant User Guide
+Upload all your supporting documents.
+Your course syllabus is not required.
+If you cannot provide your qualification documents, click I am unable to obtain my qualification
+forms and explain the reasons.
+If your qualification form is being provided to NMBI by your education body, select I have contacted
+the education body who have advised they will send this directly to NMBI.
+Click Submit.
+Your course information will now be listed.
+Select Next to continue.
+Submit course information Continue application
+31
+Applicant User Guide
+Step 8: Other registrations
+If you have been registered with another nursing council, you will need to provide the details. To
+enter the details, Click Add new.
+If you have not been registered with another nursing council, click I have never been registered in
+another jurisdiction. Select Next to continue.
+Continue application You will need to provide details of your previous registration, if it applies.
+If your previous nursing council is not listed, tick the Cannot find nursing council box and enter the
+details manually.
+Select Next to continue.
+Continue application
+32
+Applicant User Guide
+Continue application Upload a copy of your CCPS, including an English translation, if needed.
+Enter the date it was issued.
+If the nursing council is sending your CCPS to NMBI directly, tick the relevant box.
+If you cannot obtain a copy of your CCPS, tick the last box and give an explanation.
+Click Submit.
+Your information will now be listed.
+Select Next to continue.
+Submit to continue
+33
+Applicant User Guide
+Step 9: Employment
+If you have worked in a professional capacity, select Add new.
+If you have not worked in a professional capacity, select I do not have any professional
+experience. Select Next to continue.
+Continue application
+Enter the details of your
+previous employer.
+Select Next to continue.
+34
+Applicant User Guide
+Enter the details of your previous role.
+Click Next to continue.
+Upload a completed Employment Form. Forms must be completed by one of the
+approved signatories listed.
+After confirming that the details are complete and accurate, click Submit to continue.
+Continue application Submit to continue
+35
+Applicant User Guide
+Step 10: Other documents
+If you have additional documents to support your application, you can upload them in this section.
+Select Next to continue.
+Continue application
+36
+Applicant User Guide
+Step 11: Identification
+To verify your ID, you will need to upload a photo of you ID and take a real-time selfie.
+Read the information about what is required and click Next.
+Continue application Scan the QR code to capture a usable image of your ID.
+Once it has been authenticated, click Next.
+Scan for ID verification Continue application
+37
+Applicant User Guide
+You will receive a notification when your ID has been verified.
+Click Next to continue.
+Continue application Continue application Step 12: Declaration
+Read the declaration notice and confirm that all your information is complete, accurate and true.
+Select Next to continue.
+38
+Applicant User Guide
+Make payment Step 13: Payment
+Enter your payment details and confirm that you are happy to compete the payment.
+The application fee is €20.
+To complete the payment, select Pay now.
+To process your online payment, NMBI is required, under an EU payments directive, to capture billing
+information, including the cardholder’s address. NMBI will only use this information to complete this
+payment. Debit/credit card details are not retained by NMBI.
+Your payment may require authentication from your banking provider.
+Cardholder
+details
+39
+Applicant User Guide
+Once the payment is processed, you will receive a confirmation email. Check the status of your application
+After you have submitted your application, it will be processed by NMBI.
+You can monitor the status of your application, in the Applications section.
+When all the checks are completed, the status will change and you will receive an email with a
+link to the decision.
+Once your application is accepted, you can access your certificate in the Documents section. It
+will remain in your MyNMBI account for future use. Please note that it may take up to 30 minutes
+for certificates to generate.
+40
+Registration
+Process
+Applicant User Guide
+Overview of the Registration Process
+Applicant
+Logs into MyNMBI.
+Answers questions about English language competence.
+Uploads evidence of English language competence.
+Answers questions about their registration application.
+Submits the required documents.
+Submits a declaration.
+Reviews their personal details.
+Pays appropriate fee.
+MyNMBI
+NMBI
+The registration application will appear in the Applications section of MyNMBI.
+Once the application progresses through the process, the status of the application will
+be updated in real time.
+NMBI will review the documents to make sure that they are valid, authentic and
+correctly certified.
+A provisional registration decision is made.
+Applicant
+Either accepts the decision or appeals it.
+Email and MyNMBI
+The provisional registration decision is sent by email. The possible decisions are:
+Provisional decision to register applicant
+Provisional decision to refuse registration.
+42
+Applicant User Guide
+Registration Process in Detail
+Begin application
+Log in to MyNMBI using your email and password.
+You can access MyNMBI through our website or by going directly to MyNMBI at my.nmbi.ie. Please do not create a new account. You will not be able to complete your overseas registration
+using a new account.
+Click Start application to begin.
+43
+Applicant User Guide
+Step 1: Begin the registration process
+There are ten steps in the application process.
+Before completing your application, please read the steps to ensure you have all the relevant
+information ready.
+Click Next to begin.
+Begin application
+44
+Applicant User Guide
+Step 2: Personal details
+Confirm that your personal details are correct.
+If you need to make changes, go to the Personal Details section to update your information.
+Click Next to continue.
+Personal details Continue application
+45
+Applicant User Guide
+Step 3: Address
+Confirm your address is correct or select Change my address to update your information.
+Select Next to continue.
+Step 4: Phone number
+Confirm your phone number is correct or select Change my phone number to update your
+information.
+Click Next to continue.
+Continue
+application
+Update phone number Continue application Update address
+46
+Applicant User Guide
+Continue application Step 5: Registration pathway
+Select the overseas recognition application that is connected to your registration.
+Select Next to continue.
+Continue application Step 6: Language pathway
+Select your English language competence pathway.
+Select Next to continue.
+If you selected Trained or
+Practised in a majority
+English speaking country,
+you will need to enter the
+country you practised in
+and upload evidence of
+your training.
+47
+Applicant User Guide
+Step 6.1: English language assessment
+Select the English language test you took from the drop down list (IELTS or OET).
+If you took an IELTS test, please provide your TRF number and the test date.
+If you took an OET test, please provide your candidate number and test date.
+If you can submit a certificate of your results, tick the box and click next to continue.
+Select Next to continue.
+Step 6.2: Supporting documents
+If you have ticked the box to submit your results, upload them here.
+Select Next to continue.
+Continue application
+48
+Applicant User Guide
+Step 7: Other registrations
+If you have been registered with another nursing council, the details will be listed here.
+Select Next to continue.
+Continue application Step 8: Identification
+If you have verified your ID during the candidate registration, you are not required to complete
+the process again.
+49
+Continue application
+Applicant User Guide
+Step 9: Declarations
+Read the declaration notice and confirm that all your information is complete, accurate and true.
+Select Next to continue.
+Continue application
+50
+Applicant User Guide
+Make payment Step 10: Payment
+Enter your payment details and confirm that you are happy to compete the payment.
+The application fee is €145.
+To complete the payment, select Pay now.
+To process your online payment, NMBI is required, under an EU payments directive, to capture billing
+information, including the cardholder’s address. NMBI will only use this information to complete this
+payment. Debit/credit card details are not retained by NMBI.
+Your payment may require authentication from your banking provider.
+Cardholder
+details
+51
+Applicant User Guide
+Once the payment is processed, you will receive a confirmation email. Check the status of your application
+You can monitor the status of your application, in the Applications section.
+52
+Applicant User Guide
+Adding a New Division
+If you are already on the NMBI Register and would like to apply for registration in another division, you
+will need to go through the recognition and registration processes again. This applies to anyone who
+trained outside Ireland. If you submit a second application for qualification recognition within seven days,
+you will be exempt from paying the qualification recognition fee the second time.
+The European Professional Card (G1 and G2)
+The European Professional Card (EPC) aims to facilitate the free movement of professionals in the EU and
+EEA. The EPC is intended to simplify the recognition of professional qualifications, enhance transparency
+for EU citizens and increase trust among authorities across the EU.
+The EPC is not a physical card, it is electronic proof that you have passed the administrative checks and
+your professional qualifications are recognised by the host country.
+If you are a nurse responsible for general care and wish to apply for an EPC, you must go through the
+EU’s online portal. The EPC relates only to the recognition of professional qualifications. If you have an
+EPC, it means that your qualifications have been recognised and you are now required to apply for
+registration with NMBI.
+Temporary and Occasional Applications (G1 and G2)
+G1 and G2 applicants may provide their services in Ireland on a temporary and occasional basis. We
+look at the following criteria to assess applications:
+Duration
+Frequency
+Regularity
+Continuity
+This option is only available to nurses and midwives who are not establishing themselves in Ireland.
+There are two pathways to apply as a temporary and occasional applicant.
+For more information on fees please visit the NMBI website.
+Once you complete the registration process successfully, your name will appear on NMBI’s Register as
+a provider of temporary and occasional services.
+You do not hold an EPC and would like to start the temporary and occasional recognition process
+with us.
+If you have a temporary EPC (your qualifications have been recognised by your home
+competent authority), you may begin your registration application on MyNMBI.
+53
+Preparing Your
+Documents
+A certified document isa photocopy of an original document that has been viewed, validated and
+marked as original by an approved authority. It is important that you certify your documents correctly as
+it will cause a delay in processing your application. 
+To get a certified copy of your document, you must bring your original document(s) and a photocopy to
+one of the certifying authorities listed below:
+Solicitor or Lawyer 
+Notary public 
+Peace Commissioner 
+Justice of the Peace 
+Commissioner for Oaths
+Post Office, United Kingdom only.
+The certifying authority must confirm they have seen the original document. They must state their full
+name and profession, and stamp, sign and date the photocopy of the document. 
+A copy or a picture of this must be uploaded as part of your application. Please note that failing to
+provide certified copies will delay how quickly NMBI can process your application.
+Applicant User Guide
+Preparing Documents
+Certified copies are required for the following documents:
+Identity document (Passport is the primary identity document. If you do not hold a passport you may
+provide a certified copy of a National Identity Card
+Evidence of change of name (If any of your required documents are in a different name, you must
+provide a certified copy of evidence of change of name e.g. marriage certificate, birth certificate,
+deed poll)
+Qualification parchment
+Qualification transcript (G2, G3)
+Certified translation of document.
+Certified copies
+55
+We will need a certified English translation of any document which is not written in English.
+The translation must be:
+carried out by a qualified translator
+signed and stamped by the translator, and
+dated by the translator.
+The translator must confirm, in the English language, that the translation is an exact translation of the
+original document. You will be requested to submit translations of all your documents that are not in the
+English language.
+For example, if your birth certificate is not in English, you should send us a certified copy of your birth
+certificate and a certified English translation of your birth certificate. The translation must be in writing
+and must include the translator’s professional contact details (telephone, address and email address).
+Applicant User Guide
+Translation of documents
+Glossary of documents
+The glossary below lists all the documents that NMBI may ask you to provide during qualification
+recognition and registration stages. This is the full list of documents; it does not mean that you are
+required to provide all of them. To know which documents are relevant to your application, please log
+into MyNMBI, answer a few questions and the system will tell you which documents you need to provide.
+56
+Document
+name
+What is it? Submission details and
+document validity
+When we may
+request this
+document
+Certificate of
+Acquired Rights
+A certificate used amongst EU
+regulators.
+Your home competent
+authority (regulator in the
+country you trained in) attests
+that you have practised for a
+certain period of time before
+the date of the certificate
+(three years for general nurses
+and two years for midwives
+out of the last five years).
+This is generally required when
+your training does not meet
+the minimum training
+requirements as described in
+Annex V of Directive
+2005/36/EC. This certificate is
+produced for G1 applicants.
+Issued in the last six months Qualification
+Recognition
+Applicant User Guide
+57
+Document
+name
+What is it? Submission details and
+document validity
+When we may
+request this
+document
+Certificate of
+Conformity
+A certificate used amongst EU
+regulators.
+Your home competent authority
+(regulator in the country you
+trained in) produces a
+certificate which mentions that
+your education programme
+fulfils the requirements of Annex
+V of Directive 2005/36/EC. This
+certificate is produced for G1
+applicants.
+Qualification
+Recognition
+Certificate of
+Current
+Professional
+Status or
+Certificate of
+Good
+Character
+A certificate produced by a
+regulator in a jurisdiction where
+you practised nursing or
+midwifery. Some countries have
+regional regulators while others
+have national ones.
+The certificate states your
+registration dates, registration
+status and if you have any
+fitness to practise restrictions.
+Issued in the last six months
+NMBI will request that you
+provide a certificate for each
+jurisdiction you practised or
+registered nursing or midwifery
+in. For G1/G2 applicants this
+will be required as part of
+registration while for G3 as
+part of Recognition process.
+Qualification
+Recognition and
+in some cases
+Registration
+Certificate of
+General
+System
+A certificate used amongst EU
+regulators to state that the
+applicant is eligible under
+General Systems.
+Qualification
+Recognition
+European
+Professional
+Card
+A document that you receive
+once you complete the
+recognition of your qualification
+through the EU online portal.
+Registration
+Evidence of
+formal
+qualifications
+or diploma
+Certified copy of Diploma or
+Parchment or official evidence
+that you successfully completed
+your training.
+Qualification
+Recognition
+Evidence of
+meeting the
+minimum levels
+of an English
+language test
+A certificate of test results from
+either the International English
+Language Test System (IELTS) or
+Occupational English Test (OET).
+Information on the minimum
+scores is available here.
+• We only accept IELTS or
+OET test results that are less
+than two years old. If your
+test results are out of date,
+you will need to resit the
+IELTS or OET
+Registration
+Applicant User Guide
+58
+Document
+name
+What is it? Submission details and
+document validity
+When we may
+request this
+document
+• You must provide IELTS
+Academic Test Report Form
+(TRF) number OR OET
+Candidate Number as part of
+Step 1 of the application
+process, detailed in the next
+section
+• NMBI will independently
+verify your scores
+• We only accept one test
+result and do not accept
+combined results.
+Evidence of
+registering and
+practising in
+English
+A letter on headed paper or an
+email from your employer(s) or
+Nursing Authority covering the
+following:
+• Location of employment
+• The dates of employment
+• Statement that you were
+practising as a nurse or
+midwife primarily through
+English.
+If you have registered and
+practised in English must be able
+to prove that you have three
+years post registration practice
+within the last five years in one
+of the recognised countries.
+These are:
+• Australia
+• Canada
+• New Zealand
+• The United States of America
+• United Kingdom.
+Registration
+Evidence of
+training in
+English in a
+NMBI
+recognised
+country
+A letter on headed paper or an
+email an education body
+covering the following:
+• The location of the
+education body
+• The name of the training
+programme attended
+• The dates of attendance
+Confirmation that the course
+was taught and assessed in
+English.
+If you trained in one of the
+countries:
+• Australia
+• Canada
+• New Zealand
+• The United States of America
+• United Kingdom
+Exemptions:
+• Applicants who qualified in
+an EU country, must provide
+a letter or an email from their
+education body confirming
+that their qualifications and
+practice placements were
+completed in English.
+• Applicants from Canada,
+whose education body is
+based in one of the French
+provinces of Quebec or New
+Brunswick, are required to
+demonstrate that they have
+practised competently
+through English.
+Registration
+Applicant User Guide
+59
+Document
+name
+What is it? Submission details and
+document validity
+When we may
+request this
+document
+Other relevant
+training or
+previous
+compensation
+measures
+Other training courses you
+consider are relevant.
+This will be considered by our
+assessors if you have
+shortfalls in your
+qualifications.
+If you have completed a
+compensation measure in
+another EU country, please
+provide evidence of that.
+Qualification
+Recognition
+Passport or ID A certified copy of Passport
+or National Identity Card.
+Family members of EU
+nationals are also to provide
+evidence of their residence in
+the EU (see Annex 1).
+Applicants who have been
+granted refugee status or
+subsidiary protection status
+or are family members of
+someone who has been
+granted refugee status or
+subsidiary protection status in
+Ireland are to upload
+evidence of their status (see
+Annex 1).
+Your ID upload should be clear,
+close up and in full colour with
+a minimum quality of 300dpi.
+The file should be in a PDF
+format.
+Valid and correctly certified ID.
+Expired documents will not be
+accepted. The MRZ (machine
+readable number) should not be
+obstructed.
+Qualification
+Recognition and
+Registration
+Proof of
+indemnity
+Proof of indemnity in Ireland
+(insurance or letter from
+employer) to cover you if a
+claim is made against you.
+The document must be valid for
+the period you intend to practise
+in Ireland.
+Registration
+(Temporary and
+Occasional
+only)
+Proof of
+professional
+experience
+A form that you download
+from MyNMBI and send to
+your current and previous
+employer(s).
+Once completed by the
+employer you will need to
+upload it in MyNMBI. In this
+form the employer provides
+details (roles/duties/activities)
+of your employment.
+In your online application you
+will need to enter details of your
+relevant employment since
+qualifying. G2/G3 applicants will
+also need to provide
+employment forms as evidence
+of post qualification experience
+(PQE), which may be considered
+during the qualification
+assessment.
+Please note that if you do not
+submit the employer forms then
+your PQE cannot be considered.
+Qualification
+Recognition
+Applicant User Guide
+60
+Document name What is it? Submission details and
+document validity
+When we may
+request this
+document
+Qualification
+Form
+A form that you download
+from MyNMBI and send to
+your education body to be
+completed. This form must be
+completed by the Head of
+Nursing or Midwifery
+Education. Once completed
+you will need to upload it to
+MyNMBI with the rest of your
+documents.
+Your ID upload should be clear,
+close up and in full colour with
+a minimum quality of 300dpi.
+The file should be in a PDF
+format.
+Valid and correctly certified ID.
+Expired documents will not be
+accepted. The MRZ (machine
+readable number) should not
+be obstructed.
+Qualification
+Recognition
+Temporary and
+Occasional
+Declaration
+document
+A form that you download
+from MyNMBI, complete and
+upload it. It includes a
+declaration that you intend to
+provide temporary and
+occasional services and the
+location and dates you intend
+to provide services in Ireland.
+Registration
+(Temporary and
+Occasional
+only)
+Transcript of
+Training
+As part of the qualification
+form your previous education
+institute will be required to
+provide two documents:
+1. Official transcript of the
+programme
+2. Programme syllabus
+The official programme
+syllabus provided by the
+university or institute you
+trained in.
+The syllabus/curriculum must
+be relevant to the programme
+you completed. You will need
+to upload a certified copy of
+the transcript/syllabus.
+Qualification
+Recognition
+Translations of
+any documents
+not in English
+We will need a certified
+English translation of any
+document which is not
+written in English.
+A certified copy must be
+uploaded.
+The translation must be:
+• carried out by a qualified
+translator
+• signed and stamped by the
+translator, and
+• dated by the translator.
+Qualification
+Recognition and
+Registration
+Review
+Process
+Applicant User Guide
+Your Application: NMBI Review Process
+Administrative assessment (G1/G2 and G3 applicants)
+Your application will undergo an administrative assessment of all your documentation. You will be
+advised by email if any additional information is required.
+Your qualifications have been recognised.
+Further information is required.
+You are required to successfully complete a compensation measure (applies to G2 and G3 only).
+A compensation measure refers to a period of adaptation or an aptitude test that needs to be
+successfully completed before we can recognise your qualifications. This decision is taken:
+if the theory and clinical content or hours of your overall nursing or midwifery education and
+training falls short of NMBI requirements, and
+If you have enough hours or appropriate content to allow you to complete compensation
+measure(s).
+Provisional refusal to recognise qualifications. This means that there are significant deficits in
+theory or/and clinical content of your training compared to NMBI requirements.
+Qualification assessment (G2 and G3 applicants)
+The transcripts of your training and syllabus will be assessed by a specialised Education Assessor. The
+assessor will examine in detail whether the clinical and theory content of your qualifications meets EU
+Directive and NMBI requirements. If relevant, additional courses to your graduate and post-graduate
+qualifications and work experience will be considered.
+In your online application you will enter details of your relevant employment since qualifying. You will
+also need to provide employment forms completed by your employer as evidence of post qualification
+experience (PQE). Please note that if you do not submit the employer forms, your PQE cannot be
+considered.
+The assessor will consider the duration and type of your education programme(s), the quantitative
+requirement (combined hours as per transcript), qualitative clinical placement component (CPC)
+requirement, theoretical and clinical instruction content and also post qualification experience (PQE),
+where relevant, to address deficits identified in the education programme.
+Please note that if your nursing or midwifery programme was less than 3 years in duration and you have
+not studied an extra course, it is likely that your application will not meet the threshold for a
+compensation measure.
+NMBI processes applications in a chronological order on a first come, first served basis. We do not fasttrack applications for any reason.
+Following the assessment of your application, NMBI will inform you of one of the following assessment
+outcomes:
+To proceed to the next stage, your qualifications need to be recognised first. This happens when:
+NMBI informs you that the clinical and theoretical components of your education and training
+meet the NMBI standards (meaning no compensation measure is needed), or
+You have successfully completed a compensation measure - a period of adaptation or an
+aptitude test – as requested by NMBI.
+62
+Applicant User Guide
+Compensation measures: completing a period of adaptation or an
+aptitude test
+If you are applying to the General Nursing division and you were informed by NMBI that you are required
+to complete a compensation measure, you have a choice to undertake one of the following:
+Period of adaptation
+Aptitude test.
+If you are applying to any division other than General Nursing, you will need to complete a period of
+adaptation. An aptitude test is not available for Midwives, Children’s Nurses, Psychiatric Nurses,
+Intellectual Disability Nurses, Public Health Nurses, Nurse Tutors, Midwife Tutors, Nurse Prescribers, Midwife
+Prescribers, Advanced Nurse Practitioners or Advanced Midwife Practitioners divisions.
+You will be given a link to MyNMBI to inform us of your choice.
+What is an aptitude test?
+The Royal College of Surgeons in Ireland’s (RCSI) Faculty of Nursing and Midwifery coordinates and
+manages an aptitude test for applicants trained outside the Republic of Ireland. The test is composed of
+two parts:
+Part 1: Theory or knowledge test or MCQ, which must be successfully completed before Part 2 can be
+attempted
+Part 2: Practical or OSCE test.
+Please refer to this link for full details on this test.
+Process to complete the test
+You have 12 months, from the date on the letter to complete the aptitude test.
+Complete RCSI’s online application.
+The RCSI will send you a confirmation email with an invitation to the test.
+You may need a visa to travel to Ireland to complete the test. NMBI has no role in organising or
+answering visa related queries. For more information please contact the Irish Naturalisation and
+Immigration Service (INIS).
+Once you complete the test, you can inform NMBI of the result through MyNMBI.
+What is a period of adaptation?
+A period of adaptation is a period of supervised practice under the supervision or responsibility of a
+qualified member of that profession. You may have supervised practice accompanied by further
+training. This period of supervised practice will be assessed.
+Periods of supervised practice must be undertaken at an approved Irish healthcare facility. You will be
+able to choose from a list of hospitals matched to the division of the Register you are applying to and
+approved by NMBI. A list of approved healthcare facilities is available on our website.
+The minimum timeframe to complete a period of adaptation is six weeks. However, that period may be
+extended to 12 weeks or more, if required.
+63
+Applicant User Guide
+General information
+You have 12 months from the date on the letter to secure a period of adaptation. After that period
+elapses, your application will be closed.
+You may need a visa to travel to Ireland to complete the period of adaptation. For more information,
+please contact INIS. NMBI has no role in organising nor answering visa-related queries.
+You or your potential employer must contact the health care facilities to secure an adaptation
+placement. We do not organise periods of adaptation for our applicants.
+Once you find a health care facility you need to:
+What happens next?
+When you start the placement, together with your preceptor (the person supervising your period of
+adaptation), you will complete the Competence Assessment Tool. This form can be downloaded from
+MyNMBI and once completed, you should upload it to MyNMBI.
+At the end of your period of adaptation the Director of Nursing or Midwifery will complete a Candidate
+Eligibility Report (downloaded from MyNMBI) and send it by email to inform NMBI whether you
+successfully completed your period of adaptation.
+complete information on the hospital in MyNMBI, and
+upload a letter of confirmation of your adaptation hospital.
+NMBI will add you to the Candidate Register for the duration of your period of adaptation and we
+will issue you with a Candidate Certificate
+64
+English
+Language
+Competence
+Applicant User Guide
+English Language Competence in Detail
+All applicants must satisfy NMBI that they have the necessary knowledge of English to communicate
+effectively in their practice. This is a requirement of the registration process (after qualifications are
+recognised). Language competence is a critical aspect of patient safety.
+Communication is defined as speaking, reading, listening and writing, and the applicant must provide
+evidence which demonstrates that they meet the required level of competence in these four mandatory
+skills.
+To facilitate this, it is up to all applicants from outside of Ireland to satisfy one of the three pathways and
+demonstrate that they meet the NMBI English language requirements.
+Pathway 1: Trained in English in a NMBI recognised country
+The pre-registration nursing or midwifery qualification which an applicant is relying on for registration
+was taught and examined in English in one of the NMBI recognised countries.
+NMBI will recognise the following
+countries as majority English speaking
+for the purpose of registering and
+practicing in Ireland:
+Australia
+Canada
+New Zealand
+The United States of America
+United Kingdom
+Evidence required
+A document showing evidence of
+qualification completion and location of
+college.
+If the college is based in one of the French
+provinces of Canada (Quebec or New
+Brunswick), the college must provide
+confirmation that the qualification and
+practice placements were completed in
+English.
+Exemption
+NMBI will also accept an applicant who completed their pre-registration
+qualification in an EU country where English is listed as a co-official language.
+The applicant must hold automatic qualification recognition under the EU
+Directive. The college must provide confirmation that the qualification and
+practice placements were completed in English.
+66
+Applicant User Guide
+Pathway 2: Registered and practised in English
+An applicant who wishes to rely on evidence that that they have registered and practised in English must
+be able to prove that they have three years post-registration practice as a nurse or midwife within the
+last five years in one of the recognised countries.
+NMBI will recognise the following
+countries:
+Australia
+Canada
+New Zealand
+The United States of America
+United Kingdom
+Evidence required
+A letter on headed paper or an email from the
+applicant’s employer(s) or Nursing Authority covering
+the following:
+Location of employment
+Dates of employment
+Applicant’s job title (nursing or midwifery)
+If the employer is based in one of the French
+provinces of Canada (Quebec or New Brunswick),
+the employer must provide a statement
+confirming that the applicant was practising as a
+nurse or midwife primarily in English.
+Pathway 3: English language tests The applicant may submit a
+certificate of test results from
+either the International English
+Language Test System (IELTS) or
+Occupational English Test (OET).
+Evidence required
+NMBI accepts International English Language Testing
+System (IELTS) Academic Test and the Occupational
+English Language Test (OET) as evidence of English
+language competency.
+Please refer to the tables below for the minimum levels in each of the tests that are accepted by
+NMBI:
+67
+IELTS
+Academic Test
+Minimum International English Language Testing System (IELTS)
+Academic Score
+Listening 7.0
+Overall IELTS score of 7.0 with a minimum of 6.5 in any one
+component.
+Reading 7.0
+Writing 6.5
+Speaking 7.0
+Overall 7.0
+Applicant User Guide
+Please Note
+We only accept IELTS or OET test results that are less than two years old. If your test results
+have expired, you will need to re-sit the IELTS or OET.
+You must provide IELTS Academic Test Report Form (TRF) number OR OET Candidate Number.
+NMBI will independently verify your scores.
+We only accept one test result (one sitting) and do not accept combined results.
+NMBI only accept tests taken on a computer in a test centre, we do not accept tests taken at
+home.
+IMPORTANT INFORMATION
+Do not apply for registration until you meet the minimum scores
+under the IELTS Academic Test or OET.
+Ensure that the test result is current. Remember that if you apply to NMBI and do not meet the English
+language competence requirements, the assessment fee is nonrefundable.
+TRF Number or OET Candidate Number
+You must upload your Test Report Form (TRF) Number or OET Candidate Number. Your TRF Number is the
+15-18 characters (alpha or numeric combination) which you will find on the bottom right-hand corner of
+your Test Report Form. Your OET Candidate Number is the nine-digit number noted under your name on
+your OET Statement of Results sheet. NMBI will use the TRF or OET number you provide to independently
+verify your scores.
+68
+ OET Minimum Occupational English Test (OET) Grade and Scores
+Listening B (350-450)
+OET (Nursing) with a minimum of Grade B in three
+components and a minimum of C+ in one component. Reading B (350-450)
+Writing C+ (300-340)
+Speaking B (350-450)
+Appeals
+Applicant User Guide
+Appealing a Decision
+If you are not satisfied with one of the decisions below, you have the right to appeal the decision. You
+can only appeal if you receive one of the decisions below.
+Appealing qualification recognition decisions (decisions 1 and 2)
+Provisional decision 1:
+Decision to refuse the recognition of your qualifications.
+Provisional decision 2:
+Decision requiring you to complete a compensation measure (Adaptation placement or
+Aptitude Test).
+Appealing decisions 1 and 2
+G1 and G2 applicants can appeal provisional decisions 1 and 2 to the Registration
+Committee first (within 56 days of being notified of the provisional decision).
+Applicants can subsequently submit an appeal to the High Court (within 42 days of the
+Registration Committee decision). Applicants may alternatively submit an appeal to the
+High Court (within 42 days of the NMBI provisional decision).
+G3 applicants can appeal provisional decisions 1 and 2 to the Registration Committee only
+(within 56 days of the NMBI provisional decision).
+Provisional decision 3:
+Refused registration.
+Appealing a registration decision (decision 3)
+Appealing decision 3
+Applicants can appeal a decision to refuse registration (Provisional decision 3 above).
+All applicants (G1, G2 and G3) can appeal the decision to the Registration Committee
+(within 56 of receipt of provisional decision from NMBI). The decision of the Registration
+Committee can then be appealed to the High Court (within three months of the
+Registration Committee Decision).
+Applicants may alternatively submit an appeal to the High Court within three months of
+the NMBI’s decision.
+70
+Applicant User Guide
+Overview of the Appeals Process
+Applicant
+Logs into MyNMBI.
+Selects My Appeals.
+Confirms their personal details and selects the decision that they are appealing.
+Provides appeal rationale and uploads supporting documents (if any).
+Pays the fee.
+Registration Committee
+Reviews the appeal request.
+Decides on the application. The possible outcomes are to: confirm original decision,
+reverse original decision, or assign a compensation measure.
+NMBI
+Reviews the information and documents submitted.
+Requests additional documentation, if needed.
+Applicant
+Receives an email with the final decision and rationale.
+71
+Fraud
+Applicant User Guide
+Our Fraud Policy
+This policy sets out the actions that can be taken when fraud is detected. The full policy is available on
+our website. Fraud and fraudulent behaviours in relation to applying for registration
+Fraud and fraudulent behaviours include, but are not limited to:
+False representation of facts on an application for registration
+Provision of inaccurate answers to questions on health, character, or other fit and proper related
+questions
+Forging of documents and/or credentials as required for registration
+Aiding, abetting, assisting or hiring an individual to violate or circumvent any laws, rules and
+regulations intended to guide the conduct of a nurse or midwife or other health care provider
+Alteration of/tampering with key dates (e.g., date of birth, dates of commencement and completion
+of pre-registration training/education programmes) on original documents such as birth certificates
+Alteration of/tampering with names on original documents
+Submission of inaccurate/false details of post-qualification employment
+Omission of information with regard to employment history
+Omission of information with regard to previous registration with a professional regulator or similar
+organisation
+Submission of documents that have not been issued by the named school of nursing, education body
+Use of forged seals or stamps
+Unauthorised use of seals or stamps
+Purchase of or fraudulently obtaining any nursing and/or midwifery certificates, diplomas or other
+documentation necessary for the purposes of registration.
+Where fraud is detected or where doubts exist about the accuracy of
+information or the authenticity of documentation
+If it is considered or alleged during the application process that an applicant has provided misleading
+information or fraudulent documentation, the Registration Department will not continue to process the
+application and we will refer the application to the Fit and Proper Panel.
+The Fit and Proper Panel will consider the alleged misinformation or fraud. It may correspond with the
+applicant and ask for clarification or further information. It may also ask for further information directly
+from other parties. The applicant will be provided with full information about the reasons for concern and
+they will be provided with an opportunity to address them. Having considered the entire application, the
+Fit and Proper Panel will decide whether the application should proceed for assessment or registration, or
+should be refused.
+Where fraud is confirmed
+Registration will be refused. All applicants who are refused have the right to appeal.
+The applicant will not be eligible for registration again in the future.
+An alert may be sent via the IMI system to notify other competent authorities about the falsification
+of documentation.
+Any evidence of criminal activity may be referred to the relevant authorities, such as. An Garda
+Síochána.
+73
+Applicant User Guide
+Annex 1: Definitions: EU Member State Nationals,
+Family Members, Refugee and Subsidiary Protection
+Who is considered a Member State national?
+Citizens of the 28 Member States of the EU:
+Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France,
+Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland,
+Portugal, Romania, Slovakia, Slovenia, Spain and Sweden.
+And, per the definition of Member State used in the Recognition Regulations, those countries not in
+the EU but which are members of the European Economic Area (EEA):
+Iceland, Liechtenstein, and Norway.
+A family member of a national of a Member State, as defined in Article 2(2) of Directive 2004/38/EC of
+the European Parliament and of the Council of 29 April 2004, who has been given the right of residence
+or permanent residence in the State pursuant to that directive.
+In this context Member State does not include the EEA countries and family member means:
+(a) the spouse; or
+(b) the partner with whom the national of a Member State has contracted a registered partnership,
+on the basis of the legislation of a Member State, if the legislation of the host Member State
+treats registered partnerships as equivalent to marriage and in accordance with the conditions
+laid down in the relevant legislation of the host Member State; or
+(c) the direct descendants who are under the age of 21 or are dependants and those of the spouse
+or partner as defined in point (b); or
+(d) the dependent direct relatives in the ascending line and those of the spouse or partner as
+defined in point (b)
+if that family member has been given the right of residence or permanent residence in the State
+pursuant to Directive 2004/38/EC.
+Who is considered a family member of a Member State national?
+Who is considered to have refugee or subsidiary protection status?
+A person granted refugee or subsidiary protection status in the State under Council Directive 2004/83/EC
+of 29 April 2004, or a dependent family member of such person.
+In this context ‘family members’ means, insofar as the family already existed in the country of origin, the
+following members of the family of the beneficiary of refugee or subsidiary protection status who were
+present in the same Member State in relation to the application for international protection:
+the spouse of the beneficiary of refugee or subsidiary protection status or his or her unmarried
+partner in a stable relationship, where the legislation or practice of the Member State concerned
+treats unmarried couples in a way comparable to married couples under its law relating to aliens; or
+the minor children of the couple referred to in (i) or of the beneficiary of refugee or subsidiary
+protection status, on condition that they are unmarried and dependent and regardless of whether
+they were born in or out of wedlock or adopted as defined under the national law
+74
+Applicant User Guide
+Annex 2: Reference Dates for General Nursing and Midwifery
+75
+Country Reference date for general nursing Reference date for midwifery
+Austria 1 January 1994 1 January 1994
+Belgium 29 June 1979 23 January 1983
+Bulgaria 1 January 2007 1 January 2007
+Cyprus 1 May 2004 1 May 2004
+Croatia 1 July 2013 1 July 2013
+Czech Republic 1 May 2004 1 May 2004
+Denmark 29 June 1979 23 January 1983
+Estonia 1 May 2004 1 May 2004
+Finland 1 January 1994 1 January 1994
+France 29 June 1979 23 January 1983
+Germany 29 June 1979 23 January 1983
+Greece 1 January 1981 23 January 1983
+Hungary 1 May 2004 1 May 2004
+Iceland* 1 January 1994 1 January 1994
+Italy 29 June 1979 23 January 1983
+Latvia 1 May 2004 1 May 2004
+Liechtenstein* 1 May 1995 1 May 1995
+Lithuania 1 May 2004 1 May 2004
+Luxembourg 29 June 1979 23 January 1983
+Malta 1 May 2004 1 May 2004
+Netherlands 29 June 1979 23 January 1983
+Norway* 1 January 1994 1 January 1994
+Poland 1 May 2004 1 May 2004
+Portugal 1 January 1986 1 January 1986
+Romania 1 January 2007 1 January 2007
+Slovakia 1 May 2004 1 May 2004
+Slovenia 1 May 2004 1 May 2004
+Spain 1 January 1986 1 January 1986
+Sweden 1 January 1994 1 January 1994
+Switzerland** 1 January 2002 1 January 2002
+United Kingdom 29 June 1979 23 January 1983
+* not members of the EU but are members of the EEA.
+**Switzerland, while not an EEA member, has mutual recognition of nursing and midwifery qualifications
+Applicant User Guide
+Annex 3: Country Specific Criteria
+76
+General Nursing
+Country Criteria
+Poland • Formal qualification as a nurse responsible for general care obtained in Poland
+which does not comply with the minimum training requirements laid down in
+Article 31 of the Directive, and
+• are attested by the diploma ‘bachelor’ which was obtained based on a special
+upgrading programme contained in —
+(i) Article 11 of the Act of 20 April 2004 on the amendment of the Act on professions
+of nurse and midwife and on some other legal acts (Official Journal of the Republic
+of Poland of 2004 No 92, pos. 885 and of 2007, No 176, pos. 1237) and the Regulation
+of the Minister of Health of 11 May 2004 on the detailed conditions of delivering
+studies for nurses and midwives, who hold a certificate of secondary school (final
+examination - matura) and are graduates of medical lyceum and medical vocational
+schools teaching in a profession of a nurse and a midwife (Official Journal of the
+Republic of Poland of 2004 No 110, pos. 1170 and of 2010 No 65, pos. 420); or
+(ii) Article 52.3 point 2 of the Act of 15 July 2011 on professions of nurse and midwife
+(Official Journal of the Republic of Poland of 2011 No 174, pos. 1039) and the
+Regulation of the Minister of Health of 14 June 2012 on the detailed conditions of
+delivering higher education courses for nurses and midwives who hold a certificate
+of secondary school (final examination - matura) and are graduates of a medical
+secondary school or a post-secondary school teaching in a profession of a nurse
+and a midwife (Official Journal of the Republic of Poland of 2012, pos. 770), for the
+purpose of verifying that the nurse concerned has a level of knowledge and
+competence comparable to that of nurses holding the qualifications listed for Poland
+in point 5.2.2 of Annex V to the Directive.
+Romania • Formal qualification is:
+a) Certificat de competenţe profesionale de asistent medical generalist with postsecondary education obtained from a şcoală postliceală, attesting to training
+started before 1 January 2007 or
+b) Diplomă de absolvire de asistent medical generalist with shorttime higher
+education studies, attesting to training started before 1 October 2003 or
+c) Diplomă de licenţă de asistent medical generalist with long-time higher
+education studies, attesting to training started before 1 October 2003 and
+Must possess a certificate stating that the applicant has effectively and lawfully
+been engaged in the activities of a nurse responsible for general care in Romania,
+including taking full responsibility for the planning, organisation and carrying out of
+the nursing care of patients, for a period of at least three consecutive years during
+the five years prior to the date of issue of the certificate.
+Germany • Formal qualification as a general nurse obtained in the former German
+Democratic Republic where such evidence certifies successful completion of
+training which began before 03 October 1990.
+Applicant User Guide
+77
+Country Criteria
+Czech
+Republic
+Slovakia
+• Formal qualification as a nurse obtained in former Czechoslovakia or by the
+appropriate authority in the Czech Republic or Slovakia and the person concerned
+commenced training for such qualification before 01 January 1993 and where the
+appropriate authority attests that such evidence of formal qualification has the
+same legal validity within its territory as the evidence of formal qualification it
+issues as regards access to the professional activities of a nurse and the pursuit of
+such activities, and
+• a certificate issued by the authority referred to in that paragraph stating that the
+person concerned has effectively and lawfully been engaged in the activities in
+question within its territory for at least three consecutive years during the five
+years prior to the date of issue of the certificate.
+Estonia Latvia
+Lithuania • The evidence of formal qualification was issued by the appropriate authority in
+the former Soviet Union or;
+• The person concerned commenced his or her training in Estonia before 20 August
+1991 or;
+• The person concerned commenced his or her training in Latvia before 21 August
+1991 or;
+• The person concerned commenced his or her training in Lithuania before 11 March
+1990 and;
+• Where the appropriate authority of any of the three aforementioned Member
+States attests that such evidence has the same legal validity within its territory as
+the evidence which it issues as regards access to the professional activities of a
+nurse and the pursuit of such activities and;
+• Must possess a certificate issued by the appropriate authority stating that the
+person concerned has effectively and lawfully been engaged in the activities in
+question within its territory for at least three consecutive years during the five
+years prior to the date of issue of the certificate.
+Slovenia
+Croatia • The evidence of formal qualification was issued by the appropriate authority in
+the former Yugoslavia or;
+• The person concerned commenced his or her training in Slovenia before 25 June
+1991 or; • the person concerned commenced his or her training in Croatia before 8
+October 1991 and;
+• Where the appropriate authority of any of the two aforementioned Member
+States attests that such evidence has the same legal validity within its territory as
+the evidence which it issues as regards access to the professional activities of a
+nurse and the pursuit of such activities and
+• Must possess a certificate issued by the appropriate authority stating that the
+person concerned has effectively and lawfully been engaged in the activities in
+question within its territory for at least three consecutive years during the five
+years prior to the date of issue of the certificate.
+Applicant User Guide
+78
+Midwifery
+Country Criteria
+German • Formal qualification as a midwife obtained in the former German Democratic
+Republic where such evidence certifies successful completion of training which
+began before 03 October 1990.
+Czech
+Republic
+Slovakia
+• Formal qualification as a midwife obtained in former Czechoslovakia or by the
+appropriate authority in the Czech Republic or Slovakia and the person concerned
+commenced training for such qualification before 01 January 1993 and where the
+appropriate authority attests that such evidence of formal qualification has the
+same legal validity within its territory as the evidence of formal qualification it
+issues as regards access to the professional activities of midwife and the pursuit
+of such activities, and
+• It must be accompanied by a certificate issued by the authority referred to in that
+paragraph stating that the person concerned has effectively and lawfully been
+engaged in the activities in question within its territory for at least three
+consecutive years during the five years prior to the date of issue of the certificate
+Estonia
+Latvia
+Lithuania
+• The evidence of formal qualification was issued by the appropriate authority in
+the former Soviet Union or
+• The person concerned commenced his or her training in Estonia before 20 August
+1991 or
+• The person concerned commenced his or her training in Latvia before 21 August
+1991 or
+• The person concerned commenced his or her training in Lithuania before 11 March
+1990 and
+• Where the appropriate authority of any of the three aforementioned Member
+States attests that such evidence has the same legal validity within its territory as
+the evidence which it issues as regards access to the professional activities of
+midwife and the pursuit of such activities and
+• Must possess a certificate issued by the appropriate authority stating that the
+person concerned has effectively and lawfully been engaged in the activities in
+question within its territory for at least three consecutive years during the five
+years prior to the date of issue of the certificate.
+Applicant User Guide
+79
+Country Criteria
+Slovenia
+Croatia
+• The evidence of formal qualification was issued by the appropriate authority in
+the former Yugoslavia or;
+• The person concerned commenced his or her training in Slovenia before 25 June
+1991 or;
+• The person concerned commenced his or her training in Croatia before 8 October
+1991 and;
+• Where the appropriate authority of any of the two aforementioned Member
+States attests that such evidence has the same legal validity within its territory as
+the evidence which it issues as regards access to the professional activities of a
+midwife and the pursuit of such activities and
+• Must possess a certificate issued by the appropriate authority stating that the
+person concerned has effectively and lawfully been engaged in the activities in
+question within its territory for at least three consecutive years during the five
+years prior to the date of issue of the certificate.
+Exceptions
+• Acquired rights in midwifery shall not apply to the following qualifications which
+were obtained in Croatia before 1 July 2013:
+• Via medicinska sestra ginekoloko-opstetrikog smjera (High GynaecologyObstetrical Nurse)
+• Medicinska sestra ginekoloko-opstetrikog smjera (GynaecologyObstetrical Nurse)
+• Via medicinska sestra primaljskog smjera (High Nurse with Midwifery Degree)
+• Medicinska sestra primaljskog smjera (Nurse with Midwifery Degree)
+• Ginekoloko- opstetrika primalja (Gynaecology-Obstetrical Midwife) and primalja
+(Midwife).
+Poland • Formal qualification as a midwife obtained in Poland which does not comply with
+the minimum training requirements laid down in Article 40 of the Directive, and
+• are attested by the diploma ‘bachelor’ which was obtained on the basis of a
+special upgrading programme contained in —
+(i) Article 11 of the Act of 20 April 2004 on the amendment of the Act on
+professions of nurse and midwife and on some other legal acts (Official Journal
+of the Republic of Poland of 2004 No 92, pos. 885 and of 2007 No 176, pos. 1237)
+and the Regulation of the Minister of Health of 11 May 2004 on the detailed
+conditions of delivering studies for nurses and midwives, who hold a certificate
+of secondary school (final examination — matura) and are graduates of medical
+lyceum and medical vocational schools teaching in a profession of a nurse and a
+midwife (Official Journal of the Republic of Poland of 2004 No 110, pos. 1170 and
+of 2010 No 65, pos. 420), or
+(ii) Article 53.3 point 3 of the Act of 15 July 2011 on professions of nurse and
+midwife (Official Journal of the Republic of Poland of 2011 No 174, pos. 1039) and
+the Regulation of the Minister of Health of 14 June 2012 on the detailed conditions
+of delivering higher education courses for nurses and midwives who hold a
+certificate of secondary school (final examination — matura) and are graduates
+of a medical secondary school or a post-secondary school teaching in a
+profession of a nurse and a midwife (Official Journal of the Republic of Poland
+of 2012, pos. 770) for the purpose of verifying that the midwife concerned has a
+level of knowledge and competence comparable to that of midwives holding
+the qualifications listed for Poland in point 5.5.2 of Annex V to the Directive
+Applicant User Guide
+ťŝ
+Country Criteria
+Romania • Formal qualification (asistent medical obstetrică-ginecologie/ obstetricsgynecology nurse) as a midwife obtained in Romania before 1 January 2007
+which do not comply with the minimum training requirements laid down in Article
+40 of the Directive and
+• Must possess a certificate from the Home Competent Authority stating that the
+applicant has effectively and lawfully been engaged in the activities of midwife in
+Romania for at least five consecutive years during the seven years prior to the
+issue of the certificate
+• Formal qualification (asistent medical obstetrică-ginecologie/ obstetricsgynecology nurse) as a midwife obtained in Romania before 1 January 2007
+which do not comply with the minimum training requirements laid down in Article
+40 of the Directive and
+• Must possess a certificate from the Home Competent Authority stating that the
+applicant has effectively and lawfully been engaged in the activities of midwife in
+Romania for at least five consecutive years during the seven years prior to the
+issue of the certificate.
+Nursing and Midwifery Board of Ireland (NMBI)
+18/20 Carysfort Avenue, Blackrock, Co Dublin
+Email: G3Reg@nmbi.ie
+@NMBI_ie
