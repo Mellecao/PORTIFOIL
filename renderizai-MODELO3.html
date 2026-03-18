@@ -1617,6 +1617,11 @@
         <span class="cursor-label"></span>
     </div>
 
+    <!-- ========== FIXED 3D SYMBOL (SCROLL TRIGGERED) ========== -->
+    <div id="rz-symbol-fixed" style="position:fixed; bottom:30px; right:30px; width:180px; height:180px; z-index:9000; opacity:0; pointer-events:none; transition:opacity 0.4s ease;">
+        <canvas id="rz-symbol-canvas" style="width:100%; height:100%; display:block;"></canvas>
+    </div>
+
     <!-- ========== BACK LINK ========== -->
     <a href="index.html" class="back-link">
         <span>← VOLTAR</span>
@@ -2803,6 +2808,183 @@
                 }
             });
         });
+    })();
+    </script>
+
+    <!-- Three.js for 3D Symbol -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <!-- ========== 3D SYMBOL SCROLL ROTATION ========== -->
+    <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    (function() {
+        const fixedContainer = document.getElementById('rz-symbol-fixed');
+        const canvas = document.getElementById('rz-symbol-canvas');
+        const conceptSection = document.getElementById('rz-concept');
+        if (!canvas || !fixedContainer || !conceptSection) return;
+
+        // ---- Renderer ----
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+
+        // ---- Scene ----
+        const scene = new THREE.Scene();
+
+        // ---- Camera ----
+        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+        camera.position.set(0, 0, 4);
+
+        // ---- Lights (enhanced for textures) ----
+        scene.add(new THREE.AmbientLight(0xffffff, 1.0));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        dirLight.position.set(3, 3, 3);
+        scene.add(dirLight);
+        const dirLight2 = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight2.position.set(-3, 2, -1);
+        scene.add(dirLight2);
+        const backLight = new THREE.DirectionalLight(0xE50C3D, 0.6);
+        backLight.position.set(-2, -1, -2);
+        scene.add(backLight);
+
+        // ---- Model Group ----
+        const modelGroup = new THREE.Group();
+        scene.add(modelGroup);
+
+        let modelLoaded = false;
+
+        // ---- Glossy Red Material ----
+        const glossyRedMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xE50C3D,
+            metalness: 0.1,
+            roughness: 1.0,
+            clearcoat: 0.0,
+            clearcoatRoughness: 1.0,
+            reflectivity: 0.5,
+            transparent: false,
+            opacity: 1.0,
+            side: THREE.DoubleSide
+        });
+
+        // ---- Load GLB ----
+        const loader = new GLTFLoader();
+        loader.load(
+            'https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MODELO%203%203D%20SIMBOLO.glb',
+            function(gltf) {
+                const model = gltf.scene;
+
+                // Apply glossy red material to all meshes
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        // Replace material with glossy red
+                        child.material = glossyRedMaterial;
+                    }
+                });
+
+                // Center and scale
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                model.position.sub(center);
+                const maxDim = Math.max(size.x, size.y, size.z);
+                if (maxDim > 0) {
+                    const scale = 2 / maxDim;
+                    model.scale.setScalar(scale);
+                }
+
+                modelGroup.add(model);
+                modelLoaded = true;
+                console.log('Symbol GLB loaded with glossy red material');
+            },
+            undefined,
+            function(error) {
+                console.error('Error loading symbol GLB:', error);
+            }
+        );
+
+        // ---- Resize ----
+        function resize() {
+            const size = 180;
+            renderer.setSize(size, size);
+            camera.aspect = 1;
+            camera.updateProjectionMatrix();
+        }
+        resize();
+
+        // ---- Scroll-triggered rotation via GSAP ScrollTrigger ----
+        let currentRotation = 0;
+        let autoRotate = true;
+
+        // Show symbol immediately when model loads
+        function showSymbol() {
+            fixedContainer.style.opacity = '1';
+            fixedContainer.style.pointerEvents = 'auto';
+        }
+
+        // Setup ScrollTrigger if available
+        function setupScrollTrigger() {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                autoRotate = false;
+
+                ScrollTrigger.create({
+                    trigger: conceptSection,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    onEnter: () => { fixedContainer.style.opacity = '1'; fixedContainer.style.pointerEvents = 'auto'; },
+                    onLeave: () => { fixedContainer.style.opacity = '0'; fixedContainer.style.pointerEvents = 'none'; },
+                    onEnterBack: () => { fixedContainer.style.opacity = '1'; fixedContainer.style.pointerEvents = 'auto'; },
+                    onLeaveBack: () => { fixedContainer.style.opacity = '0'; fixedContainer.style.pointerEvents = 'none'; },
+                    onUpdate: (self) => {
+                        // Rotate based on scroll progress (0 to 1)
+                        const targetRotation = self.progress * Math.PI * 4; // 2 full rotations
+                        currentRotation = targetRotation;
+                    }
+                });
+            } else {
+                // If GSAP not available, show immediately
+                showSymbol();
+            }
+        }
+
+        // Wait for DOM and GSAP to be ready
+        if (document.readyState === 'complete') {
+            setupScrollTrigger();
+        } else {
+            window.addEventListener('load', setupScrollTrigger);
+        }
+
+        // ---- Animation loop ----
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+            if (modelLoaded) {
+                if (autoRotate) {
+                    // Auto rotation when GSAP not available
+                    modelGroup.rotation.y = time * 0.5;
+                } else {
+                    // Scroll-based rotation + subtle continuous rotation
+                    modelGroup.rotation.y = currentRotation + Math.sin(time) * 0.05;
+                }
+            }
+            renderer.render(scene, camera);
+        }
+        animate();
     })();
     </script>
 </body>
