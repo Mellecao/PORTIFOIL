@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RENDERIZAI — Miguel Melle</title>
     <meta name="description" content="Identidade visual para RENDERIZAI — Plataforma de renderização com I.A para arquitetos e artistas 3D.">
+    <meta name="theme-color" content="#E50C3D">
+    <meta name="msapplication-navbutton-color" content="#E50C3D">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#E50C3D">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Barlow:wght@100&display=swap" rel="stylesheet">
     <style>
+        /* ========== RENDERIZAI — Project Specific Styles ========== */
+
+        /* Custom Font: Audex */
+        @font-face {
+            font-family: 'Audex';
+            src: url('https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/AUDEX-REGULAR.TTF') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         /* ========== RENDERIZAI — Project Specific Styles ========== */
 
         /* Override root palette for this project */
@@ -25,6 +38,22 @@
             --rz-gray-dark: #8a8a8a;
             --rz-border: rgba(255, 255, 255, 0.08);
             --rz-border-bright: rgba(229, 12, 61, 0.25);
+        }
+
+        /* ---- Custom Scrollbar ---- */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--rz-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E50C3D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF3D5E;
         }
 
         /* ---- Page Background ---- */
@@ -787,12 +816,61 @@
             border-right: 1px solid var(--rz-border);
             overflow: hidden;
             transition: transform 0.4s var(--ease);
+            cursor: pointer;
+            position: relative;
         }
 
         .rz-swatch:last-child { border-right: none; }
 
         .rz-swatch:hover {
             transform: translateY(-4px);
+        }
+
+        .rz-swatch::after {
+            content: 'COPIAR';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(0,0,0,0.8);
+            color: var(--rz-white);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .rz-swatch:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Copy Notification Toast */
+        .rz-copy-toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--rz-surface);
+            border: 1px solid var(--rz-accent);
+            color: var(--rz-white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: var(--f-mono);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+        }
+        .rz-copy-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         .rz-swatch-color {
@@ -1258,6 +1336,45 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* ---- Construction Marquee ---- */
+        .rz-construction-marquee {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 24px 0;
+            border-top: 1px solid var(--rz-border);
+            border-bottom: 1px solid var(--rz-border);
+            overflow: hidden;
+            background: linear-gradient(90deg, transparent, rgba(229, 12, 61, 0.03), transparent);
+        }
+        .rz-construction-track {
+            display: flex;
+            animation: rz-construction-scroll 20s linear infinite;
+            width: fit-content;
+        }
+        .rz-construction-content {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .rz-construction-text {
+            font-family: var(--f-mono);
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rz-accent);
+            white-space: nowrap;
+            padding: 0 24px;
+        }
+        .rz-construction-dot {
+            color: var(--rz-accent);
+            opacity: 0.5;
+            padding: 0 8px;
+        }
+        @keyframes rz-construction-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* ---- Footer override for this page ---- */
         .rz-body .footer {
             border-top-color: var(--rz-accent);
@@ -1607,19 +1724,27 @@
             <div class="rz-concept">
                 <div class="rz-concept-text reveal-fade">
                     <p>
-                        A RENDERIZAI nasceu para <strong>eliminar o overthinking</strong> do processo de renderização. 
-                        O conceito visual traduz exatamente o que o produto faz: transforma o viewport bruto — 
-                        wireframes, meshes, geometria crua — em imagens fotorrealistas em segundos.
+                        A RENDERIZAI aparece no mercado com a proposta de <strong>eliminar o overthinking</strong> do processo de renderização. 
+                        O conceito visual traduz o que o produto faz: transforma o viewport bruto/wireframes, meshes, geometria crua 
+                        em imagens fotorrealistas (renderizadas) em segundos.
                     </p>
                     <p>
-                        A identidade se inspira no <strong>cubo isométrico</strong>, elemento universal dos softwares 3D, 
-                        representando o eixo XYZ e a transformação do espaço tridimensional. Uma face wireframe, 
-                        outra sólida — a dualidade entre o <strong>bruto e o renderizado</strong>.
+                        Nesta versão, a identidade visual evolui através da <strong>simplificação</strong>. As bordas do cubo foram removidas, 
+                        restando apenas o <strong>canto polido</strong>, o elemento central que representa a transformação do bruto ao renderizado.
                     </p>
                     <p>
-                        Referências ao <strong>brutalismo arquitetônico</strong>, à estética maçônica do cubo 
-                        (ashlar — pedra bruta se tornando pedra polida), e à continuidade orgânica de Gaudí 
-                        constroem um universo visual que é ao mesmo tempo técnico e escultural.
+                        A remoção das linhas estruturais do cubo realça a essência da marca: o <strong>polimento</strong>. 
+                        A referência ao ashlar da maçonaria (pedra bruta se tornando polida) agora é comunicada de forma mais direta, 
+                        focando exclusivamente no resultado final, a ponta que foi lapidada.
+                    </p>
+                    <p>
+                        Indo mais a fundo na simbologia, vemos ao centro da logo uma <strong>cruz</strong>, essa representando a fé cristã, 
+                        um pilar central da marca.
+                    </p>
+                    <p>
+                        Simplificando. A ponta polida traz a ideia essencial de renderização. A referência maçônica permanece 
+                        na transformação do bruto ao acabado, e a cruz central foi a olhos céticos, coincidência... 
+                        Mas para os dignos da salvação, um sinal claro de quem morreu na cruz por nós.
                     </p>
 
                     <div class="rz-keyword-cloud">
@@ -1724,11 +1849,6 @@
                 </div>
             </div>
 
-            <!-- Wordmark -->
-            <div class="rz-wordmark-display reveal-fade">
-                <div class="rz-wordmark">RENDERIZ<span class="rz-wm-ai">AI</span></div>
-                <p class="rz-wordmark-desc">LOGOTIPO — OUTFIT BLACK EXTENDED</p>
-            </div>
         </div>
     </section>
 
@@ -1812,11 +1932,28 @@
                 <div class="rz-type-sample reveal-fade">
                     <div class="rz-type-meta">
                         <span class="rz-type-role">DISPLAY</span>
-                        <span class="rz-type-name">Outfit Black</span>
+                        <span class="rz-type-name">Audex Regular</span>
                     </div>
                     <div>
-                        <div class="rz-type-preview" style="font-family: 'Outfit', sans-serif;">
+                        <div class="rz-type-preview" style="font-family: 'Audex', 'Outfit', sans-serif;">
                             RENDER<br>IZAI
+                        </div>
+                        <div class="rz-type-alphabet" style="font-family: 'Audex', 'Outfit', sans-serif;">
+                            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                            abcdefghijklmnopqrstuvwxyz<br>
+                            0123456789
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rz-type-sample reveal-fade">
+                    <div class="rz-type-meta">
+                        <span class="rz-type-role">UI / CORPO</span>
+                        <span class="rz-type-name">Outfit</span>
+                    </div>
+                    <div>
+                        <div class="rz-type-preview" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 48px);">
+                            Interface<br>Design
                         </div>
                         <div class="rz-type-alphabet" style="font-family: 'Outfit', sans-serif;">
                             ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -1829,7 +1966,7 @@
                 <div class="rz-type-sample reveal-fade">
                     <div class="rz-type-meta">
                         <span class="rz-type-role">MONO / DADOS</span>
-                        <span class="rz-type-name">Space Mono Bold</span>
+                        <span class="rz-type-name">Space Mono</span>
                     </div>
                     <div>
                         <div class="rz-type-preview-mono">
@@ -1845,11 +1982,11 @@
 
                 <div class="rz-type-sample reveal-fade">
                     <div class="rz-type-meta">
-                        <span class="rz-type-role">ACCENT / EDITORIAL</span>
-                        <span class="rz-type-name">Instrument Serif Italic</span>
+                        <span class="rz-type-role">ACCENT</span>
+                        <span class="rz-type-name">Barlow Thin</span>
                     </div>
                     <div>
-                        <div class="rz-type-preview" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--rz-accent);">
+                        <div class="rz-type-preview" style="font-family: 'Barlow', sans-serif; font-weight: 100; color: var(--rz-accent);">
                             inteligência<br>artificial
                         </div>
                     </div>
@@ -1857,6 +1994,40 @@
             </div>
         </div>
     </section>
+
+    <!-- ========== CONSTRUCTION MARQUEE ========== -->
+    <div class="rz-construction-marquee">
+        <div class="rz-construction-track">
+            <div class="rz-construction-content">
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+            </div>
+            <div class="rz-construction-content">
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">EM CONSTRUÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+                <span class="rz-construction-text">AGUARDANDO APROVAÇÃO</span>
+                <span class="rz-construction-dot">●</span>
+            </div>
+        </div>
+    </div>
 
     <!-- ========== (05) ELEMENTOS VISUAIS ========== -->
     <section class="rz-section rz-section-dark" id="rz-elements">
@@ -2603,6 +2774,35 @@
                 });
             });
         }
+
+        // ---- Copy to Clipboard Feature ----
+        const copyToast = document.createElement('div');
+        copyToast.className = 'rz-copy-toast';
+        document.body.appendChild(copyToast);
+
+        document.querySelectorAll('.rz-swatch').forEach(swatch => {
+            swatch.addEventListener('click', async () => {
+                const hexEl = swatch.querySelector('.rz-swatch-hex');
+                if (!hexEl) return;
+                
+                const hexCode = hexEl.textContent.trim();
+                
+                try {
+                    await navigator.clipboard.writeText(hexCode);
+                    
+                    // Visual feedback
+                    swatch.style.transform = 'scale(0.95)';
+                    setTimeout(() => swatch.style.transform = '', 150);
+                    
+                    // Show toast
+                    copyToast.textContent = `${hexCode} copiado!`;
+                    copyToast.classList.add('show');
+                    setTimeout(() => copyToast.classList.remove('show'), 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+        });
     })();
     </script>
 </body>
