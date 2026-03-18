@@ -707,6 +707,154 @@
             50% { transform: translateX(6px); }
         }
 
+        /* ---- Concept Video ---- */
+        .rz-concept-video {
+            margin-top: 80px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--rz-border);
+        }
+        .rz-concept-video video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ---- Gridline Logo ---- */
+        .rz-gridline-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .rz-gridline-title {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--rz-gray-dark);
+            margin-bottom: 32px;
+            text-transform: uppercase;
+        }
+        .rz-gridline-image {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        /* ---- Minimum Area Section ---- */
+        .rz-min-area {
+            margin-top: 80px;
+            padding: 48px;
+            background: var(--rz-surface);
+            border: 1px solid var(--rz-border);
+            border-radius: 12px;
+        }
+        .rz-min-area-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .rz-min-area-title {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--rz-accent);
+            text-transform: uppercase;
+        }
+        .rz-min-area-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .rz-min-area-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: var(--rz-black);
+            border-radius: 8px;
+            position: relative;
+        }
+        .rz-min-area-logo {
+            width: 48px;
+            height: 48px;
+        }
+        .rz-min-area-measure {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .rz-min-area-measure.left {
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .rz-min-area-measure.bottom {
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            flex-direction: row;
+        }
+        .rz-min-area-line {
+            background: var(--rz-accent);
+        }
+        .rz-min-area-line.vertical {
+            width: 1px;
+            height: 48px;
+        }
+        .rz-min-area-line.horizontal {
+            width: 48px;
+            height: 1px;
+        }
+        .rz-min-area-value {
+            font-family: var(--f-mono);
+            font-size: 10px;
+            color: var(--rz-accent);
+            letter-spacing: 1px;
+        }
+        .rz-min-area-info h4 {
+            font-family: var(--f-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--rz-white);
+            margin-bottom: 16px;
+        }
+        .rz-min-area-info p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--rz-gray);
+            margin-bottom: 16px;
+        }
+        .rz-min-area-specs {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .rz-min-area-spec {
+            padding: 12px 20px;
+            background: var(--rz-black);
+            border-radius: 6px;
+            border: 1px solid var(--rz-border);
+        }
+        .rz-min-area-spec-label {
+            font-family: var(--f-mono);
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--rz-gray-dark);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .rz-min-area-spec-value {
+            font-family: var(--f-mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--rz-white);
+        }
+
         /* ---- Logo Section ---- */
         .rz-logo-display {
             display: flex;
@@ -1813,6 +1961,57 @@
                         </defs>
                     </svg>
                     <span style="font-family: var(--f-mono); font-size: 10px; color: var(--rz-accent); letter-spacing: 2px;">RENDER FINAL</span>
+                </div>
+            </div>
+
+            <!-- Concept Video -->
+            <div class="rz-concept-video reveal-up">
+                <video autoplay loop muted playsinline>
+                    <source src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/video%20novo.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Gridline Logo -->
+            <div class="rz-gridline-section reveal-up">
+                <p class="rz-gridline-title">Construção da Logo</p>
+                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/logo%20modelo%203%20grid%20novo@4x.png" alt="Logo Grid" class="rz-gridline-image">
+            </div>
+
+            <!-- Minimum Application Area -->
+            <div class="rz-min-area reveal-up">
+                <div class="rz-min-area-header">
+                    <span class="rz-min-area-title">Área Mínima de Aplicação</span>
+                </div>
+                <div class="rz-min-area-content">
+                    <div class="rz-min-area-visual">
+                        <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/modelo3333simbolo.svg" alt="Logo" class="rz-min-area-logo">
+                        <div class="rz-min-area-measure left">
+                            <div class="rz-min-area-line vertical"></div>
+                            <span class="rz-min-area-value">48px</span>
+                        </div>
+                        <div class="rz-min-area-measure bottom">
+                            <div class="rz-min-area-line horizontal"></div>
+                            <span class="rz-min-area-value">48px</span>
+                        </div>
+                    </div>
+                    <div class="rz-min-area-info">
+                        <h4>Tamanho Mínimo</h4>
+                        <p>
+                            Para garantir a legibilidade e integridade visual da marca, a logo não deve ser aplicada 
+                            em tamanhos inferiores aos especificados. Abaixo dessa dimensão, os detalhes do símbolo 
+                            perdem definição e a identidade visual fica comprometida.
+                        </p>
+                        <div class="rz-min-area-specs">
+                            <div class="rz-min-area-spec">
+                                <span class="rz-min-area-spec-label">DIGITAL</span>
+                                <span class="rz-min-area-spec-value">48 × 48px</span>
+                            </div>
+                            <div class="rz-min-area-spec">
+                                <span class="rz-min-area-spec-label">IMPRESSO</span>
+                                <span class="rz-min-area-spec-value">12 × 12mm</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
