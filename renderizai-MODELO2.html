@@ -2803,7 +2803,7 @@
                 <div style="font-family: var(--f-mono, 'Space Mono', monospace); font-size: 9px; letter-spacing: 4px; color: rgba(248,248,248,0.3); text-transform: uppercase; margin-bottom: 20px;">[LOGO EM MOTION]</div>
                 <div style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); background: var(--rz-surface, #161616);">
                     <video autoplay loop muted playsinline style="width: 100%; display: block;">
-                        <source src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/video%20versao%20final.mp4" type="video/mp4">
+                        <source src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/video%20final.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
@@ -5623,18 +5623,22 @@
         scene.environment = envMap;
 
         // ---- Lights (Enhanced) ----
-        scene.add(new THREE.AmbientLight(0xffffff, 1.4));
-        const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        scene.add(new THREE.AmbientLight(0xffffff, 2.5));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 3.5);
         dirLight.position.set(3, 3, 3);
         scene.add(dirLight);
-        const dirLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
+        const dirLight2 = new THREE.DirectionalLight(0xffffff, 2.0);
         dirLight2.position.set(-3, 2, -2);
         scene.add(dirLight2);
-        const backLight = new THREE.DirectionalLight(0x8cc04e, 0.8);
+        const backLight = new THREE.DirectionalLight(0x8cc04e, 1.5);
         backLight.position.set(-2, -1, -2);
         scene.add(backLight);
-        const fillLight = new THREE.HemisphereLight(0xffffff, 0x333333, 0.6);
+        const fillLight = new THREE.HemisphereLight(0xffffff, 0x333333, 1.2);
         scene.add(fillLight);
+        // Extra top light
+        const topLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        topLight.position.set(0, 5, 0);
+        scene.add(topLight);
 
         // ---- Model Group ----
         const modelGroup = new THREE.Group();
