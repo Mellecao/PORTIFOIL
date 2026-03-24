@@ -3458,8 +3458,11 @@
             const getScrollAmount = () => {
                 const trackWidth = track.scrollWidth;
                 const viewportWidth = window.innerWidth;
-                // Add extra padding to ensure last card is fully visible
-                return -(trackWidth - viewportWidth + 200);
+                // Calculate full scroll needed plus extra margin for last card
+                const lastCard = track.querySelector('.rz-app-item:last-child');
+                const lastCardWidth = lastCard ? lastCard.offsetWidth : 0;
+                // Ensure we scroll enough to show the last card completely
+                return -(trackWidth - viewportWidth + lastCardWidth + 100);
             };
 
             // Create the horizontal scroll effect
@@ -3471,10 +3474,11 @@
             ScrollTrigger.create({
                 trigger: section,
                 start: 'top top',
-                end: () => '+=' + Math.abs(getScrollAmount()),
+                // Increase scroll distance to ensure full animation
+                end: () => '+=' + (Math.abs(getScrollAmount()) + window.innerHeight),
                 pin: true,
                 animation: tween,
-                scrub: 1,
+                scrub: 0.8,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
                     if (progressFill) {
