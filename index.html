@@ -221,7 +221,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="work-card" data-cursor-label="VER" id="renderizai-card" onclick="event.preventDefault(); document.getElementById('rz-password-modal').classList.add('active');">
+                <a href="renderizai-MODELO2.html" class="work-card" data-cursor-label="VER" id="renderizai-card">
                     <div class="work-card-img">
                         <div style="width:100%;height:100%;background:#0A0A0A;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
                             <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(229,12,61,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(229,12,61,0.04) 1px,transparent 1px);background-size:40px 40px;"></div>
@@ -279,9 +279,9 @@
 
                     <div class="about-body">
                         <p class="reveal-fade" data-i18n="about.p1">
-                            Atualmente criando embalagens para a Prieto Alimentos — com mais de 
-                            15 embalagens nas prateleiras de mercados de todo o Brasil. Meu trabalho 
-                            vive na interseção entre estética brutalista, funcionalidade e o inesperado.
+                            Já trabalhei com grandes nomes do mercado, como Pedro Sobral, Priscilla Zillo 
+                            e Prieto Alimentos. Meu trabalho vive na interseção entre estética 
+                            brutalista, funcionalidade e o inesperado.
                         </p>
                         <p class="reveal-fade" data-i18n="about.p2">
                             Acredito no design como ferramenta de comportamento. Cada projeto é uma 
@@ -635,35 +635,5 @@
     })();
     </script>
 
-    <!-- ========== RENDERIZAI PASSWORD MODAL ========== -->
-    <div id="rz-password-modal" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);" onclick="this.parentElement.classList.remove('active');"></div>
-        <div style="position:relative;background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px;max-width:380px;width:90%;text-align:center;">
-            <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(248,248,248,0.3);margin-bottom:24px;">[ACESSO RESTRITO]</div>
-            <div style="margin-bottom:8px;">
-                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Ativo%205.svg" alt="R" style="width:40px;height:40px;margin-bottom:16px;">
-            </div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:#f8f8f8;margin-bottom:6px;">RENDERIZ<span style="color:#E50C3D;">AI</span></h3>
-            <p style="font-family:'Outfit',sans-serif;font-size:13px;color:rgba(248,248,248,0.4);margin-bottom:24px;">Este projeto está protegido por senha.</p>
-            <form id="rz-password-form" onsubmit="event.preventDefault();document.getElementById('rz-password-modal').classList.remove('active');window.location.href='renderizai.html';" style="display:flex;flex-direction:column;gap:12px;">
-                <input type="password" placeholder="Digite a senha" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#f8f8f8;font-family:'Space Mono',monospace;font-size:13px;outline:none;transition:border-color 0.3s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(229,12,61,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" required>
-                <button type="submit" style="padding:12px;background:#E50C3D;color:#f8f8f8;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background 0.3s;">ACESSAR</button>
-            </form>
-            <button onclick="document.getElementById('rz-password-modal').classList.remove('active');" style="position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(248,248,248,0.3);font-size:18px;cursor:pointer;padding:4px;">&times;</button>
-        </div>
-    </div>
-    <style>
-        #rz-password-modal.active {
-            opacity: 1 !important;
-            pointer-events: all !important;
-        }
-        #rz-password-modal.active > div:last-of-type {
-            animation: rz-modal-in 0.3s ease forwards;
-        }
-        @keyframes rz-modal-in {
-            from { transform: scale(0.95) translateY(10px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-    </style>
 </body>
 </html>
