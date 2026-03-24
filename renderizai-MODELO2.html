@@ -3458,7 +3458,8 @@
             const getScrollAmount = () => {
                 const trackWidth = track.scrollWidth;
                 const viewportWidth = window.innerWidth;
-                return -(trackWidth - viewportWidth + 100);
+                // Add extra padding to ensure last card is fully visible
+                return -(trackWidth - viewportWidth + 200);
             };
 
             // Create the horizontal scroll effect
@@ -3583,8 +3584,15 @@
     </section>
 
     <!-- ========== (09) DOWNLOADS ========== -->
-    <section class="rz-section" id="rz-downloads" style="background: var(--rz-surface);">
-        <div class="container">
+    <section class="rz-section rz-downloads-section" id="rz-downloads">
+        <!-- Particles Background -->
+        <canvas id="rz-downloads-particles" class="rz-downloads-particles"></canvas>
+        
+        <!-- Glow Orbs -->
+        <div class="rz-downloads-glow rz-downloads-glow-1"></div>
+        <div class="rz-downloads-glow rz-downloads-glow-2"></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="rz-section-label reveal-fade">
                 <span class="rz-section-idx">(09)</span>
                 <span class="rz-section-dash">————</span>
@@ -3593,189 +3601,953 @@
             <h2 class="rz-section-title reveal-text">Arquivos da <em>marca</em></h2>
 
             <div class="rz-concept-text" style="max-width: 700px;">
-                <p class="reveal-fade" style="color: rgba(240,240,240,0.6); font-size: 16px; line-height: 1.8; margin-bottom: 40px;">
+                <p class="reveal-fade" style="color: rgba(240,240,240,0.6); font-size: 16px; line-height: 1.8; margin-bottom: 60px;">
                     Todos os arquivos da identidade visual disponíveis para download em múltiplos formatos.
                 </p>
             </div>
 
+            <!-- Category Tabs -->
+            <div class="rz-dl-tabs reveal-up">
+                <button class="rz-dl-tab active" data-category="colorido">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Colorido
+                </button>
+                <button class="rz-dl-tab" data-category="mono">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                    Monocromático
+                </button>
+                <button class="rz-dl-tab" data-category="extras">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    Extras
+                </button>
+            </div>
+
             <!-- Downloads Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+            <div class="rz-dl-grid">
                 
-                <!-- APOIO GRÁFICO -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-accent); margin-bottom: 16px; letter-spacing: 1px;">APOIO GRÁFICO</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/BACKGROUND%20HORIZONTAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none; transition: background 0.3s;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Background Horizontal</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/BANNER.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none; transition: background 0.3s;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Banner</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/GRID.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none; transition: background 0.3s;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Grid</span>
-                        </a>
+                <!-- ===== COLORIDO CATEGORY ===== -->
+                <div class="rz-dl-category" data-category="colorido">
+                    
+                    <!-- Logo Completa -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v6M15 3v6M9 15v6M15 15v6M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Logo Completa</h3>
+                                <span class="rz-dl-card-subtitle">Versão colorida principal</span>
+                            </div>
+                            <div class="rz-dl-card-badge">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.ai" target="_blank" class="rz-dl-file" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.svg" target="_blank" class="rz-dl-file" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.eps" target="_blank" class="rz-dl-file" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Símbolo -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Símbolo</h3>
+                                <span class="rz-dl-card-subtitle">Ícone isolado colorido</span>
+                            </div>
+                            <div class="rz-dl-card-badge">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.ai" target="_blank" class="rz-dl-file" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.svg" target="_blank" class="rz-dl-file" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.eps" target="_blank" class="rz-dl-file" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Texto -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Texto</h3>
+                                <span class="rz-dl-card-subtitle">Wordmark colorido</span>
+                            </div>
+                            <div class="rz-dl-card-badge">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.ai" target="_blank" class="rz-dl-file" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.svg" target="_blank" class="rz-dl-file" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.eps" target="_blank" class="rz-dl-file" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- LOGO COLORIDA COMPLETA -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-accent); margin-bottom: 16px; letter-spacing: 1px;">LOGO COLORIDA COMPLETA</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20FINAL.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
+                <!-- ===== MONOCROMÁTICO CATEGORY ===== -->
+                <div class="rz-dl-category" data-category="mono" style="display: none;">
+                    
+                    <!-- Logo Monocromática -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon rz-dl-icon-mono">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v6M15 3v6M9 15v6M15 15v6M3 9h6M3 15h6M15 9h6M15 15h6"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Logo Completa</h3>
+                                <span class="rz-dl-card-subtitle">Versão monocromática</span>
+                            </div>
+                            <div class="rz-dl-card-badge rz-badge-mono">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.ai" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.svg" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.png" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.eps" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Símbolo Mono -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon rz-dl-icon-mono">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Símbolo</h3>
+                                <span class="rz-dl-card-subtitle">Ícone monocromático</span>
+                            </div>
+                            <div class="rz-dl-card-badge rz-badge-mono">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.ai" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.svg" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.png" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.eps" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Texto Mono -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon rz-dl-icon-mono">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Texto</h3>
+                                <span class="rz-dl-card-subtitle">Wordmark monocromático</span>
+                            </div>
+                            <div class="rz-dl-card-badge rz-badge-mono">4 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.ai" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="ai">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 0h-15A4.5 4.5 0 0 0 0 4.5v15A4.5 4.5 0 0 0 4.5 24h15a4.5 4.5 0 0 0 4.5-4.5v-15A4.5 4.5 0 0 0 19.5 0zM8.5 17H7l-1-3H3.5l-1 3H1L4 7h1.5l3.5 10zm6.5-7h-2v7h-1.5V10H10V9h5v1zm4.5 7H16l3-10h2l-1.5 10z"/></svg></div>
+                                <span class="rz-dl-file-name">Illustrator</span>
+                                <span class="rz-dl-file-ext">.AI</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.svg" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="svg">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <span class="rz-dl-file-name">Vetor SVG</span>
+                                <span class="rz-dl-file-ext">.SVG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.png" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">PNG Transparente</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.eps" target="_blank" class="rz-dl-file rz-dl-file-mono" data-type="eps">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <span class="rz-dl-file-name">EPS</span>
+                                <span class="rz-dl-file-ext">.EPS</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- SÍMBOLO COLORIDO -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-accent); margin-bottom: 16px; letter-spacing: 1px;">SÍMBOLO COLORIDO</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20FINAL.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
+                <!-- ===== EXTRAS CATEGORY ===== -->
+                <div class="rz-dl-category" data-category="extras" style="display: none;">
+                    
+                    <!-- Modelos 3D -->
+                    <div class="rz-dl-card rz-dl-card-featured reveal-up">
+                        <div class="rz-dl-card-glow"></div>
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon rz-dl-icon-3d">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Modelos 3D</h3>
+                                <span class="rz-dl-card-subtitle">GLB para web e realidade aumentada</span>
+                            </div>
+                            <div class="rz-dl-card-badge rz-badge-3d">2 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20DEFINITIVO%203D.glb" target="_blank" class="rz-dl-file rz-dl-file-3d" data-type="glb">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+                                <span class="rz-dl-file-name">Logo Completa 3D</span>
+                                <span class="rz-dl-file-ext">.GLB</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20LOGO%20DEFINITIVO%203D.glb" target="_blank" class="rz-dl-file rz-dl-file-3d" data-type="glb">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+                                <span class="rz-dl-file-name">Símbolo 3D</span>
+                                <span class="rz-dl-file-ext">.GLB</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Apoio Gráfico -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Apoio Gráfico</h3>
+                                <span class="rz-dl-card-subtitle">Backgrounds e elementos visuais</span>
+                            </div>
+                            <div class="rz-dl-card-badge">3 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/BACKGROUND%20HORIZONTAL.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">Background Horizontal</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/BANNER.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">Banner</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/GRID.png" target="_blank" class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                                <span class="rz-dl-file-name">Grid</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Papelaria -->
+                    <div class="rz-dl-card reveal-up">
+                        <div class="rz-dl-card-header">
+                            <div class="rz-dl-card-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <div class="rz-dl-card-info">
+                                <h3 class="rz-dl-card-title">Papelaria</h3>
+                                <span class="rz-dl-card-subtitle">Modelos editáveis para uso corporativo</span>
+                            </div>
+                            <div class="rz-dl-card-badge">2 arquivos</div>
+                        </div>
+                        <div class="rz-dl-card-files">
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/MODELO%20PAPEL%20TIMBRADO.pdf" target="_blank" download class="rz-dl-file" data-type="pdf">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                                <span class="rz-dl-file-name">Papel Timbrado (Editável)</span>
+                                <span class="rz-dl-file-ext">.PDF</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/ASSINATURA%20DE%20EMAIL.png" target="_blank" download class="rz-dl-file" data-type="png">
+                                <div class="rz-dl-file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+                                <span class="rz-dl-file-name">Assinatura de Email</span>
+                                <span class="rz-dl-file-ext">.PNG</span>
+                                <div class="rz-dl-file-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- TEXTO COLORIDO -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-accent); margin-bottom: 16px; letter-spacing: 1px;">TEXTO COLORIDO</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20FINAL.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- LOGO MONOCROMÁTICA COMPLETA -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-gray); margin-bottom: 16px; letter-spacing: 1px;">LOGO MONOCROMÁTICA</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20MONOCROMATICA%20COMPLETA.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- SÍMBOLO MONOCROMÁTICO -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-gray); margin-bottom: 16px; letter-spacing: 1px;">SÍMBOLO MONOCROMÁTICO</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20MONOCROMATICO%20FINAL.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- TEXTO MONOCROMÁTICO -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-gray); margin-bottom: 16px; letter-spacing: 1px;">TEXTO MONOCROMÁTICO</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.ai" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.AI</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Adobe Illustrator</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.svg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.SVG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Vetor SVG</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.png" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.PNG</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">PNG Transparente</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/TEXTO%20MONOCROMATICO%20FINAL.eps" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.EPS</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Encapsulated PostScript</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- MODELOS 3D -->
-                <div class="reveal-up" style="background: var(--rz-black); border-radius: 12px; padding: 24px; border: 1px solid var(--rz-border);">
-                    <h3 style="font-family: var(--f-display); font-size: 14px; font-weight: 600; color: var(--rz-accent); margin-bottom: 16px; letter-spacing: 1px;">MODELOS 3D</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/LOGO%20COMPLETA%20DEFINITIVO%203D.glb" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.GLB</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Logo Completa 3D</span>
-                        </a>
-                        <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/SIMBOLO%20LOGO%20DEFINITIVO%203D.glb" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; text-decoration: none;">
-                            <span style="color: var(--rz-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">.GLB</span>
-                            <span style="color: var(--rz-white); font-size: 13px;">Símbolo 3D</span>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
+
+    <!-- Downloads Section Styles -->
+    <style>
+    .rz-downloads-section {
+        position: relative;
+        background: linear-gradient(180deg, var(--rz-dark) 0%, #0a0f08 50%, var(--rz-dark) 100%);
+        overflow: hidden;
+        padding: 120px 0 140px;
+    }
+
+    .rz-downloads-particles {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.6;
+    }
+
+    .rz-downloads-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .rz-downloads-glow-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--rz-accent);
+        top: -200px;
+        left: -200px;
+        animation: rz-glow-float 8s ease-in-out infinite;
+    }
+
+    .rz-downloads-glow-2 {
+        width: 400px;
+        height: 400px;
+        background: #4a7c2e;
+        bottom: -100px;
+        right: -100px;
+        animation: rz-glow-float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes rz-glow-float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(30px, 20px) scale(1.1); }
+    }
+
+    /* Tabs */
+    .rz-dl-tabs {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+    }
+
+    .rz-dl-tab {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 24px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--rz-border);
+        border-radius: 50px;
+        color: var(--rz-gray);
+        font-family: var(--f-display);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .rz-dl-tab svg {
+        opacity: 0.5;
+        transition: all 0.4s;
+    }
+
+    .rz-dl-tab:hover {
+        background: rgba(140, 192, 78, 0.1);
+        border-color: rgba(140, 192, 78, 0.3);
+        color: var(--rz-white);
+    }
+
+    .rz-dl-tab:hover svg {
+        opacity: 1;
+        stroke: var(--rz-accent);
+    }
+
+    .rz-dl-tab.active {
+        background: linear-gradient(135deg, rgba(140, 192, 78, 0.2) 0%, rgba(140, 192, 78, 0.05) 100%);
+        border-color: var(--rz-accent);
+        color: var(--rz-white);
+        box-shadow: 0 0 30px rgba(140, 192, 78, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .rz-dl-tab.active svg {
+        opacity: 1;
+        stroke: var(--rz-accent);
+    }
+
+    /* Grid */
+    .rz-dl-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 24px;
+    }
+
+    .rz-dl-category {
+        display: contents;
+    }
+
+    /* Card */
+    .rz-dl-card {
+        position: relative;
+        background: linear-gradient(145deg, rgba(20, 25, 15, 0.8) 0%, rgba(10, 15, 8, 0.9) 100%);
+        border: 1px solid var(--rz-border);
+        border-radius: 20px;
+        padding: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .rz-dl-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(140, 192, 78, 0.05) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+    }
+
+    .rz-dl-card:hover {
+        border-color: rgba(140, 192, 78, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(140, 192, 78, 0.1);
+    }
+
+    .rz-dl-card:hover::before {
+        opacity: 1;
+    }
+
+    .rz-dl-card-featured {
+        grid-column: span 1;
+    }
+
+    .rz-dl-card-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at center, rgba(140, 192, 78, 0.15) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        animation: rz-card-glow-rotate 10s linear infinite;
+    }
+
+    .rz-dl-card-featured:hover .rz-dl-card-glow {
+        opacity: 1;
+    }
+
+    @keyframes rz-card-glow-rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Card Header */
+    .rz-dl-card-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 24px;
+        border-bottom: 1px solid var(--rz-border);
+    }
+
+    .rz-dl-card-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(140, 192, 78, 0.15) 0%, rgba(140, 192, 78, 0.05) 100%);
+        border: 1px solid rgba(140, 192, 78, 0.3);
+        border-radius: 14px;
+        color: var(--rz-accent);
+        flex-shrink: 0;
+        transition: all 0.4s;
+    }
+
+    .rz-dl-card:hover .rz-dl-card-icon {
+        background: linear-gradient(135deg, rgba(140, 192, 78, 0.25) 0%, rgba(140, 192, 78, 0.1) 100%);
+        box-shadow: 0 0 20px rgba(140, 192, 78, 0.3);
+        transform: scale(1.05);
+    }
+
+    .rz-dl-icon-mono {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%);
+        border-color: rgba(255,255,255,0.2);
+        color: var(--rz-white);
+    }
+
+    .rz-dl-card:hover .rz-dl-icon-mono {
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .rz-dl-icon-3d {
+        background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(147, 51, 234, 0.05) 100%);
+        border-color: rgba(147, 51, 234, 0.4);
+        color: #a855f7;
+    }
+
+    .rz-dl-card:hover .rz-dl-icon-3d {
+        background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(147, 51, 234, 0.1) 100%);
+        box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    }
+
+    .rz-dl-card-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .rz-dl-card-title {
+        font-family: var(--f-display);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--rz-white);
+        margin: 0 0 4px 0;
+        letter-spacing: 0.5px;
+    }
+
+    .rz-dl-card-subtitle {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        color: var(--rz-gray);
+        letter-spacing: 0.5px;
+    }
+
+    .rz-dl-card-badge {
+        padding: 6px 12px;
+        background: rgba(140, 192, 78, 0.15);
+        border: 1px solid rgba(140, 192, 78, 0.3);
+        border-radius: 20px;
+        font-family: var(--f-mono);
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--rz-accent);
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    .rz-badge-mono {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.15);
+        color: var(--rz-gray);
+    }
+
+    .rz-badge-3d {
+        background: rgba(147, 51, 234, 0.15);
+        border-color: rgba(147, 51, 234, 0.3);
+        color: #a855f7;
+    }
+
+    /* Card Files */
+    .rz-dl-card-files {
+        padding: 8px;
+    }
+
+    .rz-dl-file {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .rz-dl-file::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent 0%, rgba(140, 192, 78, 0.1) 50%, transparent 100%);
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+    }
+
+    .rz-dl-file:hover {
+        background: rgba(140, 192, 78, 0.08);
+    }
+
+    .rz-dl-file:hover::before {
+        transform: translateX(100%);
+    }
+
+    .rz-dl-file-mono:hover {
+        background: rgba(255,255,255,0.05);
+    }
+
+    .rz-dl-file-3d:hover {
+        background: rgba(147, 51, 234, 0.1);
+    }
+
+    .rz-dl-file-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+        color: var(--rz-gray);
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+
+    .rz-dl-file:hover .rz-dl-file-icon {
+        background: rgba(140, 192, 78, 0.2);
+        color: var(--rz-accent);
+        transform: scale(1.1);
+    }
+
+    .rz-dl-file-mono:hover .rz-dl-file-icon {
+        background: rgba(255,255,255,0.1);
+        color: var(--rz-white);
+    }
+
+    .rz-dl-file-3d:hover .rz-dl-file-icon {
+        background: rgba(147, 51, 234, 0.2);
+        color: #a855f7;
+    }
+
+    .rz-dl-file-name {
+        flex: 1;
+        font-family: var(--f-display);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--rz-white);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .rz-dl-file-ext {
+        font-family: var(--f-mono);
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--rz-accent);
+        letter-spacing: 1px;
+        padding: 4px 8px;
+        background: rgba(140, 192, 78, 0.1);
+        border-radius: 4px;
+    }
+
+    .rz-dl-file-mono .rz-dl-file-ext {
+        color: var(--rz-gray);
+        background: rgba(255,255,255,0.05);
+    }
+
+    .rz-dl-file-3d .rz-dl-file-ext {
+        color: #a855f7;
+        background: rgba(147, 51, 234, 0.15);
+    }
+
+    .rz-dl-file-arrow {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.05);
+        border-radius: 50%;
+        color: var(--rz-gray);
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: all 0.3s;
+    }
+
+    .rz-dl-file:hover .rz-dl-file-arrow {
+        opacity: 1;
+        transform: translateY(0);
+        background: var(--rz-accent);
+        color: var(--rz-black);
+    }
+
+    .rz-dl-file-mono:hover .rz-dl-file-arrow {
+        background: var(--rz-white);
+        color: var(--rz-black);
+    }
+
+    .rz-dl-file-3d:hover .rz-dl-file-arrow {
+        background: #a855f7;
+        color: white;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .rz-downloads-section {
+            padding: 80px 0 100px;
+        }
+
+        .rz-dl-tabs {
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .rz-dl-tab {
+            padding: 12px 16px;
+            font-size: 11px;
+        }
+
+        .rz-dl-tab svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .rz-dl-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .rz-dl-card-header {
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .rz-dl-card-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .rz-dl-card-badge {
+            margin-top: 12px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .rz-dl-file {
+            padding: 12px;
+        }
+
+        .rz-dl-file-arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+
+    <!-- Downloads Tab Script -->
+    <script>
+    (function() {
+        const tabs = document.querySelectorAll('.rz-dl-tab');
+        const categories = document.querySelectorAll('.rz-dl-category');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.dataset.category;
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show/hide categories
+                categories.forEach(cat => {
+                    if (cat.dataset.category === category) {
+                        cat.style.display = 'contents';
+                        // Trigger reveal animations
+                        cat.querySelectorAll('.reveal-up').forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                                el.style.opacity = '1';
+                                el.style.transform = 'translateY(0)';
+                            }, 50);
+                        });
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+    })();
+
+    // Particles Animation
+    (function() {
+        const canvas = document.getElementById('rz-downloads-particles');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+        
+        function resize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speedX: (Math.random() - 0.5) * 0.3,
+                speedY: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.5 + 0.2
+            };
+        }
+        
+        function init() {
+            resize();
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(createParticle());
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(140, 192, 78, ${p.opacity})`;
+                ctx.fill();
+            });
+            
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(140, 192, 78, ${0.1 * (1 - dist / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Intersection Observer to only animate when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    init();
+                    animate();
+                } else {
+                    cancelAnimationFrame(animationId);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(canvas);
+        window.addEventListener('resize', resize);
+    })();
+    </script>
 
     <!-- ========== NEXT PROJECT ========== -->
     <section class="contact" style="padding: 120px 0; background: var(--rz-dark);">
