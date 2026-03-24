@@ -3198,42 +3198,11 @@
         </div>
     </section>
 
-    <!-- ========== (06) TOM DE VOZ ========== -->
-    <section class="rz-section" id="rz-voice" style="background: var(--rz-black);">
-        <div class="container">
-            <div class="rz-section-label reveal-fade">
-                <span class="rz-section-idx">(06)</span>
-                <span class="rz-section-dash">————</span>
-                <span class="rz-section-tag">TOM DE VOZ</span>
-            </div>
-            <h2 class="rz-section-title reveal-text">Personalidade da <em>marca</em></h2>
-
-            <div class="rz-voice-grid">
-                <div class="rz-voice-item reveal-up">
-                    <span class="rz-voice-attr">SÉRIA</span>
-                    <div class="rz-voice-quote">"Renderização em segundos. Sem compromisso."</div>
-                </div>
-                <div class="rz-voice-item reveal-up">
-                    <span class="rz-voice-attr">CONFIANTE</span>
-                    <div class="rz-voice-quote">"Seu próximo render já está pronto."</div>
-                </div>
-                <div class="rz-voice-item reveal-up">
-                    <span class="rz-voice-attr">DIRETA</span>
-                    <div class="rz-voice-quote">"Viewport → Render. É isso."</div>
-                </div>
-                <div class="rz-voice-item reveal-up">
-                    <span class="rz-voice-attr" style="color: var(--rz-accent-light);">PROVOCATIVA</span>
-                    <div class="rz-voice-quote">"V-Ray demora. Nós não."</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== (07) APLICAÇÕES - HORIZONTAL SCROLL (DESKTOP) ========== -->
+    <!-- ========== (06) APLICAÇÕES - HORIZONTAL SCROLL (DESKTOP) ========== -->
     <section class="rz-section rz-section-surface rz-apps-desktop" id="rz-apps" style="overflow: hidden;">
         <div class="container">
             <div class="rz-section-label reveal-fade">
-                <span class="rz-section-idx">(07)</span>
+                <span class="rz-section-idx">(06)</span>
                 <span class="rz-section-dash">————</span>
                 <span class="rz-section-tag">APLICAÇÕES</span>
             </div>
@@ -3458,11 +3427,8 @@
             const getScrollAmount = () => {
                 const trackWidth = track.scrollWidth;
                 const viewportWidth = window.innerWidth;
-                // Calculate full scroll needed plus extra margin for last card
-                const lastCard = track.querySelector('.rz-app-item:last-child');
-                const lastCardWidth = lastCard ? lastCard.offsetWidth : 0;
-                // Ensure we scroll enough to show the last card completely
-                return -(trackWidth - viewportWidth + lastCardWidth + 100);
+                // Full track width minus viewport = total scroll needed
+                return -(trackWidth - viewportWidth);
             };
 
             // Create the horizontal scroll effect
@@ -3474,11 +3440,11 @@
             ScrollTrigger.create({
                 trigger: section,
                 start: 'top top',
-                // Increase scroll distance to ensure full animation
-                end: () => '+=' + (Math.abs(getScrollAmount()) + window.innerHeight),
+                // Triple the scroll distance to ensure all cards are shown
+                end: () => '+=' + (track.scrollWidth * 1.5),
                 pin: true,
                 animation: tween,
-                scrub: 0.8,
+                scrub: 1,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
                     if (progressFill) {
@@ -3552,42 +3518,7 @@
     })();
     </script>
 
-    <!-- ========== (08) RESULTADO ========== -->
-    <section class="rz-section" id="rz-result" style="background: var(--rz-black);">
-        <div class="container">
-            <div class="rz-section-label reveal-fade">
-                <span class="rz-section-idx">(08)</span>
-                <span class="rz-section-dash">————</span>
-                <span class="rz-section-tag">ENTREGÁVEIS</span>
-            </div>
-            <h2 class="rz-section-title reveal-text">O sistema <em>completo</em></h2>
-
-            <div class="rz-concept-text" style="max-width: 700px;">
-                <p class="reveal-fade" style="color: rgba(240,240,240,0.6); font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
-                    A identidade RENDERIZAI foi construída para competir com os maiores do mercado — 
-                    V-Ray, Chaos Group, Enscape. Cada elemento comunica performance, precisão e 
-                    confiabilidade. Uma marca que não pede licença: ela se impõe.
-                </p>
-            </div>
-
-            <div class="rz-deliverables reveal-up">
-                <span class="rz-deliverable">Símbolo / Logomark</span>
-                <span class="rz-deliverable">Logotipo Wordmark</span>
-                <span class="rz-deliverable">5 Variações de Logo</span>
-                <span class="rz-deliverable">Paleta de Cores Completa</span>
-                <span class="rz-deliverable">Sistema Tipográfico</span>
-                <span class="rz-deliverable">Elementos Gráficos</span>
-                <span class="rz-deliverable">Patterns & Texturas</span>
-                <span class="rz-deliverable">Manual de Identidade Visual</span>
-                <span class="rz-deliverable">Templates para UI</span>
-                <span class="rz-deliverable">Ícone de App</span>
-                <span class="rz-deliverable">Social Media Kit</span>
-                <span class="rz-deliverable">Tom de Voz</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== (09) DOWNLOADS ========== -->
+    <!-- ========== (07) DOWNLOADS ========== -->
     <section class="rz-section rz-downloads-section" id="rz-downloads">
         <!-- Particles Background -->
         <canvas id="rz-downloads-particles" class="rz-downloads-particles"></canvas>
@@ -3598,7 +3529,7 @@
         
         <div class="container" style="position: relative; z-index: 2;">
             <div class="rz-section-label reveal-fade">
-                <span class="rz-section-idx">(09)</span>
+                <span class="rz-section-idx">(07)</span>
                 <span class="rz-section-dash">————</span>
                 <span class="rz-section-tag">DOWNLOADS</span>
             </div>
