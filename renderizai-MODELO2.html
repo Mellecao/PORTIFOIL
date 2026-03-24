@@ -5972,7 +5972,12 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
-        z-index: 999999;
+        z-index: 999997;
+    }
+
+    /* Keep cursor above popup */
+    #cursor {
+        z-index: 9999999 !important;
     }
 
     /* PIX Popup */
@@ -6145,85 +6150,228 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
+        // Easing function for smooth acceleration
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+        
+        function easeInQuad(t) {
+            return t * t;
+        }
+
         class Confetti {
-            constructor(x, y) {
+            constructor(x, y, angle, power, delay) {
+                this.startX = x;
+                this.startY = y;
                 this.x = x;
                 this.y = y;
-                this.size = Math.random() * 12 + 6;
-                this.speedX = (Math.random() - 0.5) * 25;
-                this.speedY = Math.random() * -20 - 10;
-                this.gravity = 0.5;
+                this.delay = delay || 0;
+                this.time = 0;
+                this.duration = 2.5 + Math.random() * 1.5; // 2.5-4 seconds
+                
+                // Initial velocity with angle (upward arc)
+                const speed = power * (0.8 + Math.random() * 0.4);
+                this.initialVX = Math.cos(angle) * speed;
+                this.initialVY = Math.sin(angle) * speed;
+                
+                // Physics
+                this.gravity = 280 + Math.random() * 120;
+                this.drag = 0.98;
+                this.vx = 0;
+                this.vy = 0;
+                
+                // Visual
+                this.size = Math.random() * 14 + 8;
                 this.rotation = Math.random() * 360;
-                this.rotationSpeed = (Math.random() - 0.5) * 15;
-                this.opacity = 1;
-                this.decay = 0.015;
-                // Green shades
-                const greens = ['#8cc04e', '#6b9e3e', '#a5d46e', '#5c8a32', '#9ed15a', '#7ab342'];
-                this.color = greens[Math.floor(Math.random() * greens.length)];
-                this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+                this.rotationSpeed = (Math.random() - 0.5) * 8;
+                this.opacity = 0;
+                this.maxOpacity = 0.9 + Math.random() * 0.1;
+                
+                // Wobble for natural flutter
+                this.wobbleSpeed = Math.random() * 4 + 2;
+                this.wobbleAmplitude = Math.random() * 30 + 10;
+                this.wobbleOffset = Math.random() * Math.PI * 2;
+                
+                // Green shades with gold accents
+                const colors = ['#8cc04e', '#6b9e3e', '#a5d46e', '#5c8a32', '#9ed15a', '#7ab342', '#c5e89a', '#d4f0a8'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Shape variety
+                const shapes = ['rect', 'circle', 'diamond', 'line'];
+                this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+                this.aspectRatio = 0.4 + Math.random() * 0.3;
             }
 
-            update() {
-                this.speedY += this.gravity;
-                this.x += this.speedX;
-                this.y += this.speedY;
+            update(dt) {
+                if (this.delay > 0) {
+                    this.delay -= dt;
+                    return;
+                }
+                
+                this.time += dt;
+                const progress = Math.min(this.time / this.duration, 1);
+                
+                // Fade in quickly, fade out slowly at end
+                if (progress < 0.1) {
+                    this.opacity = easeOutCubic(progress / 0.1) * this.maxOpacity;
+                } else if (progress > 0.7) {
+                    this.opacity = (1 - easeInQuad((progress - 0.7) / 0.3)) * this.maxOpacity;
+                } else {
+                    this.opacity = this.maxOpacity;
+                }
+                
+                // Launch phase - initial burst with easing
+                const launchPhase = Math.min(this.time / 0.5, 1);
+                const launchEase = easeOutCubic(launchPhase);
+                
+                // Apply initial velocity with easing
+                if (launchPhase < 1) {
+                    this.vx = this.initialVX * launchEase;
+                    this.vy = this.initialVY * launchEase;
+                } else {
+                    // After launch, apply gravity and drag
+                    this.vy += this.gravity * dt;
+                    this.vx *= this.drag;
+                }
+                
+                // Add wobble/flutter effect
+                const wobble = Math.sin(this.time * this.wobbleSpeed + this.wobbleOffset) * this.wobbleAmplitude * dt;
+                
+                this.x += this.vx * dt + wobble;
+                this.y += this.vy * dt;
+                
                 this.rotation += this.rotationSpeed;
-                this.opacity -= this.decay;
-                this.speedX *= 0.99;
             }
 
             draw() {
+                if (this.opacity <= 0 || this.delay > 0) return;
+                
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation * Math.PI / 180);
                 ctx.globalAlpha = this.opacity;
                 ctx.fillStyle = this.color;
                 
-                if (this.shape === 'rect') {
-                    ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
-                } else {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-                    ctx.fill();
+                const w = this.size;
+                const h = this.size * this.aspectRatio;
+                
+                switch(this.shape) {
+                    case 'rect':
+                        ctx.fillRect(-w / 2, -h / 2, w, h);
+                        break;
+                    case 'circle':
+                        ctx.beginPath();
+                        ctx.arc(0, 0, w / 2, 0, Math.PI * 2);
+                        ctx.fill();
+                        break;
+                    case 'diamond':
+                        ctx.beginPath();
+                        ctx.moveTo(0, -h);
+                        ctx.lineTo(w / 2, 0);
+                        ctx.lineTo(0, h);
+                        ctx.lineTo(-w / 2, 0);
+                        ctx.closePath();
+                        ctx.fill();
+                        break;
+                    case 'line':
+                        ctx.fillRect(-w / 2, -2, w, 4);
+                        break;
                 }
                 
                 ctx.restore();
             }
+            
+            isAlive() {
+                return this.time < this.duration && this.y < confettiCanvas.height + 100;
+            }
         }
 
         function launchConfetti() {
-            const btnRect = approveBtn.getBoundingClientRect();
-            const originX = btnRect.left + btnRect.width / 2;
-            const originY = btnRect.top + btnRect.height / 2;
-
-            // Create confetti particles
-            for (let i = 0; i < 100; i++) {
-                confetti.push(new Confetti(originX, originY));
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight * 0.3; // Target: upper center
+            
+            // Launch from bottom-left corner
+            const leftX = window.innerWidth * 0.1;
+            const leftY = window.innerHeight + 20;
+            
+            // Launch from bottom-right corner
+            const rightX = window.innerWidth * 0.9;
+            const rightY = window.innerHeight + 20;
+            
+            // Angle toward upper center from each corner
+            const angleLeft = Math.atan2(centerY - leftY, centerX - leftX) - 0.3; // -0.3 rad offset for spread
+            const angleRight = Math.atan2(centerY - rightY, centerX - rightX) + 0.3;
+            
+            const power = 800 + window.innerHeight * 0.5;
+            
+            // Create confetti from left corner with staggered timing
+            for (let i = 0; i < 60; i++) {
+                const spreadAngle = angleLeft + (Math.random() - 0.5) * 0.8;
+                const spread = Math.random() * 60;
+                const delay = Math.random() * 0.3;
+                confetti.push(new Confetti(
+                    leftX + Math.random() * spread - spread/2,
+                    leftY + Math.random() * 30,
+                    spreadAngle,
+                    power,
+                    delay
+                ));
             }
-
-            // Also create some from top
-            for (let i = 0; i < 50; i++) {
-                const c = new Confetti(Math.random() * window.innerWidth, -20);
-                c.speedY = Math.random() * 5 + 5;
-                c.speedX = (Math.random() - 0.5) * 10;
-                confetti.push(c);
+            
+            // Create confetti from right corner with staggered timing
+            for (let i = 0; i < 60; i++) {
+                const spreadAngle = angleRight + (Math.random() - 0.5) * 0.8;
+                const spread = Math.random() * 60;
+                const delay = Math.random() * 0.3;
+                confetti.push(new Confetti(
+                    rightX + Math.random() * spread - spread/2,
+                    rightY + Math.random() * 30,
+                    spreadAngle,
+                    power,
+                    delay
+                ));
             }
+            
+            // Second wave after slight delay
+            setTimeout(() => {
+                for (let i = 0; i < 30; i++) {
+                    const side = Math.random() > 0.5;
+                    const x = side ? leftX : rightX;
+                    const angle = side ? angleLeft : angleRight;
+                    const spreadAngle = angle + (Math.random() - 0.5) * 0.6;
+                    confetti.push(new Confetti(
+                        x + (Math.random() - 0.5) * 40,
+                        window.innerHeight + 10,
+                        spreadAngle,
+                        power * 0.9,
+                        0
+                    ));
+                }
+            }, 200);
 
-            animate();
+            if (!animationId) animate();
         }
 
-        function animate() {
+        let lastTime = 0;
+        function animate(timestamp) {
+            if (!lastTime) lastTime = timestamp;
+            const dt = Math.min((timestamp - lastTime) / 1000, 0.05); // Delta time in seconds, capped
+            lastTime = timestamp;
+            
             ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
 
-            confetti = confetti.filter(c => c.opacity > 0);
+            confetti = confetti.filter(c => c.isAlive());
 
             confetti.forEach(c => {
-                c.update();
+                c.update(dt);
                 c.draw();
             });
 
             if (confetti.length > 0) {
                 animationId = requestAnimationFrame(animate);
+            } else {
+                animationId = null;
+                lastTime = 0;
             }
         }
 
