@@ -5888,5 +5888,362 @@
         }, { passive: true });
     })();
     </script>
+
+    <!-- ========== APPROVE BUTTON & PIX POPUP ========== -->
+    <button id="rz-approve-btn" class="rz-approve-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>APROVAR</span>
+    </button>
+
+    <!-- Confetti Canvas -->
+    <canvas id="rz-confetti-canvas" class="rz-confetti-canvas"></canvas>
+
+    <!-- PIX Popup -->
+    <div id="rz-pix-popup" class="rz-pix-popup">
+        <div class="rz-pix-overlay" onclick="document.getElementById('rz-pix-popup').classList.remove('active');"></div>
+        <div class="rz-pix-modal">
+            <button class="rz-pix-close" onclick="document.getElementById('rz-pix-popup').classList.remove('active');">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="rz-pix-content">
+                <div class="rz-pix-header">
+                    <div class="rz-pix-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <h3 class="rz-pix-title">Projeto Aprovado!</h3>
+                    <p class="rz-pix-subtitle">Escaneie o QR Code para realizar o pagamento via PIX</p>
+                </div>
+                <div class="rz-pix-qr">
+                    <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/pix.png" alt="QR Code PIX">
+                </div>
+                <div class="rz-pix-footer">
+                    <span>Obrigado pela confiança!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    /* Approve Button */
+    .rz-approve-btn {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #8cc04e 0%, #6b9e3e 100%);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: var(--f-display, 'Outfit', sans-serif);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(140, 192, 78, 0.4), 0 0 0 0 rgba(140, 192, 78, 0.5);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: rz-approve-pulse 2s ease-in-out infinite;
+    }
+
+    .rz-approve-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(140, 192, 78, 0.5), 0 0 0 0 rgba(140, 192, 78, 0.5);
+    }
+
+    .rz-approve-btn:active {
+        transform: scale(0.98);
+    }
+
+    @keyframes rz-approve-pulse {
+        0%, 100% { box-shadow: 0 4px 20px rgba(140, 192, 78, 0.4), 0 0 0 0 rgba(140, 192, 78, 0.5); }
+        50% { box-shadow: 0 4px 20px rgba(140, 192, 78, 0.4), 0 0 0 8px rgba(140, 192, 78, 0); }
+    }
+
+    /* Confetti Canvas */
+    .rz-confetti-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999999;
+    }
+
+    /* PIX Popup */
+    .rz-pix-popup {
+        position: fixed;
+        inset: 0;
+        z-index: 999998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .rz-pix-popup.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .rz-pix-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .rz-pix-modal {
+        position: relative;
+        background: linear-gradient(180deg, #1a1f16 0%, #0f1210 100%);
+        border: 1px solid rgba(140, 192, 78, 0.3);
+        border-radius: 24px;
+        padding: 48px;
+        max-width: 420px;
+        width: 90%;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(140, 192, 78, 0.15);
+        transform: scale(0.9) translateY(20px);
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .rz-pix-popup.active .rz-pix-modal {
+        transform: scale(1) translateY(0);
+    }
+
+    .rz-pix-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .rz-pix-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .rz-pix-content {
+        text-align: center;
+    }
+
+    .rz-pix-header {
+        margin-bottom: 32px;
+    }
+
+    .rz-pix-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(140, 192, 78, 0.2) 0%, rgba(140, 192, 78, 0.05) 100%);
+        border: 2px solid #8cc04e;
+        border-radius: 50%;
+        color: #8cc04e;
+        animation: rz-pix-check 0.6s ease forwards;
+    }
+
+    @keyframes rz-pix-check {
+        0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+        50% { transform: scale(1.2) rotate(0deg); }
+        100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .rz-pix-title {
+        font-family: var(--f-display, 'Outfit', sans-serif);
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 8px 0;
+    }
+
+    .rz-pix-subtitle {
+        font-family: var(--f-mono, 'Space Mono', monospace);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+
+    .rz-pix-qr {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .rz-pix-qr img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .rz-pix-footer {
+        font-family: var(--f-display, 'Outfit', sans-serif);
+        font-size: 14px;
+        color: #8cc04e;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .rz-approve-btn {
+            top: auto;
+            bottom: 100px;
+            right: 16px;
+            padding: 12px 20px;
+            font-size: 11px;
+        }
+
+        .rz-pix-modal {
+            padding: 32px 24px;
+        }
+
+        .rz-pix-title {
+            font-size: 20px;
+        }
+    }
+    </style>
+
+    <script>
+    (function() {
+        const approveBtn = document.getElementById('rz-approve-btn');
+        const confettiCanvas = document.getElementById('rz-confetti-canvas');
+        const pixPopup = document.getElementById('rz-pix-popup');
+        
+        if (!approveBtn || !confettiCanvas || !pixPopup) return;
+
+        const ctx = confettiCanvas.getContext('2d');
+        let confetti = [];
+        let animationId;
+
+        function resizeCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Confetti {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 12 + 6;
+                this.speedX = (Math.random() - 0.5) * 25;
+                this.speedY = Math.random() * -20 - 10;
+                this.gravity = 0.5;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 15;
+                this.opacity = 1;
+                this.decay = 0.015;
+                // Green shades
+                const greens = ['#8cc04e', '#6b9e3e', '#a5d46e', '#5c8a32', '#9ed15a', '#7ab342'];
+                this.color = greens[Math.floor(Math.random() * greens.length)];
+                this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+            }
+
+            update() {
+                this.speedY += this.gravity;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                this.opacity -= this.decay;
+                this.speedX *= 0.99;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                
+                if (this.shape === 'rect') {
+                    ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                ctx.restore();
+            }
+        }
+
+        function launchConfetti() {
+            const btnRect = approveBtn.getBoundingClientRect();
+            const originX = btnRect.left + btnRect.width / 2;
+            const originY = btnRect.top + btnRect.height / 2;
+
+            // Create confetti particles
+            for (let i = 0; i < 100; i++) {
+                confetti.push(new Confetti(originX, originY));
+            }
+
+            // Also create some from top
+            for (let i = 0; i < 50; i++) {
+                const c = new Confetti(Math.random() * window.innerWidth, -20);
+                c.speedY = Math.random() * 5 + 5;
+                c.speedX = (Math.random() - 0.5) * 10;
+                confetti.push(c);
+            }
+
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+            confetti = confetti.filter(c => c.opacity > 0);
+
+            confetti.forEach(c => {
+                c.update();
+                c.draw();
+            });
+
+            if (confetti.length > 0) {
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+
+        approveBtn.addEventListener('click', () => {
+            // Launch confetti
+            launchConfetti();
+
+            // Show popup after a short delay
+            setTimeout(() => {
+                pixPopup.classList.add('active');
+            }, 800);
+        });
+
+        // Close popup on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && pixPopup.classList.contains('active')) {
+                pixPopup.classList.remove('active');
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
