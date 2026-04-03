@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pretext Experimental - Force Field Text</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg-1: #fff4e9;
+        --bg-2: #f6dfc8;
+        --paper: rgba(255, 252, 247, 0.88);
+        --ink: #1f1712;
+        --muted: #6a5647;
+        --accent: #ff4d29;
+        --rule: rgba(31, 23, 18, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        color: var(--ink);
+        background:
+          radial-gradient(120% 90% at 12% 16%, rgba(255, 112, 67, 0.2), transparent 56%),
+          radial-gradient(90% 70% at 86% 24%, rgba(47, 126, 162, 0.16), transparent 62%),
+          linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      }
+
+      .page {
+        width: min(1100px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 34px 0 50px;
+      }
+
+      .hero {
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font: 700 11px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .title {
+        margin: 8px 0 0;
+        font-size: clamp(30px, 5vw, 62px);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+      }
+
+      .intro {
+        margin: 12px 0 0;
+        max-width: 70ch;
+        color: var(--muted);
+        font-size: clamp(16px, 2vw, 20px);
+        line-height: 1.45;
+      }
+
+      .badge {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        background: rgba(31, 23, 18, 0.86);
+        color: #fff7ef;
+        font: 500 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        letter-spacing: 0.02em;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        background: var(--paper);
+        backdrop-filter: blur(4px);
+        box-shadow: 0 20px 40px rgba(31, 23, 18, 0.08);
+        padding: 16px;
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font: 700 20px/1.1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      .card small {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--muted);
+        font: 500 12px/1.35 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      .force-text {
+        position: relative;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px dashed rgba(31, 23, 18, 0.16);
+        font-size: clamp(16px, 1.7vw, 21px);
+        line-height: 1.45;
+        color: var(--ink);
+        min-height: 210px;
+      }
+
+      .force-text:hover {
+        border-color: rgba(255, 77, 41, 0.5);
+      }
+
+      .force-text canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
+
+      .force-text.active {
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .force-text.active canvas {
+        opacity: 1;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        color: var(--muted);
+        font: 500 13px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page {
+          width: min(100vw - 20px, 1100px);
+          padding-top: 20px;
+        }
+
+        .force-text {
+          min-height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">Experimento</p>
+        <h1 class="title">Pretext Force Field</h1>
+        <p class="intro">
+          Passe o mouse sobre os blocos e o texto vai desviar de uma bolha invisivel.
+          O layout e recalculado linha por linha com <strong>layoutNextLine()</strong>, no estilo dos demos do Pretext.
+        </p>
+        <span class="badge">Sem medicao de DOM no loop de layout</span>
+      </header>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Bloco 1</h2>
+          <small>Hover para criar a bolha de repulsao</small>
+          <p class="force-text" data-force-radius="76">
+            Este bloco simula um texto editorial vivo: a bolha se move com o cursor,
+            empurra letras e redistribui as linhas em tempo real. O objetivo e reproduzir
+            o mesmo principio dos demos do Pretext: preparar uma vez e fazer layout barato
+            e continuo, sem depender de leituras de caixa do navegador a cada frame.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Bloco 2</h2>
+          <small>Um segundo campo com raio maior</small>
+          <p class="force-text" data-force-radius="96">
+            Aqui o raio da forca e maior, criando uma perturbacao mais dramatica.
+            A linha atual pode virar duas faixas na mesma altura: uma antes da bolha e
+            outra depois dela. Assim as letras parecem fugir do ponto de pressao,
+            criando um comportamento organico parecido com as animacoes experimentais.
+          </p>
+        </article>
+      </section>
+
+      <p class="footer-note">
+        Arquivo experimental isolado para validar comportamento antes de integrar no restante do site.
+      </p>
+    </main>
+
+    <script type="module" src="./js/pretext-experimental.js"></script>
+  </body>
+</html>
