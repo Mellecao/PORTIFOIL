@@ -1175,6 +1175,35 @@ body::before {
     margin-bottom: 16px;
 }
 
+/* Magazine-style 2-column biography layout */
+.about-magazine {
+    column-count: 2;
+    column-gap: 48px;
+    column-rule: 1px solid var(--border);
+}
+
+.about-mag-col {
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.85;
+    color: var(--gray-dark);
+    margin-bottom: 24px;
+    break-inside: avoid;
+    text-align: justify;
+    hyphens: auto;
+    cursor: default;
+}
+
+.about-mag-col:first-child::first-letter {
+    font-family: var(--f-serif);
+    font-size: 3.6em;
+    float: left;
+    line-height: 0.8;
+    margin-right: 10px;
+    margin-top: 6px;
+    color: var(--red);
+    font-weight: 700;
+}
+
 .about-skills {
     margin-top: 40px;
     display: flex;
@@ -1621,6 +1650,7 @@ body::before {
     .work-card { flex: 0 0 min(400px, 85vw); }
 
     .about-grid { grid-template-columns: 1fr; gap: 60px; }
+    .about-magazine { column-count: 1; column-rule: none; }
 
     .about-stats { grid-template-columns: repeat(2, 1fr); }
     .stat-block:nth-child(2) { border-right: none; }
@@ -1704,3 +1734,108 @@ body::before {
         padding: 0 6px;
     }
 }
+
+/* -- Pretext bubble (new hook) ------------------------------- */
+[data-pretext-bubble] {
+    position: relative;
+}
+
+.pretext-active {
+    cursor: crosshair;
+    color: transparent !important;
+}
+
+/* ── Variable Typographic ASCII — Cursor Field ─────────────────────────────── */
+.ascii-section {
+    width: 100%;
+    background: #0a0a0a;
+    padding: 60px 0 48px;
+    overflow: hidden;
+    cursor: none;
+}
+
+.ascii-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    padding: 0 24px;
+}
+
+.ascii-section-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.ascii-section-hint {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.15);
+    letter-spacing: 1px;
+    animation: ascii-hint-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ascii-hint-pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+}
+
+.ascii-cursor-field {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 14px;
+    font-family: Georgia, Palatino, "Times New Roman", serif;
+    font-size: 14px;
+    line-height: 16px;
+    white-space: pre;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+    min-height: 464px;
+}
+
+.ascii-art-row {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    white-space: pre;
+    font-family: Georgia, Palatino, "Times New Roman", serif;
+    font-size: 14px;
+}
+
+/* Weight variants */
+.w3 { font-weight: 300; }
+.w5 { font-weight: 500; }
+.w8 { font-weight: 800; }
+.it { font-style: italic; }
+
+/* Gold alpha ramp — same as original demo */
+.a1  { color: rgba(196, 163, 90, 0.10); }
+.a2  { color: rgba(196, 163, 90, 0.20); }
+.a3  { color: rgba(196, 163, 90, 0.30); }
+.a4  { color: rgba(196, 163, 90, 0.40); }
+.a5  { color: rgba(196, 163, 90, 0.50); }
+.a6  { color: rgba(196, 163, 90, 0.60); }
+.a7  { color: rgba(196, 163, 90, 0.70); }
+.a8  { color: rgba(196, 163, 90, 0.80); }
+.a9  { color: rgba(196, 163, 90, 0.90); }
+.a10 { color: rgba(196, 163, 90, 1.00); }
+
+@media (max-width: 860px) {
+    .ascii-cursor-field {
+        font-size: 11px;
+        padding: 10px;
+    }
+    .ascii-art-row {
+        font-size: 11px;
+    }
+}
+

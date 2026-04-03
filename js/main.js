@@ -708,7 +708,302 @@ function closeMobMenu() {
 
 
 // ==========================================
-// 10. INIT
+// 10. PRETEXT FORCE FIELD (TEXT HOVER)
+// ==========================================
+function initPretextTextForce() {
+    const candidates = document.querySelectorAll('p, h1, h2, h3, h4, h5, blockquote, li');
+    if (!candidates.length) return;
+
+    const targetSelectorExcludes = '.loader, .cursor, .nav, .mob-menu, .hero-stripe, .mq-row, .section-label, .stat-block, .skill-items, .work-card-tags, .work-card-year, .service-tags-col';
+    const states = [];
+    let pretextModule = null;
+    let pretextPromise = null;
+
+    function sameCursor(a, b) {
+        return a.segmentIndex === b.segmentIndex && a.graphemeIndex === b.graphemeIndex;
+    }
+
+    function readFont(el) {
+        const cs = window.getComputedStyle(el);
+        if (cs.font && cs.font.trim() && cs.font !== 'normal normal normal normal 16px / normal serif') {
+            return cs.font;
+        }
+        const fontStyle = cs.fontStyle || 'normal';
+        const fontVariant = cs.fontVariant || 'normal';
+        const fontWeight = cs.fontWeight || '400';
+        const fontSize = cs.fontSize || '16px';
+        const fontFamily = cs.fontFamily || 'sans-serif';
+        return `${fontStyle} ${fontVariant} ${fontWeight} ${fontSize} ${fontFamily}`;
+    }
+
+    function readLineHeight(el) {
+        const cs = window.getComputedStyle(el);
+        const lineHeight = parseFloat(cs.lineHeight);
+        if (!Number.isNaN(lineHeight)) return lineHeight;
+        const fontSize = parseFloat(cs.fontSize) || 16;
+        return fontSize * 1.3;
+    }
+
+    function parsePad(value) {
+        const parsed = parseFloat(value);
+        return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    async function ensurePretext() {
+        if (pretextModule) return true;
+        if (!pretextPromise) {
+            pretextPromise = import('https://esm.sh/@chenglou/pretext@0.0.3')
+                .then((mod) => {
+                    pretextModule = mod;
+                    return mod;
+                })
+                .catch((error) => {
+                    console.warn('Pretext could not be loaded for text force effect.', error);
+                    pretextPromise = null;
+                    return null;
+                });
+        }
+        const loaded = await pretextPromise;
+        return Boolean(loaded);
+    }
+
+    function shouldTarget(el) {
+        if (!el || !(el instanceof HTMLElement)) return false;
+        if (el.closest(targetSelectorExcludes)) return false;
+        if (el.closest('.work-card-title')) return false;
+
+        const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+        if (text.length < 24) return false;
+
+        const cs = window.getComputedStyle(el);
+        if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+        if (cs.display === 'inline') return false;
+
+        return true;
+    }
+
+    function createState(el) {
+        const canvas = document.createElement('canvas');
+        canvas.className = 'pretext-force-canvas';
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+
+        el.classList.add('pretext-force-target');
+        el.appendChild(canvas);
+
+        const state = {
+            el,
+            canvas,
+            ctx,
+            prepared: null,
+            active: false,
+            rafId: 0,
+            mouse: { x: 0, y: 0 },
+            bubble: { x: 0, y: 0, targetX: 0, targetY: 0, radius: 74 },
+            metrics: { width: 0, height: 0, padLeft: 0, padRight: 0, padTop: 0, padBottom: 0 },
+            observer: null,
+        };
+
+        function resizeCanvas() {
+            const rect = el.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            state.metrics.width = rect.width;
+            state.metrics.height = rect.height;
+
+            canvas.width = Math.max(1, Math.round(rect.width * dpr));
+            canvas.height = Math.max(1, Math.round(rect.height * dpr));
+            canvas.style.width = `${Math.max(1, rect.width)}px`;
+            canvas.style.height = `${Math.max(1, rect.height)}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const cs = window.getComputedStyle(el);
+            state.metrics.padLeft = parsePad(cs.paddingLeft);
+            state.metrics.padRight = parsePad(cs.paddingRight);
+            state.metrics.padTop = parsePad(cs.paddingTop);
+            state.metrics.padBottom = parsePad(cs.paddingBottom);
+        }
+
+        function rebuildPrepared() {
+            if (!pretextModule) return;
+            const sourceText = (el.textContent || '').replace(/\s+/g, ' ').trim();
+            if (!sourceText) {
+                state.prepared = null;
+                return;
+            }
+            state.prepared = pretextModule.prepareWithSegments(sourceText, readFont(el));
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, state.metrics.width, state.metrics.height);
+        }
+
+        function drawForceBubble() {
+            const ring = state.bubble.radius;
+            const gradient = ctx.createRadialGradient(state.bubble.x, state.bubble.y, ring * 0.16, state.bubble.x, state.bubble.y, ring);
+            gradient.addColorStop(0, 'rgba(255,20,24,0.24)');
+            gradient.addColorStop(1, 'rgba(255,20,24,0)');
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(state.bubble.x, state.bubble.y, ring, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function drawLayout() {
+            if (!state.active || !state.prepared || !pretextModule) return;
+
+            const contentLeft = state.metrics.padLeft;
+            const contentTop = state.metrics.padTop;
+            const contentWidth = Math.max(1, state.metrics.width - state.metrics.padLeft - state.metrics.padRight);
+            const contentHeight = Math.max(1, state.metrics.height - state.metrics.padTop - state.metrics.padBottom);
+            const lineHeight = readLineHeight(el);
+            const color = window.getComputedStyle(el).color;
+
+            ctx.clearRect(0, 0, state.metrics.width, state.metrics.height);
+            ctx.font = readFont(el);
+            ctx.fillStyle = color;
+            ctx.textBaseline = 'top';
+
+            let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+            let y = contentTop;
+            let guard = 0;
+
+            while (guard < 1600) {
+                guard += 1;
+                const rowStart = { segmentIndex: cursor.segmentIndex, graphemeIndex: cursor.graphemeIndex };
+                const rowCenterY = y + lineHeight * 0.5;
+                const dy = Math.abs(rowCenterY - state.bubble.y);
+                const insideBubble = dy < state.bubble.radius;
+
+                if (!insideBubble) {
+                    const line = pretextModule.layoutNextLine(state.prepared, cursor, contentWidth);
+                    if (line === null) break;
+                    if (line.text) ctx.fillText(line.text, contentLeft, y);
+                    cursor = line.end;
+                    if (sameCursor(cursor, rowStart)) break;
+                    y += lineHeight;
+                    if (y > contentTop + contentHeight + lineHeight) break;
+                    continue;
+                }
+
+                const halfChord = Math.sqrt(Math.max(0, state.bubble.radius * state.bubble.radius - dy * dy));
+                const leftCut = state.bubble.x - halfChord;
+                const rightCut = state.bubble.x + halfChord;
+                const gutter = 8;
+
+                const leftWidth = Math.max(30, Math.min(contentWidth, leftCut - contentLeft - gutter));
+                const rightStartX = Math.max(contentLeft, Math.min(contentLeft + contentWidth, rightCut + gutter));
+                const rightWidth = Math.max(0, contentLeft + contentWidth - rightStartX);
+
+                const leftLine = pretextModule.layoutNextLine(state.prepared, cursor, leftWidth);
+                if (leftLine === null) break;
+                if (leftLine.text) ctx.fillText(leftLine.text, contentLeft, y);
+
+                cursor = leftLine.end;
+                if (!sameCursor(cursor, rowStart) && rightWidth > 30) {
+                    const rightStart = { segmentIndex: cursor.segmentIndex, graphemeIndex: cursor.graphemeIndex };
+                    const rightLine = pretextModule.layoutNextLine(state.prepared, cursor, rightWidth);
+                    if (rightLine !== null && !sameCursor(rightLine.end, rightStart)) {
+                        if (rightLine.text) ctx.fillText(rightLine.text, rightStartX, y);
+                        cursor = rightLine.end;
+                    }
+                }
+
+                if (sameCursor(cursor, rowStart)) break;
+                y += lineHeight;
+                if (y > contentTop + contentHeight + lineHeight) break;
+            }
+
+            drawForceBubble();
+        }
+
+        function animate() {
+            if (!state.active) return;
+            state.bubble.x += (state.bubble.targetX - state.bubble.x) * 0.22;
+            state.bubble.y += (state.bubble.targetY - state.bubble.y) * 0.22;
+            drawLayout();
+            state.rafId = window.requestAnimationFrame(animate);
+        }
+
+        function onMove(e) {
+            const rect = el.getBoundingClientRect();
+            state.mouse.x = e.clientX - rect.left;
+            state.mouse.y = e.clientY - rect.top;
+            state.bubble.targetX = state.mouse.x;
+            state.bubble.targetY = state.mouse.y;
+        }
+
+        function start(e) {
+            state.active = true;
+            el.classList.add('pretext-force-active');
+            resizeCanvas();
+            rebuildPrepared();
+
+            const rect = el.getBoundingClientRect();
+            state.bubble.x = rect.width * 0.5;
+            state.bubble.y = rect.height * 0.5;
+            onMove(e);
+
+            if (!state.rafId) {
+                state.rafId = window.requestAnimationFrame(animate);
+            }
+        }
+
+        function stop() {
+            state.active = false;
+            el.classList.remove('pretext-force-active');
+            if (state.rafId) {
+                window.cancelAnimationFrame(state.rafId);
+                state.rafId = 0;
+            }
+            clearCanvas();
+        }
+
+        state.observer = new MutationObserver(() => {
+            rebuildPrepared();
+            if (state.active) drawLayout();
+        });
+
+        state.observer.observe(el, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+        });
+
+        el.addEventListener('mouseenter', async (e) => {
+            const ready = await ensurePretext();
+            if (!ready) return;
+            start(e);
+        });
+        el.addEventListener('mousemove', onMove);
+        el.addEventListener('mouseleave', stop);
+
+        state.resizeCanvas = resizeCanvas;
+        state.rebuildPrepared = rebuildPrepared;
+        state.stop = stop;
+        return state;
+    }
+
+    candidates.forEach((el) => {
+        if (!shouldTarget(el)) return;
+        const state = createState(el);
+        if (state) states.push(state);
+    });
+
+    if (!states.length) return;
+
+    window.addEventListener('resize', () => {
+        states.forEach((state) => {
+            state.resizeCanvas();
+            state.rebuildPrepared();
+            if (state.active) state.stop();
+        });
+    });
+}
+
+
+// ==========================================
+// 11. INIT
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
     // Set initial states with optimized rendering
@@ -722,6 +1017,8 @@ window.addEventListener('DOMContentLoaded', () => {
     gsap.set('.hero-grid-overlay', { opacity: 0, force3D: true });
     gsap.set('.mob-link span', { y: '120%', force3D: true });
     gsap.set('.mob-menu-bg', { y: '-100%', force3D: true });
+
+    initPretextTextForce();
 
     initLoader();
 });
