@@ -1748,8 +1748,8 @@ body::before {
 /* ── Variable Typographic ASCII — Cursor Field ─────────────────────────────── */
 .ascii-section {
     width: 100%;
-    background: #0a0a0a;
-    padding: 60px 0 48px;
+    background: #ffffff;
+    padding: 40px 0 0;
     overflow: hidden;
     cursor: none;
 }
@@ -1758,7 +1758,7 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto 20px;
     padding: 0 24px;
 }
@@ -1769,14 +1769,14 @@ body::before {
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(0, 0, 0, 0.25);
 }
 
 .ascii-section-hint {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 10px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(0, 0, 0, 0.15);
     letter-spacing: 1px;
     animation: ascii-hint-pulse 2.5s ease-in-out infinite;
 }
@@ -1788,27 +1788,35 @@ body::before {
 
 .ascii-cursor-field {
     display: block;
-    width: fit-content;
-    margin-inline: auto;
-    padding: 14px;
+    width: 100%;
+    padding: 0;
     font-family: Georgia, Palatino, "Times New Roman", serif;
     font-size: 14px;
     line-height: 16px;
     white-space: pre;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     min-height: 464px;
+    overflow: hidden;
 }
 
 .ascii-art-row {
     display: block;
-    width: fit-content;
-    margin-inline: auto;
-    white-space: pre;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
     font-family: Georgia, Palatino, "Times New Roman", serif;
     font-size: 14px;
+}
+
+/* Fixed-width character cell for uniform grid */
+.ac {
+    display: inline-block;
+    width: var(--cell-w, 8px);
+    text-align: center;
+    overflow: hidden;
 }
 
 /* Weight variants */
@@ -1817,17 +1825,17 @@ body::before {
 .w8 { font-weight: 800; }
 .it { font-style: italic; }
 
-/* Gold alpha ramp — same as original demo */
-.a1  { color: rgba(196, 163, 90, 0.10); }
-.a2  { color: rgba(196, 163, 90, 0.20); }
-.a3  { color: rgba(196, 163, 90, 0.30); }
-.a4  { color: rgba(196, 163, 90, 0.40); }
-.a5  { color: rgba(196, 163, 90, 0.50); }
-.a6  { color: rgba(196, 163, 90, 0.60); }
-.a7  { color: rgba(196, 163, 90, 0.70); }
-.a8  { color: rgba(196, 163, 90, 0.80); }
-.a9  { color: rgba(196, 163, 90, 0.90); }
-.a10 { color: rgba(196, 163, 90, 1.00); }
+/* Red alpha ramp — 10% max opacity */
+.a1  { color: rgba(229, 12, 61, 0.01); }
+.a2  { color: rgba(229, 12, 61, 0.02); }
+.a3  { color: rgba(229, 12, 61, 0.03); }
+.a4  { color: rgba(229, 12, 61, 0.04); }
+.a5  { color: rgba(229, 12, 61, 0.05); }
+.a6  { color: rgba(229, 12, 61, 0.06); }
+.a7  { color: rgba(229, 12, 61, 0.07); }
+.a8  { color: rgba(229, 12, 61, 0.08); }
+.a9  { color: rgba(229, 12, 61, 0.09); }
+.a10 { color: rgba(229, 12, 61, 0.10); }
 
 @media (max-width: 860px) {
     .ascii-cursor-field {

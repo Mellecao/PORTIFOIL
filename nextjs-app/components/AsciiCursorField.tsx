@@ -2,25 +2,19 @@
 
 import { useEffect, useRef } from "react";
 
-// ─── Constants (mirrored from pretext/pages/demos/variable-typographic-ascii.ts)
-const COLS = 50;
+// ─── Constants ───────────────────────────────────────────────────────────────
 const ROWS = 28;
 const FONT_SIZE = 14;
 const LINE_HEIGHT = 16;
-const TARGET_ROW_W = 440;
+const CHAR_WIDTH = 8; // approximate avg char width in Georgia 14px
 const PROP_FAMILY = 'Georgia, Palatino, "Times New Roman", serif';
 const FIELD_OVERSAMPLE = 2;
-const FIELD_COLS = COLS * FIELD_OVERSAMPLE;
-const FIELD_ROWS = ROWS * FIELD_OVERSAMPLE;
-const CANVAS_W = 220;
-const CANVAS_H = Math.round(CANVAS_W * ((ROWS * LINE_HEIGHT) / TARGET_ROW_W));
-const FIELD_SCALE_X = FIELD_COLS / CANVAS_W;
-const FIELD_SCALE_Y = FIELD_ROWS / CANVAS_H;
-const PARTICLE_N = 120;
+const PARTICLE_DENSITY = 0.08; // particles per column
 const SPRITE_R = 14;
-const CURSOR_STAMP_R = 32;
-const ATTRACTOR_FORCE = 0.25;
-const FIELD_DECAY = 0.82;
+const CURSOR_STAMP_R = 64;
+const ATTRACTOR_FORCE = 0.45;
+const FIELD_DECAY = 0.88;
+const MIGUEL_CHARS = ['M', 'I', 'G', 'U', 'E', 'L'];
 const CHARSET =
   " .,:;!+-=*#@%&abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const WEIGHTS = [300, 500, 800] as const;
@@ -58,6 +52,18 @@ export default function AsciiCursorField() {
     let cancelled = false;
 
     async function init(el: HTMLDivElement) {
+      // ── Compute dynamic grid from container width ───────────────────────
+      const containerW = el.offsetWidth || window.innerWidth;
+      const COLS = Math.max(40, Math.floor(containerW / CHAR_WIDTH));
+      const TARGET_ROW_W = COLS * CHAR_WIDTH;
+      const FIELD_COLS = COLS * FIELD_OVERSAMPLE;
+      const FIELD_ROWS = ROWS * FIELD_OVERSAMPLE;
+      const CANVAS_W = TARGET_ROW_W;
+      const CANVAS_H = Math.round(CANVAS_W * ((ROWS * LINE_HEIGHT) / TARGET_ROW_W));
+      const FIELD_SCALE_X = FIELD_COLS / CANVAS_W;
+      const FIELD_SCALE_Y = FIELD_ROWS / CANVAS_H;
+      const PARTICLE_N = Math.max(80, Math.round(COLS * PARTICLE_DENSITY * ROWS));
+
       // ── Dynamic import keeps SSR clean ──────────────────────────────────
       const { prepareWithSegments } = await import("@chenglou/pretext");
       if (cancelled) return;
@@ -149,6 +155,7 @@ export default function AsciiCursorField() {
       }
 
       // ── Brightness lookup table (0–255 → HTML span) ──────────────────────
+      const cellW = (containerW / COLS).toFixed(2);
       const brightnessLookup: { monoChar: string; propHtml: string }[] = [];
       for (let b = 0; b < 256; b++) {
         const brightness = b / 255;
@@ -157,14 +164,13 @@ export default function AsciiCursorField() {
             Math.min(MONO_RAMP.length - 1, (brightness * MONO_RAMP.length) | 0)
           ]!;
         if (brightness < 0.03) {
-          brightnessLookup.push({ monoChar, propHtml: " " });
+          brightnessLookup.push({ monoChar, propHtml: `<span class="ac">&nbsp;</span>` });
           continue;
         }
-        const match = findBest(brightness);
         const alphaIndex = Math.max(1, Math.min(10, Math.round(brightness * 10)));
         brightnessLookup.push({
           monoChar,
-          propHtml: `<span class="${wCls(match.weight, match.style)} a${alphaIndex}">${esc(match.char)}</span>`,
+          propHtml: `<span class="w8 a${alphaIndex} ac">MIGUEL_PLACEHOLDER</span>`,
         });
       }
 
@@ -221,13 +227,11 @@ export default function AsciiCursorField() {
       // ── Particles ─────────────────────────────────────────────────────────
       const particles: Particle[] = [];
       for (let i = 0; i < PARTICLE_N; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const r = Math.random() * 40 + 20;
         particles.push({
-          x: CANVAS_W / 2 + Math.cos(angle) * r,
-          y: CANVAS_H / 2 + Math.sin(angle) * r,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
+          x: Math.random() * CANVAS_W,
+          y: Math.random() * CANVAS_H,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
         });
       }
 
@@ -235,6 +239,8 @@ export default function AsciiCursorField() {
       const cursorStamp = createFieldStamp(CURSOR_STAMP_R);
 
       // ── DOM rows ───────────────────────────────────────────────────────────
+      // Inject cell width as CSS custom property
+      el.style.setProperty('--cell-w', `${cellW}px`);
       const rowNodes: HTMLDivElement[] = [];
       for (let row = 0; row < ROWS; row++) {
         const div = document.createElement("div");
@@ -284,10 +290,10 @@ export default function AsciiCursorField() {
             p.vx += (dx / dist) * ATTRACTOR_FORCE;
             p.vy += (dy / dist) * ATTRACTOR_FORCE;
           }
-          p.vx += (Math.random() - 0.5) * 0.25;
-          p.vy += (Math.random() - 0.5) * 0.25;
-          p.vx *= 0.97;
-          p.vy *= 0.97;
+          p.vx += (Math.random() - 0.5) * 0.08;
+          p.vy += (Math.random() - 0.5) * 0.08;
+          p.vx *= 0.985;
+          p.vy *= 0.985;
           p.x += p.vx;
           p.y += p.vy;
           if (p.x < -SPRITE_R) p.x += CANVAS_W + SPRITE_R * 2;
@@ -322,7 +328,9 @@ export default function AsciiCursorField() {
               255,
               ((brightness / (FIELD_OVERSAMPLE * FIELD_OVERSAMPLE)) * 255) | 0
             );
-            html += brightnessLookup[bb]!.propHtml;
+            const lookup = brightnessLookup[bb]!.propHtml;
+            const miguelChar = MIGUEL_CHARS[(row * COLS + col) % MIGUEL_CHARS.length]!;
+            html += lookup.replace('MIGUEL_PLACEHOLDER', miguelChar);
           }
           rowNodes[row]!.innerHTML = html;
         }

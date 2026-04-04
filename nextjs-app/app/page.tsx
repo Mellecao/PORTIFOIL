@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { I18nProvider, useI18n } from "@/contexts/I18nContext";
 import PretextText from "@/components/PretextText";
-import AsciiCursorField from "@/components/AsciiCursorField";
 
 // ─── Inner page that consumes i18n ───────────────────────────────────────────
 function HomeInner() {
@@ -512,9 +511,6 @@ function HomeInner() {
           </div>
         </div>
       </section>
-
-      {/* ASCII CURSOR FIELD */}
-      <AsciiCursorField />
 
       {/* ABOUT */}
       <section className="about" id="about">
