@@ -538,6 +538,15 @@ body::before {
     opacity: 0;
 }
 
+/* Hide hero elements by default to prevent flash before GSAP loads */
+.hero-name-word { transform: translateY(110%); }
+.hero-stripe,
+.hero-bio,
+.hero-cta-wrap,
+.hero-scroll,
+.hero-corner,
+.hero-grid-overlay { opacity: 0; }
+
 .hero-tag-group {
     display: flex;
     gap: 24px;
@@ -556,6 +565,21 @@ body::before {
 .hero-center {
     padding: 40px 0;
     position: relative;
+}
+
+/* 3D statue — positioned to the right of the hero name text */
+.statue-head {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(160px, 18vw, 340px);
+    height: clamp(160px, 18vw, 340px);
+    pointer-events: none;
+}
+
+.statue-head canvas {
+    display: block;
 }
 
 .hero-name {
@@ -976,7 +1000,7 @@ body::before {
     flex: 0 0 min(520px, 82vw);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: none;
     border: 1px solid var(--border);
     background: var(--white);
     transition: border-color 0.4s, transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
@@ -993,13 +1017,14 @@ body::before {
 .work-card-img {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/2;
 }
 
 .work-card-placeholder {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     transition: transform 1s var(--ease), filter 0.6s;
 }
 
@@ -1087,6 +1112,7 @@ body::before {
     grid-template-columns: 1fr 1.4fr;
     gap: clamp(40px, 6vw, 120px);
     margin-bottom: 80px;
+    align-items: stretch;
 }
 
 .about-photo {
@@ -1127,6 +1153,9 @@ body::before {
 
 .about-col-right {
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .pretext-force-target {
@@ -1180,10 +1209,11 @@ body::before {
     column-count: 2;
     column-gap: 48px;
     column-rule: 1px solid var(--border);
+    flex: 1;
 }
 
 .about-mag-col {
-    font-size: clamp(15px, 1.1vw, 18px);
+    font-size: clamp(13px, 1vw, 16px);
     line-height: 1.85;
     color: var(--gray-dark);
     margin-bottom: 24px;

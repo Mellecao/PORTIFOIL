@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { I18nProvider, useI18n } from "@/contexts/I18nContext";
-import PretextText from "@/components/PretextText";
+import StatueHead from "@/components/StatueHead";
 
 // ─── Inner page that consumes i18n ───────────────────────────────────────────
 function HomeInner() {
@@ -14,8 +14,21 @@ function HomeInner() {
     if (initialized.current) return;
     initialized.current = true;
 
+    // Detect back/forward navigation — skip loader if returning to the page
+    const isBackNav =
+      (performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming)?.type === "back_forward" ||
+      sessionStorage.getItem("mm-visited") === "1";
+    sessionStorage.setItem("mm-visited", "1");
+
+    // Lock body scroll until animations are ready
+    document.body.style.overflow = "hidden";
+
     // eslint-disable-next-line prefer-const
     let rafId: number;
+    // Store references for cleanup
+    let lenisInstance: InstanceType<typeof import("lenis").default> | null = null;
+    let ScrollTriggerRef: typeof import("gsap/all").ScrollTrigger | null = null;
+    let gsapRef: typeof import("gsap").gsap | null = null;
 
     async function bootAnimations() {
       const [gsapMod, lenisMod, gsapAllMod] = await Promise.all([
@@ -27,6 +40,8 @@ function HomeInner() {
       const gsap = gsapMod.gsap ?? (gsapMod as unknown as { default: typeof gsapMod.gsap }).default;
       const { ScrollTrigger, ScrollToPlugin } = gsapAllMod;
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      gsapRef = gsap;
+      ScrollTriggerRef = ScrollTrigger;
 
       ScrollTrigger.config({
         autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
@@ -41,6 +56,7 @@ function HomeInner() {
         smoothWheel: true,
         touchMultiplier: 2,
       } as ConstructorParameters<typeof lenisMod.default>[0]);
+      lenisInstance = lenis;
 
       function raf(time: number) {
         lenis.raf(time);
@@ -156,6 +172,8 @@ function HomeInner() {
       const counter = { val: 0 };
 
       function revealPage() {
+        // Unlock body scroll
+        document.body.style.overflow = "";
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
         tl.to(".hero-name-word", { y: 0, duration: 1.4, stagger: 0.15, force3D: true });
         tl.to(".hero-top", { opacity: 1, y: 0, duration: 0.7, force3D: true }, "-=1");
@@ -168,7 +186,23 @@ function HomeInner() {
         tl.add(() => initScrollAnimations());
       }
 
-      const loaderTl = gsap.timeline({ onComplete: revealPage });
+      // If returning via back navigation, skip the loader entirely
+      if (isBackNav) {
+        const loaderEl = document.getElementById("loader");
+        if (loaderEl) loaderEl.style.display = "none";
+        // Show hero elements immediately
+        gsap.set(".hero-name-word", { y: 0 });
+        gsap.set(".hero-top", { opacity: 1, y: 0 });
+        gsap.set(".hero-stripe", { opacity: 1 });
+        gsap.set(".hero-bio", { opacity: 1, y: 0 });
+        gsap.set(".hero-cta-wrap", { opacity: 1, y: 0 });
+        gsap.set(".hero-scroll", { opacity: 1 });
+        gsap.set(".hero-corner", { opacity: 0.5 });
+        gsap.set(".hero-grid-overlay", { opacity: 1 });
+        document.body.style.overflow = "";
+        initScrollAnimations();
+      } else {
+        const loaderTl = gsap.timeline({ onComplete: revealPage });
       loaderTl.to(".loader-tag", { opacity: 1, duration: 0.4 }, 0);
       loaderTl.to(".loader-counter", { opacity: 1, textShadow: "0 0 15px rgba(255,20,24,.5)", duration: 0.3 }, 0.1);
       loaderTl.to(".loader-name-line", { y: 0, stagger: 0.12, duration: 0.8, ease: "power4.out" }, 0.2);
@@ -184,6 +218,7 @@ function HomeInner() {
       loaderTl.to(".loader-wipe-1", { yPercent: -100, duration: 0.9, ease: "power4.inOut" }, "-=0.2");
       loaderTl.to(".loader-wipe-2", { yPercent: -100, duration: 0.9, ease: "power4.inOut" }, "-=0.6");
       loaderTl.set(".loader", { display: "none" });
+      }
 
       function initScrollAnimations() {
         // Nav scroll
@@ -210,7 +245,7 @@ function HomeInner() {
               },
             },
           });
-          [".hero-top",".hero-bio",".hero-cta-wrap",".hero-scroll",".hero-corner",".hero-stripe",".hero-grid-overlay",".hero-noise",".hero-name-accent"].forEach((s) =>
+          [".hero-top",".hero-bio",".hero-cta-wrap",".hero-scroll",".hero-corner",".hero-stripe",".hero-grid-overlay",".hero-noise",".hero-name-accent",".statue-head"].forEach((s) =>
             heroZoomTl.to(s, { opacity: 0, y: -10, duration: 0.04 }, 0)
           );
           heroZoomTl.to(".hero-name", { scale: 18, rotation: 4, duration: 0.35, force3D: true }, 0.03);
@@ -315,7 +350,21 @@ function HomeInner() {
 
     bootAnimations().catch(console.error);
 
-    return () => { if (rafId) cancelAnimationFrame(rafId); };
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      // Kill all ScrollTrigger instances and GSAP tweens
+      if (ScrollTriggerRef) {
+        ScrollTriggerRef.getAll().forEach((st: { kill: () => void }) => st.kill());
+      }
+      if (gsapRef) {
+        gsapRef.killTweensOf("*");
+      }
+      if (lenisInstance) {
+        lenisInstance.destroy();
+      }
+      document.body.style.overflow = "";
+      initialized.current = false;
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ─── JSX ──────────────────────────────────────────────────────────────────
@@ -407,6 +456,7 @@ function HomeInner() {
               <span className="hero-name-line"><span className="hero-name-word">MIGUEL</span></span>
               <span className="hero-name-line"><span className="hero-name-word">MELLE<span className="hero-name-accent">®</span></span></span>
             </h1>
+            <StatueHead />
             <div className="hero-stripe">
               <div className="hero-stripe-inner">
                 <span>BRAND DESIGN ✦ WEB DESIGN ✦ PACKAGING ✦ BRAND DESIGN ✦ WEB DESIGN ✦ PACKAGING ✦ BRAND DESIGN ✦ WEB DESIGN ✦ PACKAGING ✦ BRAND DESIGN ✦ WEB DESIGN ✦ PACKAGING ✦</span>
@@ -478,7 +528,7 @@ function HomeInner() {
                 <span className="work-card-year">2025</span>
               </div>
             </a>
-            <a href="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/BRANDBOOK%20UP%20by%20Miguel%20Melle.pdf" target="_blank" className="work-card" data-cursor-label="VER">
+            <a href="/up-foods" className="work-card" data-cursor-label="VER">
               <div className="work-card-img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/capa%20up.png" alt="UP" className="work-card-placeholder" />
@@ -493,12 +543,8 @@ function HomeInner() {
             </a>
             <a href="/renderizai" className="work-card" data-cursor-label="VER">
               <div className="work-card-img">
-                <div style={{width:"100%",height:"100%",background:"#0A0A0A",display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
-                  <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(229,12,61,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(229,12,61,0.04) 1px,transparent 1px)",backgroundSize:"40px 40px"}}></div>
-                  <div style={{position:"absolute",width:"300px",height:"300px",borderRadius:"50%",background:"radial-gradient(circle,rgba(229,12,61,0.12) 0%,transparent 70%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}></div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/Ativo%204.svg" alt="RENDERIZAI" style={{width:"60%",position:"relative",zIndex:1,filter:"drop-shadow(0 0 30px rgba(229,12,61,0.15))"}} />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/fundorenderiz.png" alt="RENDERIZAI" className="work-card-placeholder" />
                 <div className="work-card-overlay"><span className="work-card-num">03</span></div>
               </div>
               <div className="work-card-info">
@@ -536,10 +582,10 @@ function HomeInner() {
                 <p className="about-big-text reveal-text" dangerouslySetInnerHTML={{ __html: tHtml("about.bigtext") }} />
               </div>
               <div className="about-body about-magazine">
-                <PretextText as="p" className="about-mag-col reveal-fade" size={50} gutter={8}>{t("about.p1")}</PretextText>
-                <PretextText as="p" className="about-mag-col reveal-fade" size={50} gutter={8}>{t("about.p2")}</PretextText>
-                <PretextText as="p" className="about-mag-col reveal-fade" size={50} gutter={8}>{t("about.p3")}</PretextText>
-                <PretextText as="p" className="about-mag-col reveal-fade" size={50} gutter={8}>{t("about.p4")}</PretextText>
+                <p className="about-mag-col reveal-fade">{t("about.p1")}</p>
+                <p className="about-mag-col reveal-fade">{t("about.p2")}</p>
+                <p className="about-mag-col reveal-fade">{t("about.p3")}</p>
+                <p className="about-mag-col reveal-fade">{t("about.p4")}</p>
               </div>
               <div className="about-skills">
                 <div className="skill-row reveal-up">
