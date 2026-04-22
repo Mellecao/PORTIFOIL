@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENDERIZAI — Manual de Identidade Visual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:wght@100&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Corpta';
+            src: url('https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/CORPTA.OTF') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        :root {
+            --rz-black: #0A0A0A;
+            --rz-dark: #111111;
+            --rz-surface: #161616;
+            --rz-accent: #8cc04e;
+            --rz-accent-dark: #6b9e3e;
+            --rz-accent-light: #a5d46e;
+            --rz-white: #f8f8f8;
+            --rz-gray: #c2c2c2;
+            --rz-gray-dark: #8a8a8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            background: var(--rz-black);
+            color: var(--rz-white);
+            font-family: 'Outfit', sans-serif;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+        }
+
+        /* ========== PAGE SYSTEM ========== */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 40mm 25mm 30mm 25mm;
+            position: relative;
+            page-break-after: always;
+            background: var(--rz-black);
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15mm;
+            right: 25mm;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--rz-gray-dark);
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 25mm;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.15);
+            text-transform: uppercase;
+        }
+
+        .section-marker {
+            position: absolute;
+            top: 15mm;
+            right: 25mm;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--rz-accent);
+            text-transform: uppercase;
+        }
+
+        /* ========== COVER PAGE ========== */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            background: var(--rz-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(140, 192, 78, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(140, 192, 78, 0.04) 1px, transparent 1px);
+            background-size: 20mm 20mm;
+            mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
+        }
+
+        .cover-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(140,192,78,0.12) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+        }
+
+        .cover-logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .cover-title {
+            font-family: 'Corpta', 'Outfit', sans-serif;
+            font-size: 56px;
+            font-weight: 400;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .cover-title .ai { color: var(--rz-accent); }
+
+        .cover-subtitle {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--rz-gray-dark);
+            text-transform: uppercase;
+            margin-bottom: 80px;
+        }
+
+        .cover-meta {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .cover-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cover-meta-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--rz-gray-dark);
+        }
+
+        .cover-meta-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--rz-gray);
+        }
+
+        .cover-line {
+            position: absolute;
+            bottom: 60mm;
+            left: 25mm;
+            right: 25mm;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(140,192,78,0.2), transparent);
+        }
+
+        .cover-bottom {
+            position: absolute;
+            bottom: 20mm;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .cover-bottom p {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* ========== SECTION TITLE PAGE ========== */
+        .section-title-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 72px;
+            font-weight: 700;
+            color: rgba(140,192,78,0.12);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .section-name {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .section-name em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--rz-accent);
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--rz-gray-dark);
+            max-width: 400px;
+            line-height: 1.7;
+        }
+
+        /* ========== COMMON ========== */
+        h2 {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        h2 em { font-style: italic; font-weight: 400; color: var(--rz-accent); }
+
+        h3 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--rz-accent);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .text-body {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--rz-gray);
+            margin-bottom: 24px;
+        }
+
+        .text-body strong {
+            color: var(--rz-white);
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 32px 0;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* ========== CONCEPT ========== */
+        .concept-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .keyword-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .keyword {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 6px 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--rz-gray-dark);
+        }
+
+        /* ========== LOGO ========== */
+        .logo-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            min-height: 180px;
+        }
+
+        .logo-showcase img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        .logo-showcase.light {
+            background: #f0f0f0;
+        }
+
+        .logo-versions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-version-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .logo-version-card img {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 12px;
+        }
+
+        .logo-version-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--rz-gray-dark);
+        }
+
+        .logo-grid-img {
+            width: 100%;
+            margin: 16px 0;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+        }
+
+        /* ========== COLORS ========== */
+        .color-swatches {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .swatch {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .swatch-fill {
+            aspect-ratio: 1.2;
+            position: relative;
+        }
+
+        .swatch-data {
+            padding: 12px;
+            background: var(--rz-dark);
+        }
+
+        .swatch-name {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .swatch-role {
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: var(--rz-gray-dark);
+            margin-bottom: 8px;
+        }
+
+        .swatch-hex {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--rz-gray);
+        }
+
+        .ratio-bar {
+            display: flex;
+            height: 32px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .ratio-seg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .color-usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .color-usage-table th,
+        .color-usage-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 10px;
+        }
+
+        .color-usage-table th {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--rz-accent);
+        }
+
+        .color-usage-table td {
+            color: var(--rz-gray);
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        .font-block {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .font-block:last-child {
+            border-bottom: none;
+        }
+
+        .font-header-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .font-title {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .font-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: var(--rz-accent);
+            padding: 3px 8px;
+            border: 1px solid rgba(140,192,78,0.2);
+            border-radius: 100px;
+        }
+
+        .font-role {
+            font-size: 11px;
+            color: var(--rz-gray-dark);
+            margin-bottom: 16px;
+        }
+
+        .font-display-text {
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .font-alpha {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--rz-gray-dark);
+            word-break: break-all;
+            margin-bottom: 4px;
+        }
+
+        .type-scale-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .scale-box {
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .scale-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: var(--rz-accent);
+            margin-bottom: 4px;
+        }
+
+        .scale-value {
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .scale-font-name {
+            font-size: 8px;
+            color: var(--rz-gray-dark);
+        }
+
+        /* ========== ELEMENTS ========== */
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .element-box {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .element-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .element-desc {
+            font-size: 10px;
+            color: var(--rz-gray-dark);
+            line-height: 1.6;
+        }
+
+        /* ========== MOCKUPS ========== */
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .mockup-item {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mockup-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mockup-label {
+            padding: 12px 16px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--rz-gray-dark);
+            background: var(--rz-dark);
+        }
+
+        /* ========== DOWNLOADS ========== */
+        .download-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .download-table th,
+        .download-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 10px;
+        }
+
+        .download-table th {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--rz-accent);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .download-table td {
+            color: var(--rz-gray);
+        }
+
+        .format-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            padding: 2px 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-block {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .contact-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .contact-email {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--rz-accent);
+            margin-bottom: 24px;
+        }
+
+        .contact-location {
+            font-size: 11px;
+            color: var(--rz-gray-dark);
+            letter-spacing: 2px;
+        }
+
+        /* ========== PRINT ========== */
+        @media print {
+            body {
+                background: var(--rz-black) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .page {
+                margin: 0;
+                padding: 30mm 20mm 25mm 20mm;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+
+        /* Screen navigation */
+        .print-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--rz-accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(140,192,78,0.3);
+        }
+        .print-btn:hover {
+            background: var(--rz-accent-light);
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">GERAR PDF ↓</button>
+
+    <!-- ==================== CAPA ==================== -->
+    <div class="page cover">
+        <div class="cover-grid"></div>
+        <div class="cover-glow"></div>
+        <div class="cover-content">
+            <div class="cover-logo">
+                <img src="01-logo-colorida/SIMBOLO-FINAL.png" alt="RENDERIZAI Símbolo">
+            </div>
+            <div class="cover-title">RENDERIZ<span class="ai">AI</span></div>
+            <div class="cover-subtitle">Manual de Identidade Visual</div>
+            <div class="cover-meta">
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">DESIGNER</span>
+                    <span class="cover-meta-value">Miguel Melle</span>
+                </div>
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">ANO</span>
+                    <span class="cover-meta-value">2026</span>
+                </div>
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">VERSÃO</span>
+                    <span class="cover-meta-value">1.0</span>
+                </div>
+            </div>
+        </div>
+        <div class="cover-line"></div>
+        <div class="cover-bottom">
+            <p>DOCUMENTO CONFIDENCIAL — USO INTERNO</p>
+        </div>
+    </div>
+
+    <!-- ==================== ÍNDICE ==================== -->
+    <div class="page">
+        <div class="section-marker">ÍNDICE</div>
+        <h2 style="margin-bottom:48px;">Conteúdo</h2>
+
+        <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">01</span>
+                    <span style="font-size:14px;font-weight:600;">Conceito</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">03</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">02</span>
+                    <span style="font-size:14px;font-weight:600;">Logotipo</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">05</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">03</span>
+                    <span style="font-size:14px;font-weight:600;">Paleta de Cores</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">07</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">04</span>
+                    <span style="font-size:14px;font-weight:600;">Tipografia</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">09</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">05</span>
+                    <span style="font-size:14px;font-weight:600;">Elementos Gráficos</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">11</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">06</span>
+                    <span style="font-size:14px;font-weight:600;">Aplicações & Mockups</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">12</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                    <span class="mono" style="font-size:12px;color:var(--rz-accent);margin-right:16px;">07</span>
+                    <span style="font-size:14px;font-weight:600;">Arquivos & Downloads</span>
+                </div>
+                <span class="mono" style="font-size:11px;color:var(--rz-gray-dark);">14</span>
+            </div>
+        </div>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">02</div>
+    </div>
+
+    <!-- ==================== 01 CONCEITO - TÍTULO ==================== -->
+    <div class="page section-title-page">
+        <div class="section-num">01</div>
+        <div class="section-name">Con<em>ceito</em></div>
+        <p class="section-desc">A essência da marca RENDERIZAI e o universo conceitual que sustenta toda a identidade visual.</p>
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">03</div>
+    </div>
+
+    <!-- ==================== 01 CONCEITO - CONTEÚDO ==================== -->
+    <div class="page">
+        <div class="section-marker">01 — CONCEITO</div>
+
+        <h2>A <em>Marca</em></h2>
+
+        <div class="text-body">
+            A <strong>RENDERIZAI</strong> aparece no mercado com a proposta de <strong>eliminar o overthinking</strong> do processo de renderização. O conceito visual traduz o que o produto faz: transforma o viewport bruto — wireframes, meshes, geometria crua — em imagens fotorrealistas (renderizadas) em segundos.
+        </div>
+
+        <div class="text-body">
+            A identidade se inspira primeiramente no <strong>cubo 3D</strong>, faz também uma referência ao ashlar da maçonaria (essa presente em muitos aspectos da arquitetura). Um cubo bruto com uma das pontas polidas. A dualidade entre o <strong>bruto e o renderizado</strong>.
+        </div>
+
+        <div class="text-body">
+            Referências ao <strong>brutalismo arquitetônico</strong>, à estética maçônica do cubo, e à continuidade orgânica de Gaudí (representado nas bordas curvadas) constroem um universo visual que é ao mesmo tempo técnico e conceitual.
+        </div>
+
+        <div class="text-body">
+            Indo mais a fundo na simbologia, vemos ao centro da logo uma <strong>cruz</strong>, essa representando a fé cristã, um pilar central da marca.
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>SÍNTESE</h3>
+        <div class="text-body">
+            O cubo traz a identidade para o 3D. A ponta polida traz a ideia de renderização. A referência maçônica traz a essência arquitetônica (sendo o público majoritariamente arquitetos e profissionais de archviz). E a cruz central: para os dignos da salvação, um sinal claro.
+        </div>
+
+        <h3>UNIVERSO DE PALAVRAS</h3>
+        <div class="keyword-cloud">
+            <span class="keyword">TRANSFORMAÇÃO</span>
+            <span class="keyword">BRUTALISMO</span>
+            <span class="keyword">CUBO</span>
+            <span class="keyword">FLUXO DE DADOS</span>
+            <span class="keyword">ESCULPIR</span>
+            <span class="keyword">AUTOMAÇÃO</span>
+            <span class="keyword">PERFORMANCE</span>
+            <span class="keyword">EIXO XYZ</span>
+            <span class="keyword">CONTINUIDADE</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>CONCEITO VISUAL</h3>
+        <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;border:1px solid rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;margin-top:8px;">
+            <div style="padding:28px;text-align:center;">
+                <div style="font-size:9px;letter-spacing:4px;color:var(--rz-gray-dark);margin-bottom:12px;">BRUTO</div>
+                <div style="font-size:16px;font-weight:700;">VIEWPORT 3D</div>
+                <div style="font-size:10px;color:var(--rz-gray-dark);margin-top:4px;">Wireframes · Meshes · Raw</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;background:var(--rz-accent);color:white;font-size:20px;font-weight:900;">→</div>
+            <div style="padding:28px;text-align:center;">
+                <div style="font-size:9px;letter-spacing:4px;color:var(--rz-gray-dark);margin-bottom:12px;">POLIDO</div>
+                <div style="font-size:16px;font-weight:700;">RENDER FINAL</div>
+                <div style="font-size:10px;color:var(--rz-gray-dark);margin-top:4px;">Fotorrealista · I.A.</div>
+            </div>
+        </div>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">04</div>
+    </div>
+
+    <!-- ==================== 02 LOGOTIPO - TÍTULO ==================== -->
+    <div class="page section-title-page">
+        <div class="section-num">02</div>
+        <div class="section-name">Logo<em>tipo</em></div>
+        <p class="section-desc">Versões do logotipo, construção, símbolo e regras de aplicação.</p>
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">05</div>
+    </div>
+
+    <!-- ==================== 02 LOGOTIPO - CONTEÚDO ==================== -->
+    <div class="page">
+        <div class="section-marker">02 — LOGOTIPO</div>
+
+        <h2>Logo <em>Principal</em></h2>
+
+        <div class="logo-showcase" style="background:var(--rz-surface);">
+            <img src="01-logo-colorida/LOGO-COMPLETA-FINAL.png" alt="Logo Completa Colorida">
+        </div>
+
+        <h3>VERSÕES DO LOGOTIPO</h3>
+        <div class="logo-versions">
+            <div class="logo-version-card" style="background:var(--rz-surface);">
+                <img src="01-logo-colorida/SIMBOLO-FINAL.png" alt="Símbolo Colorido">
+                <div class="logo-version-label">SÍMBOLO COLORIDO</div>
+            </div>
+            <div class="logo-version-card light">
+                <img src="02-logo-monocromatica/SIMBOLO-MONOCROMATICO-FINAL.png" alt="Símbolo Monocromático">
+                <div class="logo-version-label" style="color:#333;">MONOCROMÁTICO</div>
+            </div>
+            <div class="logo-version-card" style="background:var(--rz-surface);">
+                <img src="01-logo-colorida/TEXTO-FINAL.png" alt="Texto">
+                <div class="logo-version-label">WORDMARK</div>
+            </div>
+        </div>
+
+        <h3>GRID DE CONSTRUÇÃO</h3>
+        <img class="logo-grid-img" src="04-apoio-grafico/LOGO-GRIDLINE.png" alt="Grid de Construção">
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">06</div>
+    </div>
+
+    <!-- ==================== 03 CORES - TÍTULO ==================== -->
+    <div class="page section-title-page">
+        <div class="section-num">03</div>
+        <div class="section-name">Paleta de <em>Cores</em></div>
+        <p class="section-desc">Sistema cromático completo com cores primárias, secundárias e regras de proporção.</p>
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">07</div>
+    </div>
+
+    <!-- ==================== 03 CORES - CONTEÚDO ==================== -->
+    <div class="page">
+        <div class="section-marker">03 — CORES</div>
+
+        <h2>Cores <em>Principais</em></h2>
+
+        <div class="color-swatches">
+            <div class="swatch">
+                <div class="swatch-fill" style="background:#8cc04e;"></div>
+                <div class="swatch-data">
+                    <div class="swatch-name">RENDER GREEN</div>
+                    <div class="swatch-role">PRIMÁRIA</div>
+                    <div class="swatch-hex">#8CC04E</div>
+                </div>
+            </div>
+            <div class="swatch">
+                <div class="swatch-fill" style="background:#C2C2C2;"></div>
+                <div class="swatch-data">
+                    <div class="swatch-name">STEEL GRAY</div>
+                    <div class="swatch-role">SECUNDÁRIA</div>
+                    <div class="swatch-hex">#C2C2C2</div>
+                </div>
+            </div>
+            <div class="swatch">
+                <div class="swatch-fill" style="background:#F8F8F8;"></div>
+                <div class="swatch-data">
+                    <div class="swatch-name">SNOW WHITE</div>
+                    <div class="swatch-role">TEXTO</div>
+                    <div class="swatch-hex">#F8F8F8</div>
+                </div>
+            </div>
+            <div class="swatch">
+                <div class="swatch-fill" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1);"></div>
+                <div class="swatch-data">
+                    <div class="swatch-name">VOID BLACK</div>
+                    <div class="swatch-role">FUNDO</div>
+                    <div class="swatch-hex">#0A0A0A</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>PROPORÇÃO DE USO</h3>
+        <div class="ratio-bar">
+            <div class="ratio-seg" style="width:60%;background:#0A0A0A;color:#f8f8f8;border:1px solid rgba(255,255,255,0.1);">60%</div>
+            <div class="ratio-seg" style="width:25%;background:#F8F8F8;color:#0A0A0A;">25%</div>
+            <div class="ratio-seg" style="width:10%;background:#C2C2C2;color:#0A0A0A;">10%</div>
+            <div class="ratio-seg" style="width:5%;background:#8cc04e;color:#fff;">5%</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>CORES ESTENDIDAS</h3>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px;">
+            <div style="text-align:center;">
+                <div style="width:100%;aspect-ratio:1.5;background:#111111;border-radius:6px;margin-bottom:6px;"></div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray);">#111111</div>
+                <div style="font-size:7px;color:var(--rz-gray-dark);letter-spacing:1px;">DARK</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:100%;aspect-ratio:1.5;background:#161616;border-radius:6px;margin-bottom:6px;"></div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray);">#161616</div>
+                <div style="font-size:7px;color:var(--rz-gray-dark);letter-spacing:1px;">SURFACE</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:100%;aspect-ratio:1.5;background:#6b9e3e;border-radius:6px;margin-bottom:6px;"></div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray);">#6B9E3E</div>
+                <div style="font-size:7px;color:var(--rz-gray-dark);letter-spacing:1px;">ACCENT DARK</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:100%;aspect-ratio:1.5;background:#a5d46e;border-radius:6px;margin-bottom:6px;"></div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray);">#A5D46E</div>
+                <div style="font-size:7px;color:var(--rz-gray-dark);letter-spacing:1px;">ACCENT LIGHT</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:100%;aspect-ratio:1.5;background:#8a8a8a;border-radius:6px;margin-bottom:6px;"></div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray);">#8A8A8A</div>
+                <div style="font-size:7px;color:var(--rz-gray-dark);letter-spacing:1px;">GRAY DARK</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>REGRAS DE USO</h3>
+        <table class="color-usage-table">
+            <thead>
+                <tr>
+                    <th>COR</th>
+                    <th>USAR EM</th>
+                    <th>EVITAR EM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="color-dot" style="background:#8cc04e;"></span>Render Green</td>
+                    <td>Botões CTA, Links hover, Ícones destaque, Badges, Bordas de foco, Progress bars</td>
+                    <td>Textos de corpo, Fundos grandes, Elementos secundários</td>
+                </tr>
+                <tr>
+                    <td><span class="color-dot" style="background:#C2C2C2;"></span>Steel Gray</td>
+                    <td>Textos secundários, Labels, Bordas, Ícones inativos, Placeholders</td>
+                    <td>Títulos principais, Fundos de cards, Botões de ação</td>
+                </tr>
+                <tr>
+                    <td><span class="color-dot" style="background:#F8F8F8;"></span>Snow White</td>
+                    <td>Textos principais, Títulos, Ícones sobre escuro, Logo negativo</td>
+                    <td>Fundos em modo claro</td>
+                </tr>
+                <tr>
+                    <td><span class="color-dot" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.2);"></span>Void Black</td>
+                    <td>Background geral, Modais, Cards, Headers, Footers</td>
+                    <td>Textos sobre fundo escuro</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">08</div>
+    </div>
+
+    <!-- ==================== 04 TIPOGRAFIA - TÍTULO ==================== -->
+    <div class="page section-title-page">
+        <div class="section-num">04</div>
+        <div class="section-name">Tipo<em>grafia</em></div>
+        <p class="section-desc">Sistema tipográfico com fontes display, corpo, monospace e accent.</p>
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">09</div>
+    </div>
+
+    <!-- ==================== 04 TIPOGRAFIA - CONTEÚDO ==================== -->
+    <div class="page">
+        <div class="section-marker">04 — TIPOGRAFIA</div>
+
+        <h2>Sistema <em>Tipográfico</em></h2>
+
+        <div class="font-block">
+            <div class="font-header-row">
+                <span class="font-title">CORPTA REGULAR</span>
+                <span class="font-tag">DISPLAY</span>
+            </div>
+            <div class="font-role">Logotipo · Headlines H1 · Títulos de seção · Numerais destaque</div>
+            <div class="font-display-text" style="font-family:'Corpta','Outfit',sans-serif;font-size:48px;">RENDERIZ<span style="color:var(--rz-accent);">AI</span></div>
+            <div class="font-alpha" style="font-family:'Corpta','Outfit',sans-serif;">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</div>
+            <div style="display:flex;gap:16px;margin-top:12px;">
+                <div class="mono" style="font-size:9px;color:var(--rz-gray-dark);">Hero: 72–120px</div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray-dark);">Section: 48–64px</div>
+                <div class="mono" style="font-size:9px;color:var(--rz-gray-dark);">Card: 24–32px</div>
+            </div>
+        </div>
+
+        <div class="font-block">
+            <div class="font-header-row">
+                <span class="font-title">OUTFIT</span>
+                <span class="font-tag">UI / CORPO</span>
+            </div>
+            <div class="font-role">Textos de corpo · Botões e labels · Navegação · Cards · Formulários</div>
+            <div class="font-display-text" style="font-family:'Outfit',sans-serif;font-size:32px;font-weight:800;">Plataforma de Renderização I.A.</div>
+            <div class="font-alpha" style="font-family:'Outfit',sans-serif;">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</div>
+            <div style="display:flex;gap:24px;margin-top:12px;align-items:baseline;">
+                <span style="font-family:'Outfit';font-weight:300;font-size:18px;">Light 300</span>
+                <span style="font-family:'Outfit';font-weight:400;font-size:18px;">Regular 400</span>
+                <span style="font-family:'Outfit';font-weight:600;font-size:18px;">Semi 600</span>
+                <span style="font-family:'Outfit';font-weight:700;font-size:18px;">Bold 700</span>
+            </div>
+        </div>
+
+        <div class="font-block">
+            <div class="font-header-row">
+                <span class="font-title">SPACE MONO</span>
+                <span class="font-tag">MONO / DADOS</span>
+            </div>
+            <div class="font-role">Códigos · Timestamps · Dados técnicos · Tags · Status text</div>
+            <div class="font-display-text" style="font-family:'Space Mono',monospace;font-size:24px;">render --quality 4K --ai</div>
+            <div class="font-alpha" style="font-family:'Space Mono',monospace;">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 {} [] () => //</div>
+        </div>
+
+        <div class="font-block">
+            <div class="font-header-row">
+                <span class="font-title">BARLOW THIN</span>
+                <span class="font-tag">ACCENT</span>
+            </div>
+            <div class="font-role">Palavras destaque · Citações · Editorial · Call-outs</div>
+            <div class="font-display-text" style="font-family:'Barlow',sans-serif;font-weight:100;font-size:36px;color:var(--rz-accent);">do bruto ao polido</div>
+        </div>
+
+        <h3>ESCALA TIPOGRÁFICA</h3>
+        <div class="type-scale-grid">
+            <div class="scale-box"><div class="scale-label">H1</div><div class="scale-value">48</div><div class="scale-font-name">Corpta</div></div>
+            <div class="scale-box"><div class="scale-label">H2</div><div class="scale-value">32</div><div class="scale-font-name">Outfit 700</div></div>
+            <div class="scale-box"><div class="scale-label">H3</div><div class="scale-value">24</div><div class="scale-font-name">Outfit 600</div></div>
+            <div class="scale-box"><div class="scale-label">BODY</div><div class="scale-value">16</div><div class="scale-font-name">Outfit 400</div></div>
+            <div class="scale-box"><div class="scale-label">MONO</div><div class="scale-value">13</div><div class="scale-font-name">Space Mono</div></div>
+            <div class="scale-box"><div class="scale-label">LABEL</div><div class="scale-value">11</div><div class="scale-font-name">Outfit ↑</div></div>
+        </div>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">10</div>
+    </div>
+
+    <!-- ==================== 05 ELEMENTOS - TÍTULO ==================== -->
+    <div class="page section-title-page">
+        <div class="section-num">05</div>
+        <div class="section-name">Elementos <em>Gráficos</em></div>
+        <p class="section-desc">Recursos visuais de apoio que compõem o universo gráfico da marca.</p>
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">11</div>
+    </div>
+
+    <!-- ==================== 05 ELEMENTOS - CONTEÚDO ==================== -->
+    <div class="page">
+        <div class="section-marker">05 — ELEMENTOS</div>
+
+        <h2>Apoio <em>Visual</em></h2>
+
+        <div class="elements-grid">
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">GRID ISOMÉTRICO</div>
+                <div class="element-desc">Pattern de fundo referenciando o viewport 3D. Usado em backgrounds e superfícies da interface. Linhas em rgba(140, 192, 78, 0.06) sobre fundo escuro.</div>
+            </div>
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">FLUXO DE DADOS</div>
+                <div class="element-desc">Linhas cinéticas representando processamento, velocidade e o fluxo de renderização. Animação horizontal com gradiente accent.</div>
+            </div>
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">GRAIN / NOISE</div>
+                <div class="element-desc">Textura sutil de noise sobre superfícies escuras. Reforça a estética brutalista. Aplicar com opacidade entre 3% e 6%.</div>
+            </div>
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">SCANLINES</div>
+                <div class="element-desc">Overlay de linhas horizontais. Referência a monitores CRT e processamento digital. Usar em backgrounds de seções especiais.</div>
+            </div>
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">GLOW ACCENT</div>
+                <div class="element-desc">Efeito de brilho (box-shadow) para estados ativos, loading e elementos de destaque. Cor base: rgba(140, 192, 78, 0.4).</div>
+            </div>
+            <div class="element-box">
+                <div class="element-title" style="color:var(--rz-accent);">CUBO ISOMÉTRICO</div>
+                <div class="element-desc">Elemento gráfico modular. Pode ser replicado em patterns e composições. Referência direta ao símbolo da marca.</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>MATERIAIS GRÁFICOS INCLUSOS</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ARQUIVO</th><th>DESCRIÇÃO</th><th>FORMATO</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Background Horizontal</td><td>Fundo padronizado para apresentações e headers</td><td><span class="format-badge">PNG</span></td></tr>
+                <tr><td>Banner</td><td>Banner institucional para redes sociais</td><td><span class="format-badge">PNG</span></td></tr>
+                <tr><td>Grid</td><td>Pattern de grid isométrico para composições</td><td><span class="format-badge">PNG</span></td></tr>
+                <tr><td>Logo Gridline</td><td>Construção geométrica do logotipo</td><td><span class="format-badge">PNG</span></td></tr>
+                <tr><td>Logo Motion</td><td>Animação do logotipo em vídeo</td><td><span class="format-badge">MP4</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">12</div>
+    </div>
+
+    <!-- ==================== 06 MOCKUPS ==================== -->
+    <div class="page">
+        <div class="section-marker">06 — APLICAÇÕES</div>
+
+        <h2>Aplicações & <em>Mockups</em></h2>
+
+        <div class="mockup-grid">
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/CARTAO-DE-VISITA-MOCKUP.jpg" alt="Cartão de Visita">
+                <div class="mockup-label">CARTÃO DE VISITA</div>
+            </div>
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/CAMISETA-MOCKUP.jpg" alt="Camiseta">
+                <div class="mockup-label">CAMISETA</div>
+            </div>
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/CANECA-MOCKUP.jpg" alt="Caneca">
+                <div class="mockup-label">CANECA</div>
+            </div>
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/APP-ICON-MOCKUP.jpg" alt="App Icon">
+                <div class="mockup-label">APP ICON</div>
+            </div>
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/ASSINATURA-DE-EMAIL-MOCKUP.jpg" alt="Assinatura de Email">
+                <div class="mockup-label">ASSINATURA DE EMAIL</div>
+            </div>
+            <div class="mockup-item">
+                <img class="mockup-img" src="06-mockups/PAPEL-TIMBRADO-MOCKUP.jpg" alt="Papel Timbrado">
+                <div class="mockup-label">PAPEL TIMBRADO</div>
+            </div>
+        </div>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">13</div>
+    </div>
+
+    <!-- ==================== 07 DOWNLOADS ==================== -->
+    <div class="page">
+        <div class="section-marker">07 — DOWNLOADS</div>
+
+        <h2>Arquivos & <em>Downloads</em></h2>
+
+        <h3>LOGO COLORIDA</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Logo Completa</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+                <tr>
+                    <td>Símbolo</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+                <tr>
+                    <td>Texto (Wordmark)</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <h3>LOGO MONOCROMÁTICA</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Logo Completa</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+                <tr>
+                    <td>Símbolo</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+                <tr>
+                    <td>Texto (Wordmark)</td>
+                    <td><span class="format-badge">.AI</span><span class="format-badge">.SVG</span><span class="format-badge">.PNG</span><span class="format-badge">.EPS</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <h3>MODELOS 3D</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Logo Completa 3D</td><td><span class="format-badge">.GLB</span></td></tr>
+                <tr><td>Símbolo 3D</td><td><span class="format-badge">.GLB</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <h3>APOIO GRÁFICO</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Background Horizontal</td><td><span class="format-badge">.PNG</span></td></tr>
+                <tr><td>Banner</td><td><span class="format-badge">.PNG</span></td></tr>
+                <tr><td>Grid Pattern</td><td><span class="format-badge">.PNG</span></td></tr>
+                <tr><td>Logo Gridline</td><td><span class="format-badge">.PNG</span></td></tr>
+                <tr><td>Logo Motion Video</td><td><span class="format-badge">.MP4</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <h3>PAPELARIA</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Assinatura de Email</td><td><span class="format-badge">.PNG</span></td></tr>
+                <tr><td>Modelo Papel Timbrado</td><td><span class="format-badge">.PDF</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <h3>TIPOGRAFIA</h3>
+        <table class="download-table">
+            <thead>
+                <tr><th>ITEM</th><th>FORMATOS</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Corpta Regular</td><td><span class="format-badge">.OTF</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">14</div>
+    </div>
+
+    <!-- ==================== ESTRUTURA DE PASTAS ==================== -->
+    <div class="page">
+        <div class="section-marker">07 — DOWNLOADS</div>
+
+        <h2>Estrutura de <em>Pastas</em></h2>
+
+        <div style="font-family:'Space Mono',monospace;font-size:11px;line-height:2;color:var(--rz-gray);background:var(--rz-dark);padding:24px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);">
+            <div style="color:var(--rz-accent);font-weight:700;">renderizai-brand/</div>
+            <div>├── <span style="color:var(--rz-white);">01-logo-colorida/</span></div>
+            <div>│   ├── LOGO-COMPLETA-FINAL (.ai .eps .png .svg)</div>
+            <div>│   ├── SIMBOLO-FINAL (.ai .eps .png .svg)</div>
+            <div>│   └── TEXTO-FINAL (.ai .eps .png .svg)</div>
+            <div>├── <span style="color:var(--rz-white);">02-logo-monocromatica/</span></div>
+            <div>│   ├── LOGO-MONOCROMATICA-COMPLETA (.ai .eps .png .svg)</div>
+            <div>│   ├── SIMBOLO-MONOCROMATICO-FINAL (.ai .eps .png .svg)</div>
+            <div>│   └── TEXTO-MONOCROMATICO-FINAL (.ai .eps .png .svg)</div>
+            <div>├── <span style="color:var(--rz-white);">03-modelos-3d/</span></div>
+            <div>│   ├── LOGO-COMPLETA-3D.glb</div>
+            <div>│   └── SIMBOLO-3D.glb</div>
+            <div>├── <span style="color:var(--rz-white);">04-apoio-grafico/</span></div>
+            <div>│   ├── BACKGROUND-HORIZONTAL.png</div>
+            <div>│   ├── BANNER.png</div>
+            <div>│   ├── GRID.png</div>
+            <div>│   ├── LOGO-GRIDLINE.png</div>
+            <div>│   └── LOGO-MOTION-VIDEO.mp4</div>
+            <div>├── <span style="color:var(--rz-white);">05-papelaria/</span></div>
+            <div>│   ├── ASSINATURA-DE-EMAIL.png</div>
+            <div>│   └── MODELO-PAPEL-TIMBRADO.pdf</div>
+            <div>├── <span style="color:var(--rz-white);">06-mockups/</span></div>
+            <div>│   ├── APP-ICON-MOCKUP.jpg</div>
+            <div>│   ├── ASSINATURA-DE-EMAIL-MOCKUP.jpg</div>
+            <div>│   ├── CAMISETA-MOCKUP.jpg</div>
+            <div>│   ├── CANECA-MOCKUP.jpg</div>
+            <div>│   ├── CARTAO-DE-VISITA-MOCKUP.jpg</div>
+            <div>│   └── PAPEL-TIMBRADO-MOCKUP.jpg</div>
+            <div>├── <span style="color:var(--rz-white);">07-tipografia/</span></div>
+            <div>│   └── CORPTA.OTF</div>
+            <div>├── <span style="color:var(--rz-white);">08-exemplos/</span></div>
+            <div>│   ├── paleta-de-cores.html</div>
+            <div>│   ├── tipografia.html</div>
+            <div>│   └── elementos-graficos.html</div>
+            <div>└── <span style="color:var(--rz-accent);font-weight:700;">manual-identidade-visual.html</span> ← este arquivo</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div style="text-align:center;padding:40px 0;">
+            <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--rz-gray-dark);margin-bottom:8px;">TOTAL DE ARQUIVOS</div>
+            <div style="font-size:64px;font-weight:900;color:var(--rz-accent);line-height:1;">40+</div>
+            <div style="font-size:12px;color:var(--rz-gray-dark);margin-top:8px;">Logos · Mockups · 3D · Tipografia · Papelaria · Apoio gráfico</div>
+        </div>
+
+        <div class="page-footer">RENDERIZAI — IDENTIDADE VISUAL</div>
+        <div class="page-number">15</div>
+    </div>
+
+    <!-- ==================== CONTRACAPA ==================== -->
+    <div class="page cover" style="justify-content:center;">
+        <div class="cover-grid"></div>
+        <div class="cover-glow"></div>
+        <div class="cover-content">
+            <div style="font-family:'Corpta','Outfit',sans-serif;font-size:42px;letter-spacing:-1px;margin-bottom:32px;">RENDERIZ<span style="color:var(--rz-accent);">AI</span></div>
+
+            <div class="contact-block">
+                <div class="contact-name">Miguel Melle</div>
+                <div class="contact-email">contato@miguelmelle.com</div>
+                <div class="contact-location">CAMPINAS — SP, BRASIL</div>
+            </div>
+
+            <div style="margin-top:48px;">
+                <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:4px;color:rgba(255,255,255,0.2);">© 2026 MIGUEL MELLE — TODOS OS DIREITOS RESERVADOS</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

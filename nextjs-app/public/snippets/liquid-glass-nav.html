@@ -1,0 +1,172 @@
+<!--
+  =====================================================
+  LIQUID GLASS NAVBAR — Snippet reutilizável
+  Extraído de renderizai.html
+  =====================================================
+  
+  DEPENDÊNCIAS:
+  - Variáveis CSS: --accent, --accent-light, --accent-dark, --white, --f-display
+  - Defina essas variáveis no :root do seu projeto
+  
+  COMO USAR:
+  1. Copie o bloco <style> para dentro do <style> do seu projeto
+  2. Copie o bloco <nav> para dentro do <body>
+  3. Ajuste as cores das variáveis --accent conforme seu projeto
+  =====================================================
+-->
+
+<!-- ========== CSS ========== -->
+<style>
+  /* ---- Liquid Glass Navbar ---- */
+  .glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(var(--accent-rgb, 140, 192, 78), 0.04) 100%
+    );
+    pointer-events: none;
+  }
+
+  .glass-nav:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Logo circle */
+  .glass-nav-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--accent-rgb, 140, 192, 78), 0.1);
+    border: 1px solid rgba(var(--accent-rgb, 140, 192, 78), 0.15);
+    flex-shrink: 0;
+  }
+
+  .glass-nav-logo img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  /* Links */
+  .glass-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .glass-nav-link {
+    font-family: var(--f-display, sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .glass-nav-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-nav-link.active {
+    color: #fff;
+    background: rgba(var(--accent-rgb, 140, 192, 78), 0.15);
+  }
+
+  /* CTA button */
+  .glass-nav-cta {
+    font-family: var(--f-display, sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 100px;
+    background: var(--accent, #8cc04e);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+
+  .glass-nav-cta:hover {
+    background: var(--accent-light, #a5d46e);
+    transform: scale(1.04);
+    box-shadow: 0 4px 20px rgba(var(--accent-rgb, 140, 192, 78), 0.3);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .glass-nav {
+      top: 12px;
+      padding: 6px 8px;
+    }
+    .glass-nav-link {
+      font-size: 11px;
+      padding: 6px 10px;
+    }
+    .glass-nav-cta {
+      padding: 6px 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .glass-nav-links {
+      display: none; /* esconde links no mobile, mantém só logo + cta */
+    }
+  }
+</style>
+
+<!-- ========== HTML ========== -->
+<nav class="glass-nav">
+  <div class="glass-nav-logo">
+    <img src="SEU-LOGO.svg" alt="Logo">
+  </div>
+  <div class="glass-nav-links">
+    <a href="#section-1" class="glass-nav-link active">Seção 1</a>
+    <a href="#section-2" class="glass-nav-link">Seção 2</a>
+    <a href="#section-3" class="glass-nav-link">Seção 3</a>
+  </div>
+  <a href="index.html" class="glass-nav-cta">← Voltar</a>
+</nav>

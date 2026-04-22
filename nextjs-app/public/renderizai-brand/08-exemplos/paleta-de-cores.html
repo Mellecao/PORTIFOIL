@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENDERIZAI — Paleta de Cores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0A0A0A;
+            color: #f8f8f8;
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 60px;
+        }
+        .header {
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+        .header h1 span { color: #8cc04e; }
+        .header p {
+            font-size: 14px;
+            color: #8a8a8a;
+            margin-top: 8px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 2px;
+        }
+        .swatches {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        .swatch {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .swatch-color {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        .swatch-info {
+            padding: 20px;
+            background: #111;
+        }
+        .swatch-name {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .swatch-role {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #8a8a8a;
+            margin-bottom: 12px;
+        }
+        .swatch-values {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .swatch-val {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #c2c2c2;
+        }
+        .usage-section {
+            margin-bottom: 60px;
+        }
+        .usage-section h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+        .ratio-bar {
+            display: flex;
+            height: 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .ratio-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .usage-labels {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .usage-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #c2c2c2;
+        }
+        .usage-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .extended {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .ext-item {
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ext-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .ext-info {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+        }
+        .ext-var { color: #8a8a8a; font-size: 10px; }
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .example-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+        }
+        .example-card h3 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #8cc04e;
+            margin-bottom: 16px;
+        }
+        .btn-example {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin: 4px;
+            border: none;
+        }
+        .btn-primary { background: #8cc04e; color: #f8f8f8; }
+        .btn-outline { background: transparent; border: 1px solid #8cc04e; color: #8cc04e; }
+        .btn-ghost { background: rgba(255,255,255,0.06); color: #c2c2c2; }
+        .tag-example {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 4px;
+        }
+        .tag-active { background: rgba(140,192,78,0.15); color: #8cc04e; border: 1px solid rgba(140,192,78,0.25); }
+        .tag-inactive { background: rgba(255,255,255,0.04); color: #8a8a8a; border: 1px solid rgba(255,255,255,0.06); }
+        .gradient-strip {
+            height: 80px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Paleta de <span>Cores</span></h1>
+        <p>RENDERIZAI — SISTEMA DE CORES</p>
+    </div>
+
+    <div class="swatches">
+        <div class="swatch">
+            <div class="swatch-color" style="background: #8cc04e;">
+                <span style="color: #fff; font-weight: 700; font-size: 13px;">Aa</span>
+            </div>
+            <div class="swatch-info">
+                <div class="swatch-name">RENDER GREEN</div>
+                <div class="swatch-role">PRIMÁRIA</div>
+                <div class="swatch-values">
+                    <span class="swatch-val">HEX #8CC04E</span>
+                    <span class="swatch-val">RGB 140, 192, 78</span>
+                    <span class="swatch-val">HSL 87°, 50%, 53%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="swatch">
+            <div class="swatch-color" style="background: #C2C2C2;">
+                <span style="color: #0A0A0A; font-weight: 700; font-size: 13px;">Aa</span>
+            </div>
+            <div class="swatch-info">
+                <div class="swatch-name">STEEL GRAY</div>
+                <div class="swatch-role">SECUNDÁRIA</div>
+                <div class="swatch-values">
+                    <span class="swatch-val">HEX #C2C2C2</span>
+                    <span class="swatch-val">RGB 194, 194, 194</span>
+                    <span class="swatch-val">HSL 0°, 0%, 76%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="swatch">
+            <div class="swatch-color" style="background: #F8F8F8;">
+                <span style="color: #0A0A0A; font-weight: 700; font-size: 13px;">Aa</span>
+            </div>
+            <div class="swatch-info">
+                <div class="swatch-name">SNOW WHITE</div>
+                <div class="swatch-role">TEXTO</div>
+                <div class="swatch-values">
+                    <span class="swatch-val">HEX #F8F8F8</span>
+                    <span class="swatch-val">RGB 248, 248, 248</span>
+                    <span class="swatch-val">HSL 0°, 0%, 97%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="swatch">
+            <div class="swatch-color" style="background: #0A0A0A; border: 1px solid rgba(255,255,255,0.1);">
+                <span style="color: #f8f8f8; font-weight: 700; font-size: 13px;">Aa</span>
+            </div>
+            <div class="swatch-info">
+                <div class="swatch-name">VOID BLACK</div>
+                <div class="swatch-role">FUNDO</div>
+                <div class="swatch-values">
+                    <span class="swatch-val">HEX #0A0A0A</span>
+                    <span class="swatch-val">RGB 10, 10, 10</span>
+                    <span class="swatch-val">HSL 0°, 0%, 4%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="usage-section">
+        <h2>Proporção de Uso</h2>
+        <div class="ratio-bar">
+            <div class="ratio-segment" style="width: 60%; background: #0A0A0A; color: #f8f8f8; border: 1px solid rgba(255,255,255,0.1);">60%</div>
+            <div class="ratio-segment" style="width: 25%; background: #F8F8F8; color: #0A0A0A;">25%</div>
+            <div class="ratio-segment" style="width: 10%; background: #C2C2C2; color: #0A0A0A;">10%</div>
+            <div class="ratio-segment" style="width: 5%; background: #8cc04e; color: #fff;">5%</div>
+        </div>
+        <div class="usage-labels">
+            <div class="usage-label"><div class="usage-dot" style="background: #0A0A0A; border: 1px solid rgba(255,255,255,0.2);"></div> Void Black — 60%</div>
+            <div class="usage-label"><div class="usage-dot" style="background: #F8F8F8;"></div> Snow White — 25%</div>
+            <div class="usage-label"><div class="usage-dot" style="background: #C2C2C2;"></div> Steel Gray — 10%</div>
+            <div class="usage-label"><div class="usage-dot" style="background: #8cc04e;"></div> Render Green — 5%</div>
+        </div>
+    </div>
+
+    <div class="usage-section">
+        <h2>Cores Estendidas</h2>
+        <div class="extended">
+            <div class="ext-item">
+                <div class="ext-dot" style="background: #111111;"></div>
+                <div class="ext-info">#111111<br><span class="ext-var">--rz-dark</span></div>
+            </div>
+            <div class="ext-item">
+                <div class="ext-dot" style="background: #161616;"></div>
+                <div class="ext-info">#161616<br><span class="ext-var">--rz-surface</span></div>
+            </div>
+            <div class="ext-item">
+                <div class="ext-dot" style="background: #6b9e3e;"></div>
+                <div class="ext-info">#6B9E3E<br><span class="ext-var">--rz-accent-dark</span></div>
+            </div>
+            <div class="ext-item">
+                <div class="ext-dot" style="background: #a5d46e;"></div>
+                <div class="ext-info">#A5D46E<br><span class="ext-var">--rz-accent-light</span></div>
+            </div>
+            <div class="ext-item">
+                <div class="ext-dot" style="background: #8a8a8a;"></div>
+                <div class="ext-info">#8A8A8A<br><span class="ext-var">--rz-gray-dark</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="usage-section">
+        <h2>Exemplos de Aplicação</h2>
+        <div class="examples">
+            <div class="example-card">
+                <h3>BOTÕES</h3>
+                <button class="btn-example btn-primary">Renderizar Agora</button>
+                <button class="btn-example btn-outline">Saiba Mais</button>
+                <button class="btn-example btn-ghost">Cancelar</button>
+            </div>
+            <div class="example-card">
+                <h3>TAGS & BADGES</h3>
+                <span class="tag-example tag-active">ATIVO</span>
+                <span class="tag-example tag-active">I.A.</span>
+                <span class="tag-example tag-inactive">ARCHVIZ</span>
+                <span class="tag-example tag-inactive">VIEWPORT</span>
+            </div>
+            <div class="example-card" style="grid-column: span 2;">
+                <h3>GRADIENTES</h3>
+                <div class="gradient-strip" style="background: linear-gradient(135deg, #8cc04e 0%, #6b9e3e 100%);"></div>
+                <div class="gradient-strip" style="background: linear-gradient(135deg, #0A0A0A 0%, #161616 50%, #8cc04e 100%);"></div>
+                <div class="gradient-strip" style="background: linear-gradient(90deg, #0A0A0A 0%, #111111 40%, rgba(140,192,78,0.3) 100%);"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

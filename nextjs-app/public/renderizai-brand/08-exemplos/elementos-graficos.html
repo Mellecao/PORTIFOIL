@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENDERIZAI — Elementos Gráficos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Barlow:wght@100&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Corpta';
+            src: url('https://rpczwepbpuayxfkxphdm.supabase.co/storage/v1/object/public/portfoil/CORPTA.OTF') format('opentype');
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0A0A0A;
+            color: #f8f8f8;
+            font-family: 'Outfit', sans-serif;
+            padding: 60px;
+            min-height: 100vh;
+        }
+        .header { margin-bottom: 60px; }
+        .header h1 { font-size: 48px; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
+        .header h1 span { color: #8cc04e; }
+        .header p { font-size: 14px; color: #8a8a8a; margin-top: 8px; font-family: 'Space Mono', monospace; letter-spacing: 2px; }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        .element-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .element-preview {
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+        }
+        .element-info {
+            padding: 24px;
+            background: #111;
+        }
+        .element-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .element-desc {
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.6;
+        }
+
+        /* Grid Isométrico */
+        .iso-grid {
+            width: 100%; height: 100%;
+            background-color: #0A0A0A;
+            background-image:
+                linear-gradient(rgba(140, 192, 78, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(140, 192, 78, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .iso-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, transparent 30%, #0A0A0A 70%);
+        }
+
+        /* Fluxo de Dados */
+        .data-flow {
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            position: relative;
+        }
+        .flow-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8cc04e, transparent);
+            animation: flow 3s ease-in-out infinite;
+            opacity: 0.4;
+        }
+        @keyframes flow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        /* Grain */
+        .grain-texture {
+            width: 100%; height: 100%;
+            background: #111;
+            position: relative;
+        }
+        .grain-texture::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.6;
+        }
+
+        /* Scanlines */
+        .scanlines {
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            position: relative;
+        }
+        .scanlines::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(140, 192, 78, 0.03) 2px,
+                rgba(140, 192, 78, 0.03) 4px
+            );
+        }
+        .scanlines-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: #8cc04e;
+            letter-spacing: 4px;
+            z-index: 1;
+        }
+
+        /* Glow */
+        .glow-demo {
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .glow-circle {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: #8cc04e;
+            box-shadow: 0 0 40px rgba(140,192,78,0.4), 0 0 80px rgba(140,192,78,0.2), 0 0 120px rgba(140,192,78,0.1);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+        .glow-circle-off {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: #333;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(140,192,78,0.4), 0 0 80px rgba(140,192,78,0.2); }
+            50% { box-shadow: 0 0 60px rgba(140,192,78,0.6), 0 0 120px rgba(140,192,78,0.3); }
+        }
+
+        /* Cubo */
+        .cube-demo {
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 600px;
+        }
+        .cube-wrapper {
+            width: 100px; height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cube-spin 8s linear infinite;
+        }
+        @keyframes cube-spin {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+        .cube-face {
+            position: absolute;
+            width: 100px; height: 100px;
+            border: 1px solid rgba(140,192,78,0.3);
+            background: rgba(140,192,78,0.05);
+        }
+        .cube-face:nth-child(1) { transform: translateZ(50px); }
+        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(50px); }
+        .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(50px); }
+        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }
+        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); }
+
+        /* UI Card Example */
+        .ui-section { margin-top: 60px; }
+        .ui-section h2 { font-size: 24px; font-weight: 800; letter-spacing: -1px; margin-bottom: 32px; }
+        .ui-card {
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 400px;
+        }
+        .ui-card-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #8cc04e;
+            padding: 4px 12px;
+            border: 1px solid rgba(140,192,78,0.2);
+            border-radius: 100px;
+            background: rgba(140,192,78,0.06);
+            margin-bottom: 16px;
+        }
+        .ui-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .ui-card p {
+            font-size: 14px;
+            color: #8a8a8a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .ui-card-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: #8cc04e;
+            color: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+        .ui-card-progress {
+            margin-top: 20px;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .ui-card-progress-bar {
+            height: 100%;
+            width: 73%;
+            background: linear-gradient(90deg, #8cc04e, #a5d46e);
+            border-radius: 2px;
+        }
+        .ui-card-progress-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #c2c2c2;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Elementos <span>Gráficos</span></h1>
+        <p>RENDERIZAI — APOIO VISUAL</p>
+    </div>
+
+    <div class="elements-grid">
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="iso-grid"></div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">GRID ISOMÉTRICO</div>
+                <div class="element-desc">Pattern de fundo referenciando o viewport 3D. Usado em backgrounds e superfícies da interface.</div>
+            </div>
+        </div>
+
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="data-flow">
+                    <div class="flow-line" style="top:20%; width:60%; left:10%; animation-delay:0s;"></div>
+                    <div class="flow-line" style="top:35%; width:40%; left:30%; animation-delay:0.5s;"></div>
+                    <div class="flow-line" style="top:50%; width:70%; left:5%; animation-delay:1s;"></div>
+                    <div class="flow-line" style="top:65%; width:50%; left:20%; animation-delay:1.5s;"></div>
+                    <div class="flow-line" style="top:80%; width:45%; left:15%; animation-delay:2s;"></div>
+                </div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">FLUXO DE DADOS</div>
+                <div class="element-desc">Linhas cinéticas representando processamento, velocidade e o fluxo de renderização I.A.</div>
+            </div>
+        </div>
+
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="grain-texture">
+                    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Corpta',serif;font-size:40px;letter-spacing:-1px;z-index:1;">RENDERIZ<span style="color:#8cc04e">AI</span></div>
+                </div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">GRAIN / NOISE</div>
+                <div class="element-desc">Textura sutil de noise sobre superfícies escuras. Reforça a estética brutalista e técnica.</div>
+            </div>
+        </div>
+
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="scanlines">
+                    <div class="scanlines-text">PROCESSING...</div>
+                </div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">SCANLINES</div>
+                <div class="element-desc">Overlay de linhas horizontais. Referência a monitores CRT e processamento digital.</div>
+            </div>
+        </div>
+
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="glow-demo">
+                    <div class="glow-circle-off"></div>
+                    <div class="glow-circle"></div>
+                    <div class="glow-circle-off"></div>
+                </div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">GLOW ACCENT</div>
+                <div class="element-desc">Efeito de brilho para estados ativos, loading e elementos de destaque na interface.</div>
+            </div>
+        </div>
+
+        <div class="element-card">
+            <div class="element-preview">
+                <div class="cube-demo">
+                    <div class="cube-wrapper">
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="element-info">
+                <div class="element-name">CUBO ISOMÉTRICO</div>
+                <div class="element-desc">Elemento gráfico modular. Referência ao cubo 3D e à simbologia da marca.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-section">
+        <h2>Exemplo de UI Card</h2>
+        <div class="ui-card">
+            <div class="ui-card-badge">RENDERIZAÇÃO</div>
+            <h3>Sala de Estar — Modern</h3>
+            <p>Renderização fotorrealista gerada por I.A. em 12 segundos. Resolução 4K.</p>
+            <button class="ui-card-btn">Ver Resultado</button>
+            <div class="ui-card-progress"></div>
+            <div class="ui-card-progress-bar" style="width:73%;height:4px;background:linear-gradient(90deg,#8cc04e,#a5d46e);border-radius:2px;margin-top:-4px;"></div>
+            <div class="ui-card-progress-label">73% concluído</div>
+        </div>
+    </div>
+</body>
+</html>
